@@ -1,0 +1,11 @@
+{
+  "name": "react-web-dev",
+  "version": "1.0.0",
+  "description": "React ecosystem demo",
+  "main": "index.js",
+  "author": "Sigils",
+  "license": "MIT",
+  "scripts": {
+    "start": "node ./index.js"
+  }
+}
