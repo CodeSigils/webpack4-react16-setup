@@ -111,6 +111,9 @@ A demo of basic (and some advanced) React concepts in a React app with a complet
 
     // Install React libraries
     yarn add -D react react-dom prop-types
+
+    // Install dotenv for environment variables definitions
+    yarn add -D dotenv
   ```
 
 - **Configurations**

@@ -7,8 +7,6 @@ import ReactDOM from 'react-dom'
  * and inject it to the DOM
  */
  
-// http://reactrecipes.herokuapp.com/v1/recipes
-
 const MOUNT_ELEMENT = document.getElementById("app")
 
 import App from './app/App';

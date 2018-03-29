@@ -3,7 +3,20 @@ import React, {Component} from "react"
 import Header from './components/Header'
 import RecipeList from './components/RecipeList'
 import RecipeDetail from './components/RecipeDetail'
-import creepyCookies from './img/food_cookies2.jpeg'
+
+/**
+ * 
+ fetch('http://reactrecipes.herokuapp.com/v1/recipes')
+   // When response arrives we transform it to a JSON object inside a promise.
+   .then(res => res.json())
+   // Open console and network tap in dev tools and observe
+   .then(json => console.log(json))
+ *
+ * Note: Use '.env' file with the DotENV library to define global variables. 
+ * It is a good idea for security to exclude this file from version control 
+ * (see .gitignore file)
+ * 
+ */
 
 const App = (props) => {
   return (
@@ -13,7 +26,6 @@ const App = (props) => {
         <RecipeList style={{ flex: 3 }} />
         <RecipeDetail style={{ flex: 5 }} />
       </main>
-      {/* <img src={creepyCookies} /> */}
     </div>
   )
 }
