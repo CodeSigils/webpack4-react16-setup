@@ -2,7 +2,6 @@ var webpack = require('webpack');
 const path = require('path');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const HtmlWebPackPlugin = require("html-webpack-plugin");
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 // Export main JS Object. Here we define the 'entry' and the 'output' values
 module.exports = {
