@@ -46,7 +46,7 @@ A demo of basic (and some advanced) React concepts in a React app.
         wget -qO- https://raw.githubusercontent.com/creationix/nvm/v0.33.8/install.sh | bash
       ```
 
-    - NVM and Yarn setup path in your .zshrc:
+    - NVM and Yarn path setup in your .zshrc:
       ```sh
         # NVM Node Version Manager
         export NVM_DIR="$HOME/.nvm"
@@ -76,9 +76,135 @@ A demo of basic (and some advanced) React concepts in a React app.
     A transformation applied to a module through the bundling process.
   - **Plugins:** 
     Apply transformations on parts of the bundle output.
-  - Simple run from terminal: `node_modules/.bin/webpack ./entry-point.js ./output-file.js`
-- How to configure Webpack
+  - Simple run from terminal: 
+    `node_modules/.bin/webpack ./entry-point.js ./output-file.js`
+- How to install and configure Webpack: The `webpack.config.js` file.
 - Integrating Babel into webpack using a loader 
-- Installation: 
-  - `yarn add webpack --dev`
+- Use of [webpack-dev-server](https://github.com/webpack/webpack-dev-server)
+  Note: Webpack dev server's cli have moved to `webpack-cli` in webpack4.
+- Setting up a webpack plugin
+- Getting everything ready to start writing React code
 
+- **Installations**
+  ```js
+    // Babel core
+    yarn add -D babel-core babel-cli
+    
+    // Babel presets. Note 'babel-preset-es2015' is deprecated
+    yarn add -D babel-preset-env babel-preset-react
+
+    // Babel main loader
+    yarn add babel-loader
+    
+    // Webpack and dev server:
+    yarn add -D webpack webpack-cli webpack-dev-server
+
+    // Additional Webpack loaders
+    yarn add -D html-loader css-loader
+
+    // Webpack plugins
+    yarn add -D html-webpack-plugin mini-css-extract-plugin
+
+    // Install React libraries
+    yarn add -D react react-dom prop-types
+  ```
+
+- **Configurations**
+```js
+/* 1. ---- ./webpack.config.js ---- */
+const path = require('path');
+const webpack = require('webpack');
+const HtmlWebPackPlugin = require("html-webpack-plugin");
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+
+module.exports = {
+  /**
+   * ENTRY POINTS
+   * Here we define the entry and the output key values.
+   * Note that webpack 4 is serving files from an 'src'
+   * folder by default and outputs in a 'dist' folder.
+   * Optional use of 'context to define main source path. 
+   * In this case /src
+ */
+  context: path.join(__dirname, 'src'),
+  entry: {
+    filename: './index.js'
+  },
+  output: {
+    path: path.resolve(__dirname, 'dist'),
+    filename: './bundle.js'
+  },
+  /** 
+   * LOADERS
+   * Inside the rules array we can add as many loaders as we want. 
+   * Every loader takes a 'test' attribute that accepts a regex as a value.
+  */
+  module: {
+    rules: [
+      // Babel loader
+      {
+        test: /\.js$/,
+        exclude: /(node_modules|bower_components)/,
+        use: {
+          loader: 'babel-loader'
+        }
+      },
+      // Html loader
+      {
+        test: /\.html$/,
+        use: [
+          {
+            loader: "html-loader",
+            options: { minimize: true }
+          }
+        ]
+      },
+      // Css loader
+      {
+        test: /\.css$/,
+        use: [MiniCssExtractPlugin.loader, "css-loader"]
+      }
+    ]
+  }, // End loaders
+  
+  // PLUGINS
+  plugins: [
+    // Html plugins
+    new HtmlWebPackPlugin({
+      template: "./src/index.html",
+      filename: "./index.html"
+    }),
+    // Css plugins
+    new MiniCssExtractPlugin({
+      filename: "[name].css",
+      chunkFilename: "[id].css"
+    })
+  ]
+
+};
+
+/* 2. ---- ./package.json (scripts section) ---- */
+  "scripts": {
+    "start": "webpack-dev-server --mode development --open",
+    "dev": "webpack --mode development",
+    "build": "webpack --mode production"
+  },
+
+/* 3. ---- ./.babelrc ---- */
+{
+  "presets": [
+    "env",
+    "react"
+  ]
+}
+
+```
+Now we can run `yarn start` and watch the server in localhost:8080
+
+### 3. React
+- Creating and mounting root component. About renderers.
+- Using functional components
+- Importing assets
+- Compose components to create more complex UI
+- Making async request in the component life cycle
+- Use the state to make your components dynamic
