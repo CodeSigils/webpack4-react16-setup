@@ -108,12 +108,12 @@ A demo of basic (and some advanced) React concepts in a React app with a complet
     // Webpack plugins
     yarn add -D html-webpack-plugin
 
-
     // Install React libraries
     yarn add -D react react-dom prop-types
 
-    // Install dotenv for environment variables definitions
-    yarn add -D dotenv
+    // Install dotenv for global environment variables definitions
+    // Note: 'whatwg-fetch' polyfill is for older browsers 'fetch' support
+    yarn add -D dotenv dotenv-webpack whatwg-fetch
   ```
 
 - **Configurations**
@@ -123,6 +123,9 @@ var webpack = require('webpack');
 const path = require('path');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const HtmlWebPackPlugin = require("html-webpack-plugin");
+
+// config() exposes 'env' to 'process.env' (see plugins section)
+require('dotenv').config();
 
 // Export main JS Object. Here we define the 'entry' and the 'output' values
 module.exports = {
@@ -253,6 +256,18 @@ module.exports = {
     new webpack.NamedModulesPlugin(),
     new webpack.HotModuleReplacementPlugin(),
     new webpack.optimize.OccurrenceOrderPlugin(),
+    // Use '.env' file for global var definitions.
+    // https://github.com/mrsteele/dotenv-webpack
+    new Dotenv({
+      path: './.env',
+      safe: false,
+      systemvars: true,
+    }),
+    // Register global vars to webpack for all the files
+    // The result must return a string.
+    new webpack.DefinePlugin({
+      API_URL: JSON.stringify(process.env.API_URL)
+    }),
   ],
 
   /**

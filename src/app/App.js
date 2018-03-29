@@ -9,7 +9,7 @@ import RecipeDetail from './components/RecipeDetail'
  fetch('http://reactrecipes.herokuapp.com/v1/recipes')
    // When response arrives we transform it to a JSON object inside a promise.
    .then(res => res.json())
-   // Open console and network tap in dev tools and observe
+   // Open console and network tab in dev-tools and observe
    .then(json => console.log(json))
  *
  * Note: Use '.env' file with the DotENV library to define global variables. 
@@ -17,6 +17,10 @@ import RecipeDetail from './components/RecipeDetail'
  * (see .gitignore file)
  * 
  */
+
+fetch(`${API_URL}/v1/recipes`)
+  .then(res => res.json())
+  .then(json => console.log(json));
 
 const App = (props) => {
   return (

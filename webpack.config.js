@@ -1,7 +1,11 @@
 var webpack = require('webpack');
 const path = require('path');
+const Dotenv = require('dotenv-webpack');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const HtmlWebPackPlugin = require("html-webpack-plugin");
+
+// config() exposes 'env' to 'process.env' (see plugins section)
+require('dotenv').config();
 
 // Export main JS Object. Here we define the 'entry' and the 'output' values
 module.exports = {
@@ -15,7 +19,8 @@ module.exports = {
  */
   context: path.join(__dirname, 'src'),
   entry: {
-    app: './index.js'
+    // Fetch older browsers polyfill support
+    app: ['whatwg-fetch', './index.js']
   },
   devtool: 'inline-source-map',
   
@@ -133,6 +138,18 @@ module.exports = {
     new webpack.NamedModulesPlugin(),
     new webpack.HotModuleReplacementPlugin(),
     new webpack.optimize.OccurrenceOrderPlugin(),
+    // Use '.env' file for global var definitions.
+    // https://github.com/mrsteele/dotenv-webpack
+    new Dotenv({
+      path: './.env',
+      safe: false,
+      systemvars: true,
+    }),
+    // Register global vars to webpack for all the files
+    // @return {string}
+    new webpack.DefinePlugin({
+      API_URL: JSON.stringify(process.env.API_URL)
+    }),
   ],
 
   /**
