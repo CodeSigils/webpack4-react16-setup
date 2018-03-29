@@ -2,6 +2,7 @@ var webpack = require('webpack');
 const path = require('path');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const HtmlWebPackPlugin = require("html-webpack-plugin");
+const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 // Export main JS Object. Here we define the entry and the output key values
@@ -72,23 +73,24 @@ module.exports = {
       },
       // Css loader
       {
-        test: /\.css$/,
+        test: /\.(css|scss|sass)$/,
         use: [
-          { loader: 'style-loader' },
           MiniCssExtractPlugin.loader, 
           {
-            loader: "css-loader",
+            loader: "css-loader?style-loader",
+            /*
             options: {
               modules: true,
               sourceMap: true,
               importLoader: 2
             }
+            */
           },
         ]
       },
       // File loader - Images
       {
-        test: /\.(jpg|png|gif|svg)$/,
+        test: /\.(jpg|jpeg|png|gif|svg)$/,
         use: [
           {
             loader: 'file-loader',

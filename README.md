@@ -203,8 +203,8 @@ Now we can run `yarn start` and watch the server in localhost:8080
 
 ### 3. React
 - Creating and mounting root component. About renderers.
-- Using functional components
+- Functional and Class components
 - Importing assets
 - Compose components to create more complex UI
 - Making async request in the component life cycle
-- Use the state to make your components dynamic
+- Use the state to make components dynamic
