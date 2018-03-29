@@ -3,3 +3,5 @@ node_modules
 .env
 ./webpack.config.sample.js
 ./yarn-error.log
+SAMPLES
+/SAMPLES/*
