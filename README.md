@@ -1,6 +1,6 @@
 ## React from scratch - A React workshop
 Note: No automated React build will be used here.
-A demo of basic (and some advanced) React concepts in a React app.
+A demo of basic (and some advanced) React concepts in a React app with a complete development webpack4 setup.
 
 ### 1. Setting-up the environment.
 - Use of yarn: How to initialize a project. 
@@ -62,7 +62,7 @@ A demo of basic (and some advanced) React concepts in a React app.
   - [JavaScript Transpilers: What They Are & Why We Need Them](https://scotch.io/tutorials/javascript-transpilers-what-they-are-why-we-need-them)
 ---
 
-### 2. Webpack setup and configuration
+### 2. Webpack4 setup and configuration
 - Intro to Webpack "module bundler" and its dependency graph
 - How webpack works
   - **Entry point:** 
@@ -100,10 +100,10 @@ A demo of basic (and some advanced) React concepts in a React app.
     yarn add -D webpack webpack-cli webpack-dev-server
 
     // Additional Webpack loaders
-    yarn add -D html-loader css-loader
+    yarn add -D html-loader css-loader style-loader sass-loader node-sass postcss-loader
 
     // Webpack plugins
-    yarn add -D html-webpack-plugin mini-css-extract-plugin
+    yarn add -D html-webpack-plugin
 
     // Install React libraries
     yarn add -D react react-dom prop-types
@@ -112,14 +112,15 @@ A demo of basic (and some advanced) React concepts in a React app.
 - **Configurations**
 ```js
 /* 1. ---- ./webpack.config.js ---- */
+var webpack = require('webpack');
 const path = require('path');
-const webpack = require('webpack');
+const CleanWebpackPlugin = require('clean-webpack-plugin');
 const HtmlWebPackPlugin = require("html-webpack-plugin");
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
+// Export main JS Object. Here we define the 'entry' and the 'output' values
 module.exports = {
   /**
-   * ENTRY POINTS
+   * 1. ENTRY POINTS
    * Here we define the entry and the output key values.
    * Note that webpack 4 is serving files from an 'src'
    * folder by default and outputs in a 'dist' folder.
@@ -128,78 +129,154 @@ module.exports = {
  */
   context: path.join(__dirname, 'src'),
   entry: {
-    filename: './index.js'
+    app: './index.js'
   },
-  output: {
-    path: path.resolve(__dirname, 'dist'),
-    filename: './bundle.js'
+  devtool: 'inline-source-map',
+  
+  /**
+   * 2. DEV-SERVER
+   */
+  devServer: {
+    // contentBase: path.join(__dirname, 'dist'),
+    contentBase: '/',
+    compress: true,
+    publicPath: '/',
+    port: 8899,
+    open: true,
+    inline: true,
+    hot: true,
+    stats: {
+      colors: true
+    }
   },
+
+  /**
+   * 3. CSS AND JS OPTIM
+   * https://github.com/webpack-contrib/mini-css-extract-plugin
+   optimization: {
+     minimize: true
+    },
+  */
+  
   /** 
-   * LOADERS
+   * 4. LOADERS
    * Inside the rules array we can add as many loaders as we want. 
    * Every loader takes a 'test' attribute that accepts a regex as a value.
   */
   module: {
+    // Exclude large libs for performance
+    noParse: function (content) {
+      return /jquery|lodash/.test(content)
+    },
     rules: [
       // Babel loader
       {
-        test: /\.js$/,
+        test: /\.(js|jsx)$/,
         exclude: /(node_modules|bower_components)/,
         use: {
-          loader: 'babel-loader'
+          loader: 'babel-loader',
+          options: {
+            presets: ['react', 'env']
+          }
         }
       },
       // Html loader
       {
-        test: /\.html$/,
-        use: [
-          {
-            loader: "html-loader",
-            options: { minimize: true }
-          }
-        ]
+        test: /\.(html|htm)$/,
+        use: [{
+          loader: "html-loader",
+          options: { minimize: true }
+        }]
       },
       // Css loader
       {
         test: /\.css$/,
-        use: [MiniCssExtractPlugin.loader, "css-loader"]
+        use: ['style-loader', 'css-loader'],
+        exclude: /node_modules/
+      },
+      // Sass loader - Include node_modules
+      {
+        test:/\.(scss|sass)$/,
+        use:['style-loader','css-loader','sass-loader'],
+        include: /node_modules/
+      },
+      // File loader - Images
+      {
+        test: /\.(jpg|jpeg|png|gif|svg)$/,
+        use: [
+          {
+            loader: 'file-loader',
+            options: {
+              limit:80000,
+              name: '[name].[ext]',
+              outputPath: './img/',
+              publicPath: './img/'
+            }
+          }
+        ],
+        exclude: /\/node_modules\//,
+      },
+      // File loader - Fonts
+      {
+        test: /\.(woff|woff2|eot|ttf|otf)$/,
+        use: [{
+          loader: 'file-loader',
+          options: {
+            name: 'fonts/[name]-[hash].[ext]'
+          }
+        }],
+        exclude: /node_modules/
       }
+      
     ]
-  }, // End loaders
+  },
   
-  // PLUGINS
+  /**
+   * 5. PLUGINS
+  */
   plugins: [
     // Html plugins
     new HtmlWebPackPlugin({
-      template: "./src/index.html",
+      template: "index.html",
       filename: "./index.html"
     }),
-    // Css plugins
-    new MiniCssExtractPlugin({
-      filename: "[name].css",
-      chunkFilename: "[id].css"
-    })
-  ]
+    // Clean webpack
+    new CleanWebpackPlugin(['dist']),
+    // HMR
+    new webpack.NamedModulesPlugin(),
+    new webpack.HotModuleReplacementPlugin(),
+    new webpack.optimize.OccurrenceOrderPlugin(),
+  ],
 
+  /**
+   * 6. OUTPUT
+   */
+  output: {
+    filename: '[name].bundle.js',
+    path: path.resolve(__dirname, 'dist'),
+    publicPath: './'
+  }
 };
 
 /* 2. ---- ./package.json (scripts section) ---- */
   "scripts": {
-    "start": "webpack-dev-server --mode development --open",
-    "dev": "webpack --mode development",
-    "build": "webpack --mode production"
-  },
-
-/* 3. ---- ./.babelrc ---- */
-{
-  "presets": [
-    "env",
-    "react"
-  ]
-}
+        "serve": "webpack-dev-server --watch --config ./webpack.config.js --mode development",
+        "dev": "webpack --mode development",
+        "build": "webpack --mode production",
+        "watch": "webpack --watch --mode development"
+    },
+    "babel": {
+      "presets": [
+          "react",
+          "env"
+      ]
+    },
+    "standard": {
+      "parser": "babel-eslint"
+    },
 
 ```
-Now we can run `yarn start` and watch the server in localhost:8080
+Now we can run `yarn serve` and watch the server in localhost:8899
 
 ### 3. React
 - Creating and mounting root component. About renderers.
@@ -209,5 +286,6 @@ Now we can run `yarn start` and watch the server in localhost:8080
 - Props: Read only data-types (strings, numbers, arrays, objects, classes...)
 - Passing and collecting props, conditionals and common problems
 - Prop-types in React
+- Intro to fetch: A promised based web request mechanism
 - Making async request in the component life cycle
 - Use the state to make components dynamic
