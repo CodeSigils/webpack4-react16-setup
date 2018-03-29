@@ -33,7 +33,7 @@ A demo of basic (and some advanced) React concepts in a React app with a complet
       curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
       echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
 
-      # Install
+      # Install with yarn included Node (see next line)
       sudo apt-get update && sudo apt-get install yarn
 
       # When NVM present avoid node installation with
@@ -100,10 +100,14 @@ A demo of basic (and some advanced) React concepts in a React app with a complet
     yarn add -D webpack webpack-cli webpack-dev-server
 
     // Additional Webpack loaders
-    yarn add -D html-loader css-loader style-loader sass-loader node-sass postcss-loader
+    yarn add -D html-loader css-loader style-loader sass-loader node-sass 
+
+    // Autoprefixer and postcss
+    yarn add -D autoprefixer postcss-loader && touch postcss.config.js
 
     // Webpack plugins
     yarn add -D html-webpack-plugin
+
 
     // Install React libraries
     yarn add -D react react-dom prop-types
@@ -275,6 +279,12 @@ module.exports = {
       "parser": "babel-eslint"
     },
 
+/* 2. ---- ./postcss.config.js ---- */
+  module.exports = {
+    plugins: [
+      require('autoprefixer')
+    ]
+  }
 ```
 Now we can run `yarn serve` and watch the server in localhost:8899
 

@@ -38,6 +38,7 @@ module.exports = {
 
   /**
    * 3. CSS AND JS OPTIM
+   * We don't need for this dev demo, but necessary in production.
    * https://github.com/webpack-contrib/mini-css-extract-plugin
    optimization: {
      minimize: true
@@ -74,10 +75,10 @@ module.exports = {
           options: { minimize: true }
         }]
       },
-      // Css loader
+      // Css loader - Exclude node_modules
       {
         test: /\.css$/,
-        use: ['style-loader', 'css-loader'],
+        use: ['style-loader', 'css-loader', 'postcss-loader'],
         exclude: /node_modules/
       },
       // Sass loader - Include node_modules
@@ -100,7 +101,7 @@ module.exports = {
             }
           }
         ],
-        exclude: /\/node_modules\//,
+        exclude: /node_modules/,
       },
       // File loader - Fonts
       {
