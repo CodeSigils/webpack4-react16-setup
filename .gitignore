@@ -1,7 +1,6 @@
 node_modules
 .dist
 .env
-./webpack.config.sample.js
-./yarn-error.log
+yarn-error.*
 SAMPLES
 /SAMPLES/*
