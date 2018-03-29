@@ -1,5 +1,5 @@
 Arguments: 
-  /home/sand/.nvm/versions/node/v8.10.0/bin/node /usr/share/yarn/bin/yarn.js serve
+  /home/sand/.nvm/versions/node/v8.10.0/bin/node /usr/share/yarn/bin/yarn.js dev
 
 PATH: 
   /home/sand/.nvm/versions/node/v8.10.0/bin:/home/sand/opt/Intellij/idea-UI-172.4155.36/bin:/home/sand/usr/local/bin/elixir:/home/sand~/.config/composer/vendor/bin:/home/sand/.rbenv/shims:/home/sand/.rbenv/bin:/home/sand/bin/:/usr/bin:/usr/local/bin:/home/sand/.zplug/repos/zplug/zplug/bin:/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/usr/games:/usr/local/games:/home/sand/.yarn/bin
@@ -15,54 +15,54 @@ Platform:
 
 npm manifest: 
   {
-    "name": "react-web-dev",
-    "version": "1.0.0",
-    "description": "React ecosystem demo",
-    "main": "index.js",
-    "author": "CodeSigils",
-    "license": "MIT",
-    "browserslist": [
-      "> 1%",
-      "last 2 versions"
-    ],
-    "scripts": {
-      "serve": "webpack-dev-server --config ./webpack.config.js --mode development",
-      "dev": "webpack --mode development",
-      "build": "webpack --mode production",
-      "watch": "webpack --watch --mode development"
-    },
-    "babel": {
-      "presets": [
-        "react",
-        "env"
-      ]
-    },
-    "standard": {
-      "parser": "babel-eslint"
-    },
-    "devDependencies": {
-      "autoprefixer": "^8.2.0",
-      "babel-cli": "^6.26.0",
-      "babel-core": "^6.26.0",
-      "babel-preset-react": "^6.24.1",
-      "clean-webpack-plugin": "^0.1.19",
-      "css-loader": "^0.28.11",
-      "extract-text-webpack-plugin": "^3.0.2",
-      "file-loader": "^1.1.11",
-      "html-loader": "^0.5.5",
-      "html-webpack-plugin": "^3.1.0",
-      "mini-css-extract-plugin": "^0.2.0",
-      "react": "^16.2.0",
-      "react-dom": "^16.2.0",
-      "style-loader": "^0.20.3",
-      "webpack": "^4.3.0",
-      "webpack-cli": "^2.0.13",
-      "webpack-dev-server": "^3.1.1"
-    },
-    "dependencies": {
-      "babel-loader": "^7.1.4",
-      "babel-preset-env": "^1.6.1"
-    }
+      "name": "react-web-dev",
+      "version": "1.0.0",
+      "description": "React ecosystem demo",
+      "main": "index.js",
+      "author": "CodeSigils",
+      "license": "MIT",
+      "browserslist": [
+          "> 1%",
+          "last 2 versions"
+      ],
+      "scripts": {
+          "serve": "webpack-dev-server --watch --config ./webpack.config.js --mode development",
+          "dev": "webpack --mode development",
+          "build": "webpack --mode production",
+          "watch": "webpack --watch --mode development"
+      },
+      "babel": {
+          "presets": [
+              "react",
+              "env"
+          ]
+      },
+      "standard": {
+          "parser": "babel-eslint"
+      },
+      "devDependencies": {
+          "autoprefixer": "^8.2.0",
+          "babel-cli": "^6.26.0",
+          "babel-core": "^6.26.0",
+          "babel-preset-react": "^6.24.1",
+          "clean-webpack-plugin": "^0.1.19",
+          "css-loader": "^0.28.11",
+          "file-loader": "^1.1.11",
+          "html-loader": "^0.5.5",
+          "html-webpack-plugin": "^3.1.0",
+          "mini-css-extract-plugin": "^0.2.0",
+          "react": "^16.2.0",
+          "react-dom": "^16.2.0",
+          "style-loader": "^0.20.3",
+          "webpack": "^4.3.0",
+          "webpack-cli": "^2.0.13",
+          "webpack-dev-server": "^3.1.1"
+      },
+      "dependencies": {
+          "babel-loader": "^7.1.4",
+          "babel-preset-env": "^1.6.1",
+          "postcss-loader": "^2.1.3"
+      }
   }
 
 yarn manifest: 
@@ -108,15 +108,6 @@ Lockfile:
     dependencies:
       co "^4.6.0"
       json-stable-stringify "^1.0.1"
-  
-  ajv@^5.0.0:
-    version "5.5.2"
-    resolved "https://registry.yarnpkg.com/ajv/-/ajv-5.5.2.tgz#73b5eeca3fab653e3d3f9422b341ad42205dc965"
-    dependencies:
-      co "^4.6.0"
-      fast-deep-equal "^1.0.0"
-      fast-json-stable-stringify "^2.0.0"
-      json-schema-traverse "^0.3.0"
   
   ajv@^6.1.0:
     version "6.4.0"
@@ -317,7 +308,7 @@ Lockfile:
     version "1.5.2"
     resolved "https://registry.yarnpkg.com/async/-/async-1.5.2.tgz#ec6a61ae56480c0c3cb241c95618e20892f9672a"
   
-  async@^2.4.1, async@^2.6.0:
+  async@^2.6.0:
     version "2.6.0"
     resolved "https://registry.yarnpkg.com/async/-/async-2.6.0.tgz#61a29abb6fcc026fea77e56d1c6ec53a795951f4"
     dependencies:
@@ -1773,6 +1764,18 @@ Lockfile:
     version "1.0.2"
     resolved "https://registry.yarnpkg.com/core-util-is/-/core-util-is-1.0.2.tgz#b5fd54220aa2bc5ab57aab7140c940754503c1a7"
   
+  cosmiconfig@^2.1.0, cosmiconfig@^2.1.1:
+    version "2.2.2"
+    resolved "https://registry.yarnpkg.com/cosmiconfig/-/cosmiconfig-2.2.2.tgz#6173cebd56fac042c1f4390edf7af6c07c7cb892"
+    dependencies:
+      is-directory "^0.3.1"
+      js-yaml "^3.4.3"
+      minimist "^1.2.0"
+      object-assign "^4.1.0"
+      os-homedir "^1.0.1"
+      parse-json "^2.2.0"
+      require-from-string "^1.1.0"
+  
   create-ecdh@^4.0.0:
     version "4.0.0"
     resolved "https://registry.yarnpkg.com/create-ecdh/-/create-ecdh-4.0.0.tgz#888c723596cdf7612f6498233eebd7a35301737d"
@@ -2303,13 +2306,13 @@ Lockfile:
     version "2.7.3"
     resolved "https://registry.yarnpkg.com/esprima/-/esprima-2.7.3.tgz#96e3b70d5779f6ad49cd032673d1c312767ba581"
   
+  esprima@^4.0.0, esprima@~4.0.0:
+    version "4.0.0"
+    resolved "https://registry.yarnpkg.com/esprima/-/esprima-4.0.0.tgz#4499eddcd1110e0b218bacf2fa7f7f59f55ca804"
+  
   esprima@~3.1.0:
     version "3.1.3"
     resolved "https://registry.yarnpkg.com/esprima/-/esprima-3.1.3.tgz#fdca51cee6133895e3c88d535ce49dbff62a4633"
-  
-  esprima@~4.0.0:
-    version "4.0.0"
-    resolved "https://registry.yarnpkg.com/esprima/-/esprima-4.0.0.tgz#4499eddcd1110e0b218bacf2fa7f7f59f55ca804"
   
   esrecurse@^4.1.0:
     version "4.2.1"
@@ -2474,15 +2477,6 @@ Lockfile:
       regex-not "^1.0.0"
       snapdragon "^0.8.1"
       to-regex "^3.0.1"
-  
-  extract-text-webpack-plugin@^3.0.2:
-    version "3.0.2"
-    resolved "https://registry.yarnpkg.com/extract-text-webpack-plugin/-/extract-text-webpack-plugin-3.0.2.tgz#5f043eaa02f9750a9258b78c0a6e0dc1408fb2f7"
-    dependencies:
-      async "^2.4.1"
-      loader-utils "^1.1.0"
-      schema-utils "^0.3.0"
-      webpack-sources "^1.0.1"
   
   extsprintf@1.3.0:
     version "1.3.0"
@@ -3352,6 +3346,10 @@ Lockfile:
       is-data-descriptor "^1.0.0"
       kind-of "^6.0.2"
   
+  is-directory@^0.3.1:
+    version "0.3.1"
+    resolved "https://registry.yarnpkg.com/is-directory/-/is-directory-0.3.1.tgz#61339b6f2475fc772fd9c9d83f5c8575dc154ae1"
+  
   is-dotfile@^1.0.0:
     version "1.0.3"
     resolved "https://registry.yarnpkg.com/is-dotfile/-/is-dotfile-1.0.3.tgz#a6a2f32ffd2dfb04f5ca25ecd0f6b83cf798a1e1"
@@ -3585,6 +3583,13 @@ Lockfile:
   js-tokens@^3.0.0, js-tokens@^3.0.2:
     version "3.0.2"
     resolved "https://registry.yarnpkg.com/js-tokens/-/js-tokens-3.0.2.tgz#9866df395102130e38f7f996bceb65443209c25b"
+  
+  js-yaml@^3.4.3:
+    version "3.11.0"
+    resolved "https://registry.yarnpkg.com/js-yaml/-/js-yaml-3.11.0.tgz#597c1a8bd57152f26d622ce4117851a51f5ebaef"
+    dependencies:
+      argparse "^1.0.7"
+      esprima "^4.0.0"
   
   js-yaml@~3.7.0:
     version "3.7.0"
@@ -4458,7 +4463,7 @@ Lockfile:
     version "0.3.0"
     resolved "https://registry.yarnpkg.com/os-browserify/-/os-browserify-0.3.0.tgz#854373c7f5c2315914fc9bfc6bd8238fdda1ec27"
   
-  os-homedir@^1.0.0:
+  os-homedir@^1.0.0, os-homedir@^1.0.1:
     version "1.0.2"
     resolved "https://registry.yarnpkg.com/os-homedir/-/os-homedir-1.0.2.tgz#ffbc4988336e0e833de0c168c7ef152121aa7fb3"
   
@@ -4782,6 +4787,38 @@ Lockfile:
       postcss "^5.0.4"
       uniqid "^4.0.0"
   
+  postcss-load-config@^1.2.0:
+    version "1.2.0"
+    resolved "https://registry.yarnpkg.com/postcss-load-config/-/postcss-load-config-1.2.0.tgz#539e9afc9ddc8620121ebf9d8c3673e0ce50d28a"
+    dependencies:
+      cosmiconfig "^2.1.0"
+      object-assign "^4.1.0"
+      postcss-load-options "^1.2.0"
+      postcss-load-plugins "^2.3.0"
+  
+  postcss-load-options@^1.2.0:
+    version "1.2.0"
+    resolved "https://registry.yarnpkg.com/postcss-load-options/-/postcss-load-options-1.2.0.tgz#b098b1559ddac2df04bc0bb375f99a5cfe2b6d8c"
+    dependencies:
+      cosmiconfig "^2.1.0"
+      object-assign "^4.1.0"
+  
+  postcss-load-plugins@^2.3.0:
+    version "2.3.0"
+    resolved "https://registry.yarnpkg.com/postcss-load-plugins/-/postcss-load-plugins-2.3.0.tgz#745768116599aca2f009fad426b00175049d8d92"
+    dependencies:
+      cosmiconfig "^2.1.1"
+      object-assign "^4.1.0"
+  
+  postcss-loader@^2.1.3:
+    version "2.1.3"
+    resolved "https://registry.yarnpkg.com/postcss-loader/-/postcss-loader-2.1.3.tgz#eb210da734e475a244f76ccd61f9860f5bb3ee09"
+    dependencies:
+      loader-utils "^1.1.0"
+      postcss "^6.0.0"
+      postcss-load-config "^1.2.0"
+      schema-utils "^0.4.0"
+  
   postcss-merge-idents@^2.1.5:
     version "2.1.7"
     resolved "https://registry.yarnpkg.com/postcss-merge-idents/-/postcss-merge-idents-2.1.7.tgz#4c5530313c08e1d5b3bbf3d2bbc747e278eea270"
@@ -4959,7 +4996,7 @@ Lockfile:
       source-map "^0.5.6"
       supports-color "^3.2.3"
   
-  postcss@^6.0.1, postcss@^6.0.20:
+  postcss@^6.0.0, postcss@^6.0.1, postcss@^6.0.20:
     version "6.0.21"
     resolved "https://registry.yarnpkg.com/postcss/-/postcss-6.0.21.tgz#8265662694eddf9e9a5960db6da33c39e4cd069d"
     dependencies:
@@ -5446,6 +5483,10 @@ Lockfile:
     version "2.1.1"
     resolved "https://registry.yarnpkg.com/require-directory/-/require-directory-2.1.1.tgz#8c64ad5fd30dab1c976e2344ffe7f792a6a6df42"
   
+  require-from-string@^1.1.0:
+    version "1.2.1"
+    resolved "https://registry.yarnpkg.com/require-from-string/-/require-from-string-1.2.1.tgz#529c9ccef27380adfec9a2f965b649bbee636418"
+  
   require-main-filename@^1.0.1:
     version "1.0.1"
     resolved "https://registry.yarnpkg.com/require-main-filename/-/require-main-filename-1.0.1.tgz#97f717b69d48784f5f526a6c5aa8ffdda055a4d1"
@@ -5564,13 +5605,7 @@ Lockfile:
     version "1.2.4"
     resolved "https://registry.yarnpkg.com/sax/-/sax-1.2.4.tgz#2816234e2378bddc4e5354fab5caa895df7100d9"
   
-  schema-utils@^0.3.0:
-    version "0.3.0"
-    resolved "https://registry.yarnpkg.com/schema-utils/-/schema-utils-0.3.0.tgz#f5877222ce3e931edae039f17eb3716e7137f8cf"
-    dependencies:
-      ajv "^5.0.0"
-  
-  schema-utils@^0.4.2, schema-utils@^0.4.5:
+  schema-utils@^0.4.0, schema-utils@^0.4.2, schema-utils@^0.4.5:
     version "0.4.5"
     resolved "https://registry.yarnpkg.com/schema-utils/-/schema-utils-0.4.5.tgz#21836f0608aac17b78f9e3e24daff14a5ca13a3e"
     dependencies:
@@ -6791,9 +6826,9 @@ Lockfile:
 
 Trace: 
   Error: Command failed.
-  Exit code: 1
+  Exit code: 2
   Command: sh
-  Arguments: -c webpack-dev-server --config ./webpack.config.js --mode development
+  Arguments: -c webpack --mode development
   Directory: /data/Public/practice/react/react-web-dev
   Output:
   

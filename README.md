@@ -206,5 +206,8 @@ Now we can run `yarn start` and watch the server in localhost:8080
 - Functional and Class components
 - Importing assets
 - Compose components to create more complex UI
+- Props: Read only data-types (strings, numbers, arrays, objects, classes...)
+- Passing and collecting props, conditionals and common problems
+- Prop-types in React
 - Making async request in the component life cycle
 - Use the state to make components dynamic

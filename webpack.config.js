@@ -2,10 +2,9 @@ var webpack = require('webpack');
 const path = require('path');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const HtmlWebPackPlugin = require("html-webpack-plugin");
-const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
-// Export main JS Object. Here we define the entry and the output key values
+// Export main JS Object. Here we define the 'entry' and the 'output' values
 module.exports = {
   /**
    * 1. ENTRY POINTS
@@ -20,17 +19,22 @@ module.exports = {
     app: './index.js'
   },
   devtool: 'inline-source-map',
+  
   /**
    * 2. DEV-SERVER
    */
   devServer: {
-    contentBase: path.join(__dirname, 'dist'),
+    // contentBase: path.join(__dirname, 'dist'),
+    contentBase: '/',
     compress: true,
     publicPath: '/',
     port: 8899,
     open: true,
     inline: true,
-    hot: true
+    hot: true,
+    stats: {
+      colors: true
+    }
   },
 
   /**
@@ -47,7 +51,7 @@ module.exports = {
    * Every loader takes a 'test' attribute that accepts a regex as a value.
   */
   module: {
-    // Exclude lagre libs for performance
+    // Exclude large libs for performance
     noParse: function (content) {
       return /jquery|lodash/.test(content)
     },
@@ -73,20 +77,15 @@ module.exports = {
       },
       // Css loader
       {
-        test: /\.(css|scss|sass)$/,
-        use: [
-          MiniCssExtractPlugin.loader, 
-          {
-            loader: "css-loader?style-loader",
-            /*
-            options: {
-              modules: true,
-              sourceMap: true,
-              importLoader: 2
-            }
-            */
-          },
-        ]
+        test: /\.css$/,
+        use: ['style-loader', 'css-loader'],
+        exclude: /node_modules/
+      },
+      // Sass loader - Include node_modules
+      {
+        test:/\.(scss|sass)$/,
+        use:['style-loader','css-loader','sass-loader'],
+        include: /node_modules/
       },
       // File loader - Images
       {
@@ -95,18 +94,27 @@ module.exports = {
           {
             loader: 'file-loader',
             options: {
+              limit:80000,
               name: '[name].[ext]',
               outputPath: './img/',
               publicPath: './img/'
             }
           }
-        ]
+        ],
+        exclude: /\/node_modules\//,
       },
       // File loader - Fonts
       {
         test: /\.(woff|woff2|eot|ttf|otf)$/,
-        use: ['file-loader']
+        use: [{
+          loader: 'file-loader',
+          options: {
+            name: 'fonts/[name]-[hash].[ext]'
+          }
+        }],
+        exclude: /node_modules/
       }
+      
     ]
   },
   
@@ -114,22 +122,17 @@ module.exports = {
    * 5. PLUGINS
   */
   plugins: [
-    // Clean webpack
-    new CleanWebpackPlugin(['dist']),
     // Html plugins
     new HtmlWebPackPlugin({
       template: "index.html",
       filename: "./index.html"
     }),
-    // Css plugins
-    new MiniCssExtractPlugin({
-      filename: "[name].css",
-      chunkFilename: "[id].css"
-    }),
+    // Clean webpack
+    new CleanWebpackPlugin(['dist']),
     // HMR
     new webpack.NamedModulesPlugin(),
     new webpack.HotModuleReplacementPlugin(),
-    new webpack.optimize.OccurrenceOrderPlugin()
+    new webpack.optimize.OccurrenceOrderPlugin(),
   ],
 
   /**
@@ -138,6 +141,6 @@ module.exports = {
   output: {
     filename: '[name].bundle.js',
     path: path.resolve(__dirname, 'dist'),
-    publicPath: '/'
+    publicPath: './'
   }
 };

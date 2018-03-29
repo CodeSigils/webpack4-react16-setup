@@ -1,13 +1,19 @@
 import React, {Component} from "react"
-import './css/main.css'
+import Style from './css/main.css'
+import Header from './components/Header'
+import RecipeList from './components/RecipeList'
+import RecipeDetail from './components/RecipeDetail'
 import creepyCookies from './img/food_cookies2.jpeg'
 
 const App = (props) => {
   return (
-    <div><h3>
-      Hello from functional
-    </h3>
-      <img src={creepyCookies} />
+    <div style={Style}>
+      <Header />
+      <main>
+        <RecipeList />
+        <RecipeDetail />
+      </main>
+      {/* <img src={creepyCookies} /> */}
     </div>
   )
 }
