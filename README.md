@@ -102,7 +102,7 @@ A demo of basic (and some advanced) React concepts in a React app with a complet
     yarn add -D babel-core babel-cli
 
     # Babel presets. Note 'babel-preset-es2015' is deprecated
-    yarn add -D babel-preset-env babel-preset-react
+    yarn add -D babel-preset-react babel-preset-env babel-preset-stage-0
 
     # Babel main loader
     yarn add babel-loader
@@ -137,13 +137,14 @@ A demo of basic (and some advanced) React concepts in a React app with a complet
 
 ```js
 /* 1. ---- ./webpack.config.js ---- */
-var webpack = require('webpack');
-const path = require('path');
-const CleanWebpackPlugin = require('clean-webpack-plugin');
+const webpack = require("webpack");
+const path = require("path");
+const Dotenv = require("dotenv-webpack");
+const CleanWebpackPlugin = require("clean-webpack-plugin");
 const HtmlWebPackPlugin = require("html-webpack-plugin");
 
 // config() exposes 'env' to 'process.env' (see plugins section)
-require('dotenv').config();
+require("dotenv").config();
 
 // Export main JS Object. Here we define the 'entry' and the 'output' values
 module.exports = {
@@ -154,21 +155,22 @@ module.exports = {
    * folder by default and outputs in a 'dist' folder.
    * Optional use of 'context to define main source path.
    * In this case /src
- */
-  context: path.join(__dirname, 'src'),
+   */
+  context: path.join(__dirname, "src"),
   entry: {
-    app: './index.js'
+    // Fetch older browsers polyfill support
+    app: ["whatwg-fetch", "./index.js"]
   },
-  devtool: 'inline-source-map',
+  devtool: "inline-source-map",
 
   /**
    * 2. DEV-SERVER
    */
   devServer: {
     // contentBase: path.join(__dirname, 'dist'),
-    contentBase: '/',
+    contentBase: "/",
     compress: true,
-    publicPath: '/',
+    publicPath: "/",
     port: 8899,
     open: true,
     inline: true,
@@ -179,53 +181,54 @@ module.exports = {
   },
 
   /**
-   * 3. CSS AND JS OPTIM
-   * https://github.com/webpack-contrib/mini-css-extract-plugin
-   optimization: {
-     minimize: true
-    },
-  */
+ * 3. CSS AND JS OPTIM
+ * We don't need for this dev demo, but necessary in production.
+ * https://github.com/webpack-contrib/mini-css-extract-plugin
+ optimization: {
+	 minimize: true
+	},
+*/
 
   /**
    * 4. LOADERS
    * Inside the rules array we can add as many loaders as we want.
    * Every loader takes a 'test' attribute that accepts a regex as a value.
-  */
+   */
   module: {
     // Exclude large libs for performance
-    noParse: function (content) {
-      return /jquery|lodash/.test(content)
-    },
+    noParse: content => /jquery|lodash/.test(content),
     rules: [
       // Babel loader
       {
         test: /\.(js|jsx)$/,
         exclude: /(node_modules|bower_components)/,
         use: {
-          loader: 'babel-loader',
+          loader: "babel-loader",
           options: {
-            presets: ['react', 'env']
+            presets: ["react", "env", "stage-0"]
           }
         }
       },
       // Html loader
       {
         test: /\.(html|htm)$/,
-        use: [{
-          loader: "html-loader",
-          options: { minimize: true }
-        }]
+        use: [
+          {
+            loader: "html-loader",
+            options: { minimize: true }
+          }
+        ]
       },
-      // Css loader
+      // Css loader - Exclude node_modules
       {
         test: /\.css$/,
-        use: ['style-loader', 'css-loader'],
+        use: ["style-loader", "css-loader", "postcss-loader"],
         exclude: /node_modules/
       },
       // Sass loader - Include node_modules
       {
-        test:/\.(scss|sass)$/,
-        use:['style-loader','css-loader','sass-loader'],
+        test: /\.(scss|sass)$/,
+        use: ["style-loader", "css-loader", "sass-loader"],
         include: /node_modules/
       },
       // File loader - Images
@@ -233,35 +236,36 @@ module.exports = {
         test: /\.(jpg|jpeg|png|gif|svg)$/,
         use: [
           {
-            loader: 'file-loader',
+            loader: "file-loader",
             options: {
-              limit:80000,
-              name: '[name].[ext]',
-              outputPath: './img/',
-              publicPath: './img/'
+              limit: 80000,
+              name: "[name].[ext]",
+              outputPath: "./img/",
+              publicPath: "./img/"
             }
           }
         ],
-        exclude: /node_modules/,
+        exclude: /node_modules/
       },
       // File loader - Fonts
       {
         test: /\.(woff|woff2|eot|ttf|otf)$/,
-        use: [{
-          loader: 'file-loader',
-          options: {
-            name: 'fonts/[name]-[hash].[ext]'
+        use: [
+          {
+            loader: "file-loader",
+            options: {
+              name: "fonts/[name]-[hash].[ext]"
+            }
           }
-        }],
+        ],
         exclude: /node_modules/
       }
-
     ]
   },
 
   /**
    * 5. PLUGINS
-  */
+   */
   plugins: [
     // Html plugins
     new HtmlWebPackPlugin({
@@ -269,7 +273,7 @@ module.exports = {
       filename: "./index.html"
     }),
     // Clean webpack
-    new CleanWebpackPlugin(['dist']),
+    new CleanWebpackPlugin(["dist"]),
     // HMR
     new webpack.NamedModulesPlugin(),
     new webpack.HotModuleReplacementPlugin(),
@@ -277,26 +281,27 @@ module.exports = {
     // Use '.env' file for global var definitions.
     // https://github.com/mrsteele/dotenv-webpack
     new Dotenv({
-      path: './.env',
+      path: "./.env",
       safe: false,
-      systemvars: true,
+      systemvars: true
     }),
     // Register global vars to webpack for all the files
-    // The result must return a string.
+    // @return {string}
     new webpack.DefinePlugin({
       API_URL: JSON.stringify(process.env.API_URL)
-    }),
+    })
   ],
 
   /**
    * 6. OUTPUT
    */
   output: {
-    filename: '[name].bundle.js',
-    path: path.resolve(__dirname, 'dist'),
-    publicPath: './'
+    filename: "[name].bundle.js",
+    path: path.resolve(__dirname, "dist"),
+    publicPath: "./"
   }
 };
+
 
 /* 2. ---- ./package.json (scripts section) ---- */
   "scripts": {

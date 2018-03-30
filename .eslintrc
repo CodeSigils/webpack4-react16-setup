@@ -1,4 +1,7 @@
 {
     "extends": ["plugin:prettier/recommended"],
-    "parser": "babel-eslint"
+    "parser": "babel-eslint",
+    "rules": {
+        "no-extra-semi": 2,
+    },
 }
