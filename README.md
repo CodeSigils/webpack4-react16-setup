@@ -302,7 +302,6 @@ module.exports = {
   }
 };
 
-
 /* 2. ---- ./package.json (scripts section) ---- */
   "scripts": {
         "serve": "webpack-dev-server --watch --config ./webpack.config.js --mode development",
@@ -338,3 +337,12 @@ Now we can run `yarn serve` and watch the server in localhost:8899
 * Intro to fetch: A promised based web request mechanism
 * Making async request in the component life cycle
 * Use the state to make components dynamic
+
+### 4. Styling
+
+* Different approaches
+* Functional CSS
+* BassCSS
+* Style guide
+* Eslint, Prettier and VSCode
+* Git hooks with prettier-quick and husky
