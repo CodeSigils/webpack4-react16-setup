@@ -1,6 +1,6 @@
-import React from 'react'
+import React from "react";
 
-const RecipeList = (props) => {
+const RecipeList = props => {
   return (
     <div style={props.style}>
       <h2>Recipes</h2>
@@ -12,14 +12,14 @@ const RecipeList = (props) => {
         <li>
           <span>Blueberry Sour Cream Coffee Cakes</span>
           <span>Dessert</span>
-        </li>  
+        </li>
         <li>
           <span>Amazing Pork Tenderloin in the Slow Cooker</span>
           <span>Meat</span>
-        </li>  
+        </li>
       </ul>
     </div>
-  )
-}
+  );
+};
 
-export default RecipeList
+export default RecipeList;
