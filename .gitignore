@@ -1,6 +1,7 @@
 node_modules
 .dist
 .env
+.vscode
 yarn-error.*
 SAMPLES
 /SAMPLES/*
