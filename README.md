@@ -106,7 +106,8 @@ Run `yarn help` and read about global options for setup.
 #### 1.7 - Adding scripts section in `package.json`
 
 People are using the "scripts" section of package.json file in all sorts of ways. There is also one famous article about how to replace build automation tools using only piped commands in scripts.
-**★ Tip:** Read about [How to Use npm as a Build Tool](https://www.keithcirkel.co.uk/how-to-use-npm-as-a-build-tool/)
+
+* **★ Tip:** Read about [How to Use npm as a Build Tool](https://www.keithcirkel.co.uk/how-to-use-npm-as-a-build-tool/)
 
 ```js
 {
