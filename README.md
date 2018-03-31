@@ -1,7 +1,7 @@
 ## React from scratch - A React workshop
 
 Note: No automated React build will be used here.
-A demo of basic (and some advanced) React concepts in a React app with a complete development webpack4 setup.
+A demo of basic (and some advanced) React concepts in a React app with a complete webpack4 setup for development.
 
 ### 1. Setting-up the environment.
 
@@ -10,11 +10,19 @@ A demo of basic (and some advanced) React concepts in a React app with a complet
 * Adding scripts section in `package.json`
 * Babel presets installation setup (Official and experimental)
 
-  * **babel-cli** installation: `yarn add babel-cli --dev`
-  * **babel-preset-es2015** installation: **deprecated**
-  * **babel-preset-env** installation: `yarn add babel-preset-env --dev`
+  * **babel-cli:** Babel comes with a built-in CLI which can be used to compile files from the command line.
+
+    * Installation: `yarn add babel-cli --dev`
+
+  * **babel-preset-es2015**: deprecated. Use env instead.
+
+  * **babel-preset-env:** Latest stable and experimental JS features. It allows us to use 'const', 'import from' arrow functions and [many more](https://babeljs.io/docs/plugins/preset-env/) ...
+
+    * Installation: `yarn add babel-preset-env --dev`
+
   * **Tip:** run it with `node ./node_modules/.bin/babel index.js -o ./bundle.js --presets=env`
-  * The `.babelrc` file
+
+  * We are going to define Babel presets in webpack so we don't need the `.babelrc` file.
 
 * ES6 features quick review:
   * ES6 modules: `import path from 'path'`
@@ -134,6 +142,7 @@ A demo of basic (and some advanced) React concepts in a React app with a complet
   ```
 
 * **Configurations**
+  The `webpack.config.js` file.
 
 ```js
 /* 1. ---- ./webpack.config.js ---- */
@@ -153,18 +162,19 @@ module.exports = {
    * Here we define the entry and the output key values.
    * Note that webpack 4 is serving files from an 'src'
    * folder by default and outputs in a 'dist' folder.
-   * Optional use of 'context to define main source path.
-   * In this case /src
+   * Optional use of 'context' key to define main source
+   * path so we can avoid writing './src/index.js'
    */
   context: path.join(__dirname, "src"),
   entry: {
-    // Fetch older browsers polyfill support
+    // Older browsers polyfill support for 'fetch'
     app: ["whatwg-fetch", "./index.js"]
   },
   devtool: "inline-source-map",
 
   /**
    * 2. DEV-SERVER
+   * https://webpack.js.org/configuration/dev-server/
    */
   devServer: {
     // contentBase: path.join(__dirname, 'dist'),
@@ -181,13 +191,13 @@ module.exports = {
   },
 
   /**
- * 3. CSS AND JS OPTIM
- * We don't need for this dev demo, but necessary in production.
- * https://github.com/webpack-contrib/mini-css-extract-plugin
- optimization: {
-	 minimize: true
-	},
-*/
+  												 * 3. CSS AND JS OPTIM
+  												 * We don't need for this dev demo, but necessary in production.
+  												 * https://github.com/webpack-contrib/mini-css-extract-plugin
+  												 optimization: {
+  													 minimize: true
+  													},
+  												*/
 
   /**
    * 4. LOADERS
@@ -204,12 +214,18 @@ module.exports = {
         exclude: /(node_modules|bower_components)/,
         use: {
           loader: "babel-loader",
+          /**
+           * Presets must be in this order. The 'stage-0' preset.
+           * allows us to use arrow functions inside the body of
+           * a class component.
+           */
           options: {
             presets: ["react", "env", "stage-0"]
           }
         }
       },
       // Html loader
+      // https://webpack.js.org/loaders/html-loader/
       {
         test: /\.(html|htm)$/,
         use: [
@@ -220,18 +236,21 @@ module.exports = {
         ]
       },
       // Css loader - Exclude node_modules
+      // https://webpack.js.org/loaders/css-loader/
       {
         test: /\.css$/,
         use: ["style-loader", "css-loader", "postcss-loader"],
         exclude: /node_modules/
       },
       // Sass loader - Include node_modules
+      // https://webpack.js.org/loaders/sass-loader/
       {
         test: /\.(scss|sass)$/,
         use: ["style-loader", "css-loader", "sass-loader"],
         include: /node_modules/
       },
       // File loader - Images
+      // https://webpack.js.org/loaders/file-loader/
       {
         test: /\.(jpg|jpeg|png|gif|svg)$/,
         use: [
@@ -267,7 +286,8 @@ module.exports = {
    * 5. PLUGINS
    */
   plugins: [
-    // Html plugins
+    // Html plugin
+    // https://github.com/jantimon/html-webpack-plugin
     new HtmlWebPackPlugin({
       template: "index.html",
       filename: "./index.html"
@@ -301,7 +321,11 @@ module.exports = {
     publicPath: "./"
   }
 };
+```
 
+The `package.json` file:
+
+```js
 /* 2. ---- ./package.json (scripts section) ---- */
   "scripts": {
         "serve": "webpack-dev-server --watch --config ./webpack.config.js --mode development",
@@ -314,13 +338,15 @@ module.exports = {
         "presets": ["react", "env"]
     },
     "browserslist": ["> 1%", "last 2 versions"],
+```
 
+The `postcss.config.js` file:
+
+```js
 /* 2. ---- ./postcss.config.js ---- */
-  module.exports = {
-    plugins: [
-      require('autoprefixer')
-    ]
-  }
+module.exports = {
+  plugins: [require("autoprefixer")]
+};
 ```
 
 Now we can run `yarn serve` and watch the server in localhost:8899
@@ -344,5 +370,6 @@ Now we can run `yarn serve` and watch the server in localhost:8899
 * Functional CSS
 * BassCSS
 * Style guide
-* Eslint, Prettier and VSCode
-* Git hooks with prettier-quick and husky
+* Install `Eslint` and `Prettier` plugins for VSCode
+* Clean code with `Prettier`, `prettier-quick` and git hooks with `husky`
+  * Tip: There is a Great youtube video for [configuring lint, prettier and husky](https://www.youtube.com/watch?v=bfyI9yl3qfE). If you follow this instructions, every time you push to git your code will be evaluated and autoformated.
