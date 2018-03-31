@@ -309,9 +309,9 @@ module.exports = {
       template: "index.html",
       filename: "./index.html"
     }),
-    // Clean webpack - Native webpack plugins (no need for installation)
+    // Clean webpack plugin
     new CleanWebpackPlugin(["dist"]),
-    // HMR
+    // HMR - Native webpack plugins (no need for installation)
     new webpack.NamedModulesPlugin(),
     new webpack.HotModuleReplacementPlugin(),
     new webpack.optimize.OccurrenceOrderPlugin(),
