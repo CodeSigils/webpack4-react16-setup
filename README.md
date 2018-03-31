@@ -5,7 +5,7 @@ A demo of basic (and some advanced) React concepts in a React app with a complet
 
 ## 1. Setting-up the environment.
 
-### [Yarn package manager](https://yarnpkg.com/en/docs) with [NVM, a Node version Manager](https://github.com/creationix/nvm)
+### [Yarn package manager](https://yarnpkg.com/en/docs) with [Node version Manager](https://github.com/creationix/nvm)
 
 #### 1.1 - Install Yarn
 
@@ -381,7 +381,7 @@ API_URL=http://reactrecipes.herokuapp.com
 
 #### 3.4 - Run the project in browser
 
-Rename `.env.sample` to `.env`, run `yarn serve` and watch the server in localhost:8899
+Rename `.env.sample` to `.env`, run `yarn serve` and watch the server in `localhost:8899`
 
 ### 4. React
 
