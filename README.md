@@ -1,7 +1,9 @@
 # React from scratch - React with Webpack, a step by step guide
 
 Note: No automated React build will be used here.
-A demo of basic (and some advanced) React concepts in a React app with a complete webpack4 setup for development with tips and some reading along the way.
+A demo of basic (and some advanced) React concepts in a React app.
+Also a webpack4 setup guide for development, with tips and some
+reading along the way.
 
 ## 1. Setting-up the environment.
 
@@ -317,7 +319,7 @@ module.exports = {
     new webpack.optimize.OccurrenceOrderPlugin(),
     /**
      * Use '.env' file for global var definitions, and store sensitive data.
-     * There is a '.env.sample' file in this repo, that must be renamed to
+     * There is a '.env.sample' file in this repo that must be renamed to
      * '.env'.
      * Read carefully: https://github.com/mrsteele/dotenv-webpack
      */
