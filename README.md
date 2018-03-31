@@ -12,8 +12,6 @@ necessary yet light reading along the way.
 
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 
-<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
-
 * [1. Setting-up the environment.](#1-setting-up-the-environment)
   * [Yarn package manager with Node version Manager](#yarn-package-manager-with-node-version-manager)
     * [1.1 - Install Yarn](#11---install-yarn)
