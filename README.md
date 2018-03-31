@@ -140,7 +140,7 @@ at [eslint.org page](https://eslint.org/)
   yarn add -D autoprefixer postcss-loader && touch postcss.config.js
 
   # Webpack plugins
-  yarn add -D html-webpack-plugin dotenv-webpack
+  yarn add -D html-webpack-plugin clean-webpack-plugin dotenv-webpack
 
   # Install React libraries
   yarn add -D react react-dom prop-types
