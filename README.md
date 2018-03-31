@@ -6,11 +6,9 @@ necessary yet light reading along the way.
 
 **★ Note:** No script automated React build will be used here. More and more notes and tips will be added in the future. Keep reading, or scroll to Webpack setup section.
 
-**Table of Contents**
+**Table of Contents:**
 
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
-
-<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 
