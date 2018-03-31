@@ -369,4 +369,4 @@ Now we can run `yarn serve` and watch the server in localhost:8899
 
 * Install `Eslint` and `Prettier` plugins for VSCode
 * Clean code with `Prettier`, `prettier-quick` and git hooks with `husky`
-  * Tip: There is a Great youtube video for [configuring lint, prettier and husky](https://www.youtube.com/watch?v=bfyI9yl3qfE). If you follow this instructions, every time you push to git your code will be evaluated and autoformated.
+  * Tip: There is a Great youtube video for [configuring lint, prettier and husky](https://www.youtube.com/watch?v=bfyI9yl3qfE). If you follow these instructions, every time you push to git your code will be evaluated and autoformated.
