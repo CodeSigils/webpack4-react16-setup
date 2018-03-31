@@ -134,7 +134,7 @@ at [eslint.org page](https://eslint.org/)
   yarn add -D webpack webpack-cli webpack-dev-server
 
   # Additional Webpack loaders
-  yarn add -D html-loader css-loader style-loader sass-loader node-sass
+  yarn add -D html-loader file-loader css-loader style-loader sass-loader node-sass
 
   # Autoprefixer and postcss
   yarn add -D autoprefixer postcss-loader && touch postcss.config.js
