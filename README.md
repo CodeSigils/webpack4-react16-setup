@@ -8,7 +8,7 @@ necessary yet light reading along the way.
 
 ## 1. Setting-up the environment.
 
-### [Yarn package manager](https://yarnpkg.com/en/docs target="\_blank") with [Node version Manager](https://github.com/creationix/nvm target="\_blank")
+### [Yarn package manager](https://yarnpkg.com/en/docs) with [Node version Manager](https://github.com/creationix/nvm)
 
 #### 1.1 - Install Yarn
 
