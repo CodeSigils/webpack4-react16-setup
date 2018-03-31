@@ -12,11 +12,18 @@ A demo of basic (and some advanced) React concepts in a React app with a complet
 
   * **babel-cli:** Babel comes with a built-in CLI which can be used to compile files from the command line.
     * Installation: `yarn add babel-cli --dev`
-  * **babel-preset-es2015**: deprecated. Use env instead.
+  * **babel-preset-es2015**: deprecated. Use `babel-preset-env` instead.
   * **babel-preset-env:** Latest stable and experimental JS features. It allows us to use 'const', 'import from' arrow functions and [many more](https://babeljs.io/docs/plugins/preset-env/) ...
     * Installation: `yarn add babel-preset-env --dev`
     - **Tip:** run it from terminal with `node ./node_modules/.bin/babel index.js -o ./bundle.js --presets=env`
   * We are going to define Babel presets in webpack so we don't need the `.babelrc` file.
+
+### 2. Code-Linting and Git hooks
+
+* Install `Eslint` and `Prettier` plugins for VSCode
+* Clean code with `Prettier`, `prettier-quick` and git hooks with `husky`
+
+  * **Tip:** There is a Great youtube video for [configuring lint, prettier and husky](https://www.youtube.com/watch?v=bfyI9yl3qfE). If you follow these instructions, every time you push to git your code will be evaluated and autoformated.
 
 * ES6 features quick review:
   * ES6 modules: `import path from 'path'`
@@ -73,7 +80,7 @@ A demo of basic (and some advanced) React concepts in a React app with a complet
 
 ---
 
-### 2. Webpack4 setup and configuration
+### 3. Webpack4 setup and configuration
 
 * Intro to Webpack "module bundler" and its dependency graph
 * How webpack works
@@ -196,7 +203,8 @@ module.exports = {
   /**
    * 4. LOADERS
    * Inside the rules array we can add as many loaders as we want.
-   * Every loader takes a 'test' attribute that accepts a regex as a value.
+   * Every loader takes a 'test' attribute (that accepts a regex as a value)
+   * and some options.
    */
   module: {
     // Exclude large libs for performance
@@ -209,9 +217,9 @@ module.exports = {
         use: {
           loader: "babel-loader",
           /**
-           * Presets must be in this order. The 'stage-0' preset.
+           * Presets must be in this order. The 'stage-0' preset
            * allows us to use arrow functions inside the body of
-           * a class component.
+           * a class component and must be mounted last.
            */
           options: {
             presets: ["react", "env", "stage-0"]
@@ -286,21 +294,25 @@ module.exports = {
       template: "index.html",
       filename: "./index.html"
     }),
-    // Clean webpack
+    // Clean webpack - Native webpack plugins (no need for installation)
     new CleanWebpackPlugin(["dist"]),
     // HMR
     new webpack.NamedModulesPlugin(),
     new webpack.HotModuleReplacementPlugin(),
     new webpack.optimize.OccurrenceOrderPlugin(),
-    // Use '.env' file for global var definitions.
-    // https://github.com/mrsteele/dotenv-webpack
+    /**
+     * Use '.env' file for global var definitions, and store sensitive data.
+     * There is a '.env.sample' file in this repo, that must be renamed to
+     * '.env'.
+     * Read carefully: https://github.com/mrsteele/dotenv-webpack
+     */
     new Dotenv({
       path: "./.env",
       safe: false,
       systemvars: true
     }),
-    // Register global vars to webpack for all the files
-    // @return {string}
+    // Register global vars to webpack for all the files.
+    // Must return a string.
     new webpack.DefinePlugin({
       API_URL: JSON.stringify(process.env.API_URL)
     })
@@ -317,7 +329,8 @@ module.exports = {
 };
 ```
 
-The `package.json` file:
+The `package.json` file. Here we can define the scripts we want to run,
+the babel presets, browser support for auto-prefixer and many more...
 
 ```js
 /* 2. ---- ./package.json (scripts section) ---- */
@@ -332,9 +345,10 @@ The `package.json` file:
         "presets": ["react", "env"]
     },
     "browserslist": ["> 1%", "last 2 versions"],
+    // ...
 ```
 
-The `postcss.config.js` file:
+The `postcss.config.js` file.
 
 ```js
 /* 2. ---- ./postcss.config.js ---- */
@@ -343,9 +357,19 @@ module.exports = {
 };
 ```
 
+The `.env` file. Here we define sensitive data that we want webpack to process
+but we don't want to leave our machine. It is a good idea to add this file
+to `.gitignore`. Inside this repo the `.env.sample` file must be renamed
+to `.env`
+
+```sh
+# 2. ---- ./env ----
+API_URL=http://reactrecipes.herokuapp.com
+```
+
 Now, rename `.env.sample` to `.env`, run `yarn serve` and watch the server in localhost:8899
 
-### 3. React
+### 4. React
 
 * Creating and mounting root component. About renderers.
 * Functional and Class components
@@ -358,15 +382,9 @@ Now, rename `.env.sample` to `.env`, run `yarn serve` and watch the server in lo
 * Making async request in the component life cycle
 * Use the state to make components dynamic
 
-### 4. Styling
+### 5. Styling
 
 * Different approaches
 * Functional CSS
 * BassCSS
 * Style guide
-
-### 5. Code-Linting and Git
-
-* Install `Eslint` and `Prettier` plugins for VSCode
-* Clean code with `Prettier`, `prettier-quick` and git hooks with `husky`
-  * **Tip:** There is a Great youtube video for [configuring lint, prettier and husky](https://www.youtube.com/watch?v=bfyI9yl3qfE). If you follow these instructions, every time you push to git your code will be evaluated and autoformated.
