@@ -1,12 +1,14 @@
-## React from scratch - A React workshop
+## React from scratch - Sane react-webpack instructions
+
+Step by step
 
 Note: No automated React build will be used here.
 A demo of basic (and some advanced) React concepts in a React app with a complete webpack4 setup for development.
 
 ### 1. Setting-up the environment.
 
-* Use of yarn: How to initialize a project.
-  Tip: Yarn is ideal with NVM since is not forcing you to migrate your globally installed modules every time you change Node version.
+* Use of yarn: Initialize a project with `yarn init`.
+  * **Tip:** Yarn is ideal with `NVM` since is not forcing you to migrate your globally installed modules every time you change `Node` version.
 * Adding scripts section in `package.json`
 * Babel presets installation setup (Official and experimental)
 
