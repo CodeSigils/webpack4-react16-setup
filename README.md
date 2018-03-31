@@ -1,47 +1,13 @@
-## React from scratch - React with Webpack instructions
+# React from scratch - React with Webpack - Step by step instructions
 
 Note: No automated React build will be used here.
 A demo of basic (and some advanced) React concepts in a React app with a complete webpack4 setup for development and some reading along the way.
 
-### 1. Setting-up the environment.
+## 1. Setting-up the environment.
 
-* Use of yarn: Initialize a project with `yarn init`.
-  * **Tip:** Yarn is ideal with `NVM` since is not forcing you to migrate your globally installed modules every time you change `Node` version.
-* Adding scripts section in `package.json`
-* Babel presets installation setup (Official and experimental)
+### [Yarn package manager](https://yarnpkg.com/en/docs) with [NVM, a Node version Manager](https://github.com/creationix/nvm)
 
-  * **babel-cli:** Babel comes with a built-in CLI which can be used to compile files from the command line.
-    * Installation: `yarn add babel-cli --dev`
-  * **babel-preset-es2015**: deprecated. Use `babel-preset-env` instead.
-  * **babel-preset-env:** Latest stable and experimental JS features. It allows us to use 'const', 'import from' arrow functions and [many more](https://babeljs.io/docs/plugins/preset-env/) ...
-    * Installation: `yarn add babel-preset-env --dev`
-    - **Tip:** run it from terminal with `node ./node_modules/.bin/babel index.js -o ./bundle.js --presets=env`
-  * We are going to define Babel presets in webpack so we don't need the `.babelrc` file.
-
-### 2. Code-Linting and Git hooks
-
-* Install `Eslint` and `Prettier` plugins for VSCode
-* Clean code with `Prettier`, `prettier-quick` and git hooks with `husky`
-
-  * **Tip:** There is a Great youtube video for [configuring lint, prettier and husky](https://www.youtube.com/watch?v=bfyI9yl3qfE). If you follow these instructions, every time you push to git your code will be evaluated and autoformated.
-
-* ES6 features quick review:
-  * ES6 modules: `import path from 'path'`
-  * Arrow functions: `a => a * 2`
-  * Classes: `class MyClass extends Framework.Class { }`
-  * Object literals:`{ foo }`
-  * Template Strings: `Foo ${bar}`
-  * Destructing: `({ a }) => { console.log(a) }`
-  * Let/Const: `const foo = 'Hello' let bar='World'`
-* Handling Early versions of Node and older browsers
-
----
-
-#### Reference Links and Tips:
-
-* 1.1 - The [Yarn package manager](https://yarnpkg.com/en/docs)
-
-  * Installing Yarn on Debian
+#### 1.1 - Install Yarn
 
 ```sh
   # Add repo
@@ -55,34 +21,82 @@ A demo of basic (and some advanced) React concepts in a React app with a complet
   sudo apt-get install --no-install-recommends yarn
 ```
 
-* Install [NVM, a Node version Manager](https://github.com/creationix/nvm)
+#### 1.2 - Install NVM
 
-  ```sh
-    # Get NVM
-    wget -qO- https://raw.githubusercontent.com/creationix/nvm/v0.33.8/install.sh | bash
-  ```
+```sh
+  # Get NVM
+  wget -qO- https://raw.githubusercontent.com/creationix/nvm/v0.33.8/install.sh | bash
+```
 
-* NVM and Yarn path setup in your .zshrc:
+#### 1.3 - NVM and Yarn path setup in your .zshrc:
 
-  ```sh
-    # NVM Node Version Manager
-    export NVM_DIR="$HOME/.nvm"
-    [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-    [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+```sh
+  # NVM Node Version Manager
+  export NVM_DIR="$HOME/.nvm"
+  [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+  [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
-    # Yarn (must be placed after nvm)
-    # export PATH=$HOME~/.yarn/bin:$PATH
-    export PATH="$PATH:`yarn global bin`"
-  ```
+  # Yarn (must be placed after nvm)
+  # export PATH=$HOME~/.yarn/bin:$PATH
+  export PATH="$PATH:`yarn global bin`"
+```
 
-* 1.2 - The [Babel](https://babeljs.io/) transpiler
-  * [JavaScript Transpilers: What They Are & Why We Need Them](https://scotch.io/tutorials/javascript-transpilers-what-they-are-why-we-need-them)
+#### 1.4 - Use of yarn: Initialize a project with `yarn init`.
+
+Run `yarn help` and read about global options for setup.
+
+**Tip:** Yarn is ideal with `NVM` since is not forcing you to migrate your globally installed modules every time you change `Node` version.
+
+#### 1.5 - Babel presets installation setup (Official and experimental)
+
+* Read about the [Babel](https://babeljs.io/) transpiler:
+  [JavaScript Transpilers: What They Are & Why We Need Them](https://scotch.io/tutorials/javascript-transpilers-what-they-are-why-we-need-them)
+* **babel-cli:** Babel comes with a built-in CLI which can be used to compile files from the command line.
+  * Installation: `yarn add babel-cli --dev`
+* **babel-preset-es2015**: deprecated. Use `babel-preset-env` instead.
+* **babel-preset-env:** Latest stable and experimental JS features. It allows us to use 'const', 'import from', arrow functions and [many more](https://babeljs.io/docs/plugins/preset-env/) ...
+  * Installation: `yarn add babel-preset-env --dev`
+  - **Tip:** run it from terminal with `node ./node_modules/.bin/babel index.js -o ./bundle.js --presets=env`
+* We are going to define Babel presets in webpack so we don't need the `.babelrc` file.
+
+#### 1.6 - ES6 features quick review:
+
+* ES6 modules: `import path from 'path'`
+* Arrow functions: `a => a * 2`
+* Classes: `class MyClass extends Framework.Class { }`
+* Object literals:`{ foo }`
+* Template Strings: `Foo ${bar}`
+* Destructing: `({ a }) => { console.log(a) }`
+* Let/Const: `const foo = 'Hello' let bar='World'`
+
+#### 1.7 - Adding scripts section in `package.json`
+
+#### 1.8 - Handling Early versions of Node and older browsers
 
 ---
 
-### 3. Webpack4 setup and configuration
+## 2. Code-Linting and Git hooks
 
-* Intro to Webpack "module bundler" and its dependency graph
+#### 2.1 - Install `Eslint` and `Prettier` plugins for VSCode
+
+Read about Prettier and ESlint plugins in VSCode marketplace:
+
+* [Prettier code formatter](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode)
+* [Eslint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint)
+
+Read about ESLint, "the pluggable linting utility for JavaScript and JSX"
+at [eslint.org page](https://eslint.org/)
+
+#### 2.2 - Clean code with `Prettier`, `prettier-quick` and git hooks with `husky`
+
+**Tip:** There is a great YouTube video for [configuring lint, prettier and husky](https://www.youtube.com/watch?v=bfyI9yl3qfE). If you follow these instructions, every time you push to git your code will be evaluated and autoformated.
+
+---
+
+## 3. Webpack4 setup and configuration
+
+#### 3.1 - Intro to Webpack "module bundler" and its dependency graph
+
 * How webpack works
   * **Entry point:**
     Starting point of the graph. From here Webpack starts following the imports
@@ -102,48 +116,49 @@ A demo of basic (and some advanced) React concepts in a React app with a complet
 * Use of [webpack-dev-server](https://github.com/webpack/webpack-dev-server)
   Note: Webpack dev server's cli have moved to `webpack-cli` in webpack4.
 * Setting up a webpack plugin
-* Getting everything ready to start writing React code
+* Getting everything ready to start writing React code.
 
-* **Installations**
+#### 3.2 - **Installations**
 
-  ```sh
-    # Babel core
-    yarn add -D babel-core babel-cli
+```sh
+  # Babel core
+  yarn add -D babel-core babel-cli
 
-    # Babel presets. Note 'babel-preset-es2015' is deprecated
-    yarn add -D babel-preset-react babel-preset-env babel-preset-stage-0
+  # Babel presets. Note 'babel-preset-es2015' is deprecated
+  yarn add -D babel-preset-react babel-preset-env babel-preset-stage-0
 
-    # Babel main loader
-    yarn add babel-loader
+  # Babel main loader
+  yarn add babel-loader
 
-    # Webpack and dev server:
-    yarn add -D webpack webpack-cli webpack-dev-server
+  # Webpack and dev server:
+  yarn add -D webpack webpack-cli webpack-dev-server
 
-    # Additional Webpack loaders
-    yarn add -D html-loader css-loader style-loader sass-loader node-sass
+  # Additional Webpack loaders
+  yarn add -D html-loader css-loader style-loader sass-loader node-sass
 
-    # Autoprefixer and postcss
-    yarn add -D autoprefixer postcss-loader && touch postcss.config.js
+  # Autoprefixer and postcss
+  yarn add -D autoprefixer postcss-loader && touch postcss.config.js
 
-    # Webpack plugins
-    yarn add -D html-webpack-plugin
+  # Webpack plugins
+  yarn add -D html-webpack-plugin
 
-    # Install React libraries
-    yarn add -D react react-dom prop-types
+  # Install React libraries
+  yarn add -D react react-dom prop-types
 
-    # Install dotenv for global environment variables definitions
-    # Note: 'whatwg-fetch' polyfill is for older browsers 'fetch' support
-    yarn add -D dotenv dotenv-webpack whatwg-fetch
+  # Install dotenv for global environment variables definitions
+  # Note: 'whatwg-fetch' polyfill is for older browsers 'fetch' support
+  yarn add -D dotenv dotenv-webpack whatwg-fetch
 
-    # Eslint with prettier plugin rules
-    yarn add -D eslint eslint-config-prettier eslint-plugin-prettier
+  # Eslint with prettier plugin rules
+  yarn add -D eslint eslint-config-prettier eslint-plugin-prettier
 
-    # Use prettier only on staged files to git and only on changed files
-    yarn add -D husky lint-staged prettier-quick
-  ```
+  # Use prettier only on staged files to git and only on changed files
+  yarn add -D husky lint-staged prettier-quick
+```
 
-* **Configurations**
-  The `webpack.config.js` file.
+#### 3.3 **Configurations**
+
+* The `webpack.config.js` file.
 
 ```js
 /* 1. ---- ./webpack.config.js ---- */
@@ -329,8 +344,8 @@ module.exports = {
 };
 ```
 
-The `package.json` file. Here we can define the scripts we want to run,
-the babel presets, browser support for auto-prefixer and many more...
+* The `package.json` file. Here we can define the scripts we want to run,
+  the babel presets, browser support for auto-prefixer and many more...
 
 ```js
 /* 2. ---- ./package.json (scripts section) ---- */
@@ -348,7 +363,7 @@ the babel presets, browser support for auto-prefixer and many more...
     // ...
 ```
 
-The `postcss.config.js` file.
+* The `postcss.config.js` file.
 
 ```js
 /* 2. ---- ./postcss.config.js ---- */
@@ -357,10 +372,7 @@ module.exports = {
 };
 ```
 
-The `.env` file. Here we define sensitive data that we want webpack to process
-but we don't want to leave our machine. It is a good idea to add this file
-to `.gitignore`. Inside this repo the `.env.sample` file must be renamed
-to `.env`
+* The `.env` file. Here we define sensitive data that we want webpack to process but we don't want to leave our machine. It is a good idea to add this file to `.gitignore`. Inside this repo the `.env.sample` file must be renamed to `.env`
 
 ```sh
 # 2. ---- ./env ----
