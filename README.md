@@ -11,17 +11,11 @@ A demo of basic (and some advanced) React concepts in a React app with a complet
 * Babel presets installation setup (Official and experimental)
 
   * **babel-cli:** Babel comes with a built-in CLI which can be used to compile files from the command line.
-
     * Installation: `yarn add babel-cli --dev`
-
   * **babel-preset-es2015**: deprecated. Use env instead.
-
   * **babel-preset-env:** Latest stable and experimental JS features. It allows us to use 'const', 'import from' arrow functions and [many more](https://babeljs.io/docs/plugins/preset-env/) ...
-
     * Installation: `yarn add babel-preset-env --dev`
-
-  * **Tip:** run it with `node ./node_modules/.bin/babel index.js -o ./bundle.js --presets=env`
-
+    - **Tip:** run it from terminal with `node ./node_modules/.bin/babel index.js -o ./bundle.js --presets=env`
   * We are going to define Babel presets in webpack so we don't need the `.babelrc` file.
 
 * ES6 features quick review:
@@ -191,13 +185,13 @@ module.exports = {
   },
 
   /**
-  												 * 3. CSS AND JS OPTIM
-  												 * We don't need for this dev demo, but necessary in production.
-  												 * https://github.com/webpack-contrib/mini-css-extract-plugin
-  												 optimization: {
-  													 minimize: true
-  													},
-  												*/
+  						   * 3. CSS AND JS OPTIM
+  						   * We don't need for this dev demo, but necessary in production.
+  						   * https://github.com/webpack-contrib/mini-css-extract-plugin
+  						   optimization: {
+  						     minimize: true
+  						    },
+  						  */
 
   /**
    * 4. LOADERS
