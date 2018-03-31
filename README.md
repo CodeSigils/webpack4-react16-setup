@@ -185,13 +185,13 @@ module.exports = {
   },
 
   /**
-  		* 3. CSS AND JS OPTIM
-  		* We don't need for this dev demo, but necessary in production.
-  		* https://github.com/webpack-contrib/mini-css-extract-plugin
-  		  optimization: {
-  		    minimize: true
-  		  },
-  		*/
+   * 3. CSS AND JS OPTIM
+   * We don't need for this dev demo, but necessary in production.
+   * https://github.com/webpack-contrib/mini-css-extract-plugin
+   *  optimization: {
+   *    minimize: true
+   *  },
+   */
 
   /**
    * 4. LOADERS
