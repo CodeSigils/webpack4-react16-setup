@@ -91,7 +91,19 @@ module.exports = {
       // https://webpack.js.org/loaders/css-loader/
       {
         test: /\.css$/,
-        use: ["style-loader", "css-loader", "postcss-loader"],
+        use: [
+          "style-loader",
+          {
+            loader: "css-loader",
+            options: {
+              modules: true,
+              sourceMap: true,
+              importLoaders: 1,
+              localIdentName: "[name]--[local]--[hash:base64:8]"
+            }
+          },
+          "postcss-loader" // has separate config, see postcss.config.js nearby
+        ],
         exclude: /node_modules/
       },
       // Sass loader - Include node_modules
@@ -149,6 +161,9 @@ module.exports = {
     // HMR
     new webpack.NamedModulesPlugin(),
     new webpack.HotModuleReplacementPlugin(),
+    new webpack.LoaderOptionsPlugin({
+      debug: true
+    }),
     new webpack.optimize.OccurrenceOrderPlugin(),
     // Use '.env' file for global var definitions.
     // https://github.com/mrsteele/dotenv-webpack
@@ -171,5 +186,8 @@ module.exports = {
     filename: "[name].bundle.js",
     path: path.resolve(__dirname, "dist"),
     publicPath: "./"
+  },
+  resolve: {
+    extensions: [".js", ".json", ".css"]
   }
 };
