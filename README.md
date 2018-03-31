@@ -1,9 +1,7 @@
-## React from scratch - Sane react-webpack instructions
-
-Step by step
+## React from scratch - React with Webpack instructions
 
 Note: No automated React build will be used here.
-A demo of basic (and some advanced) React concepts in a React app with a complete webpack4 setup for development.
+A demo of basic (and some advanced) React concepts in a React app with a complete webpack4 setup for development and some reading along the way.
 
 ### 1. Setting-up the environment.
 
