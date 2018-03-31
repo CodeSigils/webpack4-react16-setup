@@ -375,7 +375,7 @@ module.exports = {
 };
 ```
 
-→ The `.env` file. Here we define sensitive data that we want webpack to process but we don't want to leave our machine. It is a good idea to add this file to `.gitignore`. Inside this repo the `.env.sample` file must be renamed to `.env`
+→ **The `.env` file.** Here we define sensitive data that we want webpack to process but we don't want to leave our machine. It is a good idea to add this file to `.gitignore`. Inside this repo the `.env.sample` file must be renamed to `.env`
 
 ```sh
 # 2. ---- ./env ----
