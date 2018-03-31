@@ -4,7 +4,7 @@ A demo of basic (and some advanced) React concepts in a React app.
 Also a webpack4 setup guide useful for development, with tips and some
 necessary yet light reading along the way.
 
-**Note:** No script automated React build will be used here. Keep reading, or scroll to Webpack setup section.
+**★ Note:** No script automated React build will be used here. More and more notes and tips will be added in the future. Keep reading, or scroll to Webpack setup section.
 
 ## 1. Setting-up the environment.
 
@@ -48,7 +48,7 @@ necessary yet light reading along the way.
 
 Run `yarn help` and read about global options for setup.
 
-**Tip:** Yarn is ideal with `NVM` since is not forcing you to migrate your globally installed modules every time you change `Node` version.
+**★ Tip:** Yarn is ideal with `NVM` since is not forcing you to migrate your globally installed modules every time you change `Node` version.
 
 #### 1.5 - Babel presets installation setup (Official and experimental)
 
@@ -59,7 +59,7 @@ Run `yarn help` and read about global options for setup.
 * **babel-preset-es2015**: **deprecated**. Use `babel-preset-env` with `babel-preset-stage-0` instead.
 * **babel-preset-env:** Latest stable and experimental JS features. It allows us to use 'const', 'import from', arrow functions and [many more](https://babeljs.io/docs/plugins/preset-env/) ...
   * Installation: `yarn add babel-preset-env --dev`
-  - **Tip:** run it from terminal with `node ./node_modules/.bin/babel index.js -o ./bundle.js --presets=env`
+  - **★ Tip:** run it from terminal with `node ./node_modules/.bin/babel index.js -o ./bundle.js --presets=env`
 * We are going to define Babel presets in webpack so we don't need the `.babelrc` file.
 
 #### 1.6 - ES6 features quick review:
@@ -92,7 +92,7 @@ at [eslint.org page](https://eslint.org/)
 
 #### 2.2 - Clean code with `Prettier`, `prettier-quick` and git hooks with `husky`
 
-**Tip:** There is a great YouTube video for [configuring lint, prettier and husky](https://www.youtube.com/watch?v=bfyI9yl3qfE). If you follow these instructions, every time you push to git your code will be evaluated and autoformated.
+**★ Tip:** There is a great YouTube video for [configuring lint, prettier and husky](https://www.youtube.com/watch?v=bfyI9yl3qfE). If you follow these instructions, every time you push to git your code will be evaluated and autoformated.
 
 ---
 
@@ -117,7 +117,7 @@ at [eslint.org page](https://eslint.org/)
 * How to install and configure Webpack: The `webpack.config.js` file.
 * Integrating Babel into webpack using a loader
 * Use of [webpack-dev-server](https://github.com/webpack/webpack-dev-server)
-  Note: Webpack dev server's cli have moved to `webpack-cli` in webpack4.
+  **★ Note:** Webpack dev server's cli have moved to `webpack-cli` in webpack4.
 * Setting up a webpack plugin
 * Getting everything ready to start writing React code.
 
