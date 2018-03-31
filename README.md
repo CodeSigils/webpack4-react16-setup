@@ -6,6 +6,41 @@ necessary yet light reading along the way.
 
 **★ Note:** No script automated React build will be used here. More and more notes and tips will be added in the future. Keep reading, or scroll to Webpack setup section.
 
+**Table of Contents**
+
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+
+* [1. Setting-up the environment.](#1-setting-up-the-environment)
+  * [Yarn package manager with Node version Manager](#yarn-package-manager-with-node-version-manager)
+    * [1.1 - Install Yarn](#11---install-yarn)
+    * [1.2 - Install NVM](#12---install-nvm)
+    * [1.3 - NVM and Yarn path setup in your .zshrc:](#13---nvm-and-yarn-path-setup-in-your-zshrc)
+    * [1.4 - Use of yarn: Initialize a project with `yarn init`.](#14---use-of-yarn-initialize-a-project-with-yarn-init)
+    * [1.5 - Babel presets installation setup (Official and experimental)](#15---babel-presets-installation-setup-official-and-experimental)
+    * [1.6 - ES6 features quick review:](#16---es6-features-quick-review)
+    * [1.7 - Adding scripts section in `package.json`](#17---adding-scripts-section-in-packagejson)
+    * [1.8 - Handling Early versions of Node and older browsers](#18---handling-early-versions-of-node-and-older-browsers)
+* [2. Code-Linting and Git hooks](#2-code-linting-and-git-hooks)
+  * [2.1 - Install `Eslint` and `Prettier` plugins for VSCode](#21---install-eslint-and-prettier-plugins-for-vscode)
+  * [2.2 - Clean code with `Prettier`, `prettier-quick` and git hooks with `husky`](#22---clean-code-with-prettier-prettier-quick-and-git-hooks-with-husky)
+* [3. Webpack4 setup and configuration](#3-webpack4-setup-and-configuration)
+  * [3.1 - Intro to Webpack "module bundler" and its dependency graph](#31---intro-to-webpack-module-bundler-and-its-dependency-graph)
+  * [3.2 - Installations](#32---installations)
+  * [3.3 - Configurations](#33---configurations)
+    * [→ The **`webpack.config.js`** file.](#%E2%86%92-the-webpackconfigjs-file)
+    * [→ **The `package.json`** file. Here we can define our project dependencies, the scripts we want to run, the babel presets, browser support for auto-prefixer and many more...](#%E2%86%92-the-packagejson-file-here-we-can-define-our-project-dependencies-the-scripts-we-want-to-run-the-babel-presets-browser-support-for-auto-prefixer-and-many-more)
+    * [→ **The `postcss.config.js` file.**](#%E2%86%92-the-postcssconfigjs-file)
+    * [→ **The `.env` file.** Here we define sensitive data that we want webpack to process but we don't want to leave our machine. It is a good idea to add this file to `.gitignore`. Inside this repo the `.env.sample` file must be renamed to `.env`](#%E2%86%92-the-env-file-here-we-define-sensitive-data-that-we-want-webpack-to-process-but-we-dont-want-to-leave-our-machine-it-is-a-good-idea-to-add-this-file-to-gitignore-inside-this-repo-the-envsample-file-must-be-renamed-to-env)
+  * [3.4 - Run the project in browser](#34---run-the-project-in-browser)
+  * [4. React](#4-react)
+  * [5. Styling](#5-styling)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
 ## 1. Setting-up the environment.
 
 ### [Yarn package manager](https://yarnpkg.com/en/docs) with [Node version Manager](https://github.com/creationix/nvm)
@@ -161,7 +196,7 @@ at [eslint.org page](https://eslint.org/)
 
 #### 3.3 - Configurations
 
-→ The **`webpack.config.js`** file.
+##### → The **`webpack.config.js`** file.
 
 ```js
 /* 1. ---- ./webpack.config.js ---- */
@@ -347,7 +382,7 @@ module.exports = {
 };
 ```
 
-→ **The `package.json`** file. Here we can define our project dependencies, the scripts we want to run, the babel presets, browser support for auto-prefixer and many more...
+##### → **The `package.json`** file. Here we can define our project dependencies, the scripts we want to run, the babel presets, browser support for auto-prefixer and many more...
 
 ```js
 /* 2. ---- ./package.json (scripts section) ---- */
@@ -365,7 +400,8 @@ module.exports = {
     // ...
 ```
 
-→ **The `postcss.config.js` file.**
+##### → **The `postcss.config.js` file.**
+
 The [PostCSS project](http://postcss.org/) is an amazing project that allows CSS transformations using JS. They also claim that PostCSS "transforms CSS specs into more compatible CSS so you don’t need to wait for browser support."
 
 **★ Tip:**
@@ -380,7 +416,7 @@ module.exports = {
 };
 ```
 
-→ **The `.env` file.** Here we define sensitive data that we want webpack to process but we don't want to leave our machine. It is a good idea to add this file to `.gitignore`. Inside this repo the `.env.sample` file must be renamed to `.env`
+##### → **The `.env` file.** Here we define sensitive data that we want webpack to process but we don't want to leave our machine. It is a good idea to add this file to `.gitignore`. Inside this repo the `.env.sample` file must be renamed to `.env`
 
 ```sh
 # 2. ---- ./env ----
