@@ -1,7 +1,7 @@
-# React from scratch - React with Webpack - Step by step instructions
+# React from scratch - React with Webpack, a step by step guide
 
 Note: No automated React build will be used here.
-A demo of basic (and some advanced) React concepts in a React app with a complete webpack4 setup for development and some reading along the way.
+A demo of basic (and some advanced) React concepts in a React app with a complete webpack4 setup for development with tips and some reading along the way.
 
 ## 1. Setting-up the environment.
 
@@ -140,7 +140,7 @@ at [eslint.org page](https://eslint.org/)
   yarn add -D autoprefixer postcss-loader && touch postcss.config.js
 
   # Webpack plugins
-  yarn add -D html-webpack-plugin
+  yarn add -D html-webpack-plugin dotenv-webpack
 
   # Install React libraries
   yarn add -D react react-dom prop-types

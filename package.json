@@ -42,13 +42,13 @@
     "webpack": "^4.3.0",
     "webpack-cli": "^2.0.13",
     "webpack-dev-server": "^3.1.1",
-    "whatwg-fetch": "^2.0.3"
-  },
-  "dependencies": {
+    "whatwg-fetch": "^2.0.3",
     "babel-preset-stage-0": "^6.24.1",
     "eslint": "^4.19.1",
     "eslint-config-prettier": "^2.9.0",
-    "eslint-plugin-prettier": "^2.6.0",
+    "eslint-plugin-prettier": "^2.6.0"
+  },
+  "dependencies": {
     "react": "^16.2.0",
     "react-dom": "^16.2.0"
   }
