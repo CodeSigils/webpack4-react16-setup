@@ -105,6 +105,28 @@ Run `yarn help` and read about global options for setup.
 
 #### 1.7 - Adding scripts section in `package.json`
 
+People are using the "scripts" section of package.json file in all sorts of ways. There is also one famous article about how to replace build automation tools using only piped commands in scripts.
+**★ Tip:** Read about [How to Use npm as a Build Tool](https://www.keithcirkel.co.uk/how-to-use-npm-as-a-build-tool/)
+
+```js
+{
+  "name": "webpack4-react16-setup",
+  "version": "1.0.0",
+  "description": "React ecosystem demo",
+  // Note: Comments will not work on JSON files
+  // Define scripts here and run them with "npm run ..." or "yarn"
+  "scripts": {
+    "serve":
+      "webpack-dev-server --watch --config ./webpack.config.js --mode development",
+    "dev": "webpack --mode development",
+    "build": "webpack --mode production",
+    "watch": "webpack --watch --mode development",
+    "precommit": "pretty-quick --staged"
+  },
+  // ... Comments will not work on JSON files
+}
+```
+
 #### 1.8 - Handling Early versions of Node and older browsers
 
 ---
