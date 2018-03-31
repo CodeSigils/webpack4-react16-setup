@@ -367,6 +367,12 @@ the babel presets, browser support for auto-prefixer and many more...
 ```
 
 → **The `postcss.config.js` file.**
+The [PostCSS project](http://postcss.org/) is an amazing project that allows CSS transformations using JS. They also claim that PostCSS "transforms CSS specs into more compatible CSS so you don’t need to wait for browser support."
+
+**★ Tip:**
+
+* There are many powerful [PostCSS plugins](https://www.postcss.parts/)
+* There are some good learning sources out there and a [github tutorial](https://github.com/DavidWells/PostCSS-tutorial) by [David Wells](https://github.com/DavidWells)
 
 ```js
 /* 2. ---- ./postcss.config.js ---- */
