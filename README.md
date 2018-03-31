@@ -347,8 +347,7 @@ module.exports = {
 };
 ```
 
-→ **The `package.json`** file. Here we can define the scripts we want to run,
-the babel presets, browser support for auto-prefixer and many more...
+→ **The `package.json`** file. Here we can define our project dependencies, the scripts we want to run, the babel presets, browser support for auto-prefixer and many more...
 
 ```js
 /* 2. ---- ./package.json (scripts section) ---- */
