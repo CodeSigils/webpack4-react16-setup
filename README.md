@@ -1,9 +1,9 @@
 # React from scratch - React with Webpack, a step by step guide
 
-Note: No automated React build will be used here.
 A demo of basic (and some advanced) React concepts in a React app.
-Also a webpack4 setup guide for development, with tips and some
-reading along the way.
+Also a webpack4 setup guide useful for development, with tips and some
+necessary yet light reading along the way.
+**Note:** No script automated React build will be used here.
 
 ## 1. Setting-up the environment.
 
