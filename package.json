@@ -1,7 +1,7 @@
 {
-  "name": "react-web-dev",
+  "name": "webpack4-react16-setup",
   "version": "1.0.0",
-  "description": "React ecosystem demo",
+  "description": "React ecosystem demo and Webpack 4 basic setup",
   "main": "index.js",
   "author": "CodeSigils",
   "license": "MIT",
@@ -17,6 +17,7 @@
     "presets": ["react", "env", "stage-0"]
   },
   "browserslist": ["> 1%", "last 2 versions"],
+  "keywords": ["react", "webpack4", "dev-setup", "tutorial"],
   "devDependencies": {
     "autoprefixer": "^8.2.0",
     "babel-cli": "^6.26.0",
