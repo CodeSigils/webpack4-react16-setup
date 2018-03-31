@@ -58,7 +58,7 @@ necessary yet light reading along the way.
 #### 1.2 - Install NVM
 
 ```sh
-  # Get NVM
+  # Get NVM the scary way
   wget -qO- https://raw.githubusercontent.com/creationix/nvm/v0.33.8/install.sh | bash
 ```
 
