@@ -118,7 +118,7 @@ at [eslint.org page](https://eslint.org/)
 * Setting up a webpack plugin
 * Getting everything ready to start writing React code.
 
-#### 3.2 - **Installations**
+#### 3.2 - Installations
 
 ```sh
   # Babel core
@@ -156,7 +156,7 @@ at [eslint.org page](https://eslint.org/)
   yarn add -D husky lint-staged prettier-quick
 ```
 
-#### 3.3 **Configurations**
+#### 3.3 - Configurations
 
 * The `webpack.config.js` file.
 
@@ -379,7 +379,9 @@ module.exports = {
 API_URL=http://reactrecipes.herokuapp.com
 ```
 
-Now, rename `.env.sample` to `.env`, run `yarn serve` and watch the server in localhost:8899
+#### 3.4 - Run the project in browser
+
+Rename `.env.sample` to `.env`, run `yarn serve` and watch the server in localhost:8899
 
 ### 4. React
 
