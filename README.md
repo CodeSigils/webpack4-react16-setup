@@ -53,7 +53,7 @@ Run `yarn help` and read about global options for setup.
   [JavaScript Transpilers: What They Are & Why We Need Them](https://scotch.io/tutorials/javascript-transpilers-what-they-are-why-we-need-them)
 * **babel-cli:** Babel comes with a built-in CLI which can be used to compile files from the command line.
   * Installation: `yarn add babel-cli --dev`
-* **babel-preset-es2015**: deprecated. Use `babel-preset-env` instead.
+* **babel-preset-es2015**: **deprecated**. Use `babel-preset-env` with `babel-preset-stage-0` instead.
 * **babel-preset-env:** Latest stable and experimental JS features. It allows us to use 'const', 'import from', arrow functions and [many more](https://babeljs.io/docs/plugins/preset-env/) ...
   * Installation: `yarn add babel-preset-env --dev`
   - **Tip:** run it from terminal with `node ./node_modules/.bin/babel index.js -o ./bundle.js --presets=env`
