@@ -44,8 +44,8 @@ class App extends Component {
    * Bind an event listener to the component. Most common scope error:
    * "Uncaught (in promise) TypeError: _this3.setState is not a function"
    * See bind.(this) in the constructor and install "babel-preset-stage-0"
-   * to avoid this by using arrow functions. Then use it with this exact
-   * order: ["react", "env", "stage-0"]
+   * to avoid this by using arrow functions in the class body.
+   * Then use it in webpack with this exact order: ["react", "env", "stage-0"]
    */
   onRecipeClick = id => {
     fetch(`${API_URL}/v1/recipes/${id}`)

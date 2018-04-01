@@ -12,8 +12,6 @@ necessary yet light reading along the way.
 
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 
-<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
-
 * [1. Setting-up the environment.](#1-setting-up-the-environment)
   * [Yarn package manager with Node version Manager](#yarn-package-manager-with-node-version-manager)
     * [1.1 - Install Yarn](#11---install-yarn)
@@ -472,7 +470,41 @@ Rename `.env.sample` to `.env`, run `yarn serve` and watch the server in `localh
 
 ### 5. Styling
 
-* Different approaches
-* Functional CSS
-* BassCSS
-* Style guide
+Different approaches
+
+* **Plain CSS:**
+  Hard to maintain in large scale. Global naming, monolithic files, high coupling between components.
+
+* **Inline styling:**
+  Use of the style prop of React elements.
+
+  * The good: CSS in JS
+  * Tha bad: No reusable CSS. High coupling between markup and styles. Huge components.
+
+* **CSS modules:**
+  Treat a CSS file as one module using Webpack
+
+  * The good: Component isolated CSS. No monolithic files with global scope.
+  * The bad: No reusable CSS. Huge amount of files.
+
+* **Styled components:**
+  CSS in JS solution using ES6
+
+  * The good: CSS with JS in one file. Easy props based styles. Popular. Good for animation.
+  * The bad: Hard to style components with many nested elements.
+  * The ugly: Odd backtick syntax. Bloated files
+
+* **Functional CSS with BassCSS:**
+  CSS toolkit with extensible predefined classes with the philosophy of "the real way to scale CSS, is to stop writing CSS".
+
+  * The good: Almost zero repetition. Enforces style-guide. Quick to prototype. PostCSS and CSSNext.
+  * The bad: Hard to apply specific styles.
+  * The ugly: Long classnames. Confusing at first.
+
+* **Worth exploring:**
+
+  * [Tachyons](https://devarchy.com/react/library/tachyons): Functional css for humans.
+  * [Radium](https://devarchy.com/react/radium) is a set of tools to manage inline styles on React elements. It gives you powerful styling capabilities without CSS.
+  * [Aphrodite](https://devarchy.com/react/Aphrodite): Inline Styles that work
+  * [Styletron](http://styletron.js.org)Universal, high-performance JavaScript styles.
+  * [React-JSS](http://cssinjs.org/react-jss/?v=v8.4.0)
