@@ -12,6 +12,8 @@ necessary yet light reading along the way.
 
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+
 * [1. Setting-up the environment.](#1-setting-up-the-environment)
   * [Yarn package manager with Node version Manager](#yarn-package-manager-with-node-version-manager)
     * [1.1 - Install Yarn](#11---install-yarn)
@@ -22,9 +24,9 @@ necessary yet light reading along the way.
     * [1.6 - ES6 features quick review:](#16---es6-features-quick-review)
     * [1.7 - Adding scripts section in `package.json`](#17---adding-scripts-section-in-packagejson)
     * [1.8 - Handling Early versions of Node and older browsers](#18---handling-early-versions-of-node-and-older-browsers)
-* [2. Code-Linting and Git hooks](#2-code-linting-and-git-hooks)
-  * [2.1 - Install `Eslint` and `Prettier` plugins for VSCode](#21---install-eslint-and-prettier-plugins-for-vscode)
-  * [2.2 - Clean code with `Prettier`, `prettier-quick` and git hooks with `husky`](#22---clean-code-with-prettier-prettier-quick-and-git-hooks-with-husky)
+* [2. Code-Linting, Code-Formating and Git hooks](#2-code-linting-code-formating-and-git-hooks)
+  * [2.1 - `Eslint` and `Prettier` plugins for VSCode](#21---eslint-and-prettier-plugins-for-vscode)
+  * [2.2 - Bring all together](#22---bring-all-together)
 * [3. Webpack4 setup and configuration](#3-webpack4-setup-and-configuration)
   * [3.1 - Intro to Webpack "module bundler" and its dependency graph](#31---intro-to-webpack-module-bundler-and-its-dependency-graph)
   * [3.2 - Installations](#32---installations)
@@ -130,21 +132,29 @@ People are using the "scripts" section of package.json file in all sorts of ways
 
 ---
 
-## 2. Code-Linting and Git hooks
+## 2. Code-Linting, Code-Formating and Git hooks
 
-#### 2.1 - Install `Eslint` and `Prettier` plugins for VSCode
+Take a look at ESLint, "the pluggable linting utility for JavaScript and JSX"
+in [eslint.org](https://eslint.org/).
 
-Read about Prettier and ESlint plugins in VSCode marketplace:
+Take a look at Prettier, "the opinionated code formatter" in [prettier.io](https://prettier.io/).
+
+Take a look at [Husky](https://github.com/typicode/husky/tree/master)
+
+#### 2.1 - `Eslint` and `Prettier` plugins for VSCode
+
+Install Prettier and ESlint plugins from VSCode marketplace:
 
 * [Prettier code formatter](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode)
-* [Eslint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint)
+* [Eslint extension](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint)
 
-Read about ESLint, "the pluggable linting utility for JavaScript and JSX"
-at [eslint.org page](https://eslint.org/)
+#### 2.2 - Bring all together
 
-#### 2.2 - Clean code with `Prettier`, `prettier-quick` and git hooks with `husky`
+**★ Tips:**
 
-**★ Tip:** There is a great YouTube video for [configuring lint, prettier and husky](https://www.youtube.com/watch?v=bfyI9yl3qfE). If you follow these instructions, every time you push to git your code will be evaluated and autoformated.
+* There is a great YouTube video for [configuring lint, prettier and husky](https://www.youtube.com/watch?v=bfyI9yl3qfE). If you follow these instructions, every time you push to git your code will be evaluated and auto-formated.
+
+* [Flow](https://flow.org/) is also very interesting. Read [Configure ESLint, Prettier, and Flow in VS Code for React Development](https://hackernoon.com/configure-eslint-prettier-and-flow-in-vs-code-for-react-development-c9d95db07213).
 
 ---
 
