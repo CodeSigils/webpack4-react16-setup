@@ -98,8 +98,8 @@ module.exports = {
             options: {
               modules: true, // default is false
               sourceMap: true,
-              importLoaders: 1,
-              localIdentName: "[name]--[local]--[hash:base64:8]"
+              importLoaders: 1
+              // localIdentName: "[name]--[local]--[hash:base64:8]"
             }
           },
           "postcss-loader" // has separate config, see postcss.config.js nearby
@@ -156,24 +156,28 @@ module.exports = {
       template: "index.html",
       filename: "./index.html"
     }),
-    // Clean webpack
+    // Clean webpack plugin
     new CleanWebpackPlugin(["dist"]),
-    // HMR
+    // HMR - Native webpack plugins (no need for installation)
     new webpack.NamedModulesPlugin(),
     new webpack.HotModuleReplacementPlugin(),
     new webpack.LoaderOptionsPlugin({
       debug: true
     }),
     new webpack.optimize.OccurrenceOrderPlugin(),
-    // Use '.env' file for global var definitions.
-    // https://github.com/mrsteele/dotenv-webpack
+    /**
+     * Use '.env' file for global var definitions, and store sensitive data.
+     * There is a '.env.sample' file in this repo that must be renamed to
+     * '.env'.
+     * Read carefully: https://github.com/mrsteele/dotenv-webpack
+     */
     new Dotenv({
       path: "./.env",
       safe: false,
       systemvars: true
     }),
     // Register global vars to webpack for all the files
-    // @return {string}
+    // Must return a string.
     new webpack.DefinePlugin({
       API_URL: JSON.stringify(process.env.API_URL)
     })

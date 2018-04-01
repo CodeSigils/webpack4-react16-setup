@@ -89,8 +89,8 @@ Run `yarn help` and read about global options for setup.
 
 * Read about [Babel presets](https://babeljs.io/docs/plugins/#presets).
 
-  * **★ Tip:** **babel-preset-es2015 is deprecated**. Use `babel-preset-env` with `babel-preset-stage-0` instead.
-  * The **babel-preset-env:** is all about latest stable and experimental JS features. It allows us to use 'const', 'import from', arrow functions and [many more](https://babeljs.io/docs/plugins/preset-env/) ...
+  * **★ Tip:** **babel-preset-es2015 is deprecated**. Use `babel-preset-env` with `babel-preset-stage-0` instead. The `stage-0` allows experimental features.
+  * The **babel-preset-env:** is all about latest stable JS features. It allows us to use 'const', 'import from', arrow functions and [many more](https://babeljs.io/docs/plugins/preset-env/) ...
     * Installation: `yarn add babel-preset-env --dev`
     - **★ Tip:** run it from terminal with `node ./node_modules/.bin/babel index.js -o ./bundle.js --presets=env`
 

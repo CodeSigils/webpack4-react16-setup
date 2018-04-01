@@ -1,8 +1,8 @@
 import React, { Component } from "react";
-// import Style from './css/main.css'
 import Header from "./components/Header";
 import RecipeList from "./components/RecipeList";
 import RecipeDetail from "./components/RecipeDetail";
+import "./css/main.css";
 
 /**
  * 
@@ -73,15 +73,5 @@ class App extends Component {
     );
   }
 }
-
-/*
-class App extends Component {
-	render() {
-		return(
-			<div>Hello from react</div>
-		);
-	}
-}
-*/
 
 export default App;
