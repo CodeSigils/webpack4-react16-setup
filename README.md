@@ -12,6 +12,8 @@ necessary yet light reading along the way.
 
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+
 * [1. Setting-up the environment.](#1-setting-up-the-environment)
   * [Yarn package manager with Node version Manager](#yarn-package-manager-with-node-version-manager)
     * [1.1 - Install Yarn](#11---install-yarn)
@@ -31,7 +33,8 @@ necessary yet light reading along the way.
   * [3.3 - Configurations](#33---configurations)
   * [3.4 - Run the project in browser](#34---run-the-project-in-browser)
   * [4. React](#4-react)
-  * [5. Styling](#5-styling)
+  * [5. Styling in React](#5-styling-in-react)
+    * [5.1 - Setting Up PostCSS with BassCss.](#51---setting-up-postcss-with-basscss)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -428,22 +431,6 @@ module.exports = {
     // ...
 ```
 
-* → **The `postcss.config.js` file.**
-
-The [PostCSS project](http://postcss.org/) is an amazing project that allows CSS transformations using JS. They also claim that PostCSS "transforms CSS specs into more compatible CSS so you don’t need to wait for browser support."
-
-**★ Tip:**
-
-* There are many powerful [PostCSS plugins](https://www.postcss.parts/)
-* There are some good learning sources out there and a [github tutorial](https://github.com/DavidWells/PostCSS-tutorial) by [David Wells](https://github.com/DavidWells)
-
-```js
-/* 2. ---- ./postcss.config.js ---- */
-module.exports = {
-  plugins: [require("autoprefixer")]
-};
-```
-
 * → **The `.env` file.** Here we define sensitive data that we want webpack to process but we don't want to leave our machine. It is a good idea to add this file to `.gitignore`. Inside this repo the `.env.sample` file must be renamed to `.env`
 
 ```sh
@@ -468,9 +455,9 @@ Rename `.env.sample` to `.env`, run `yarn serve` and watch the server in `localh
 * Making async request in the component life cycle
 * Use the state to make components dynamic
 
-### 5. Styling
+### 5. Styling in React
 
-Different approaches
+Different approaches, one philosophy: "the real way to scale CSS, is to stop writing CSS". You are using JS anyway, so why not take advantage of the language to style your elements ?
 
 * **Plain CSS:**
   Hard to maintain in large scale. Global naming, monolithic files, high coupling between components.
@@ -488,23 +475,45 @@ Different approaches
   * The bad: No reusable CSS. Huge amount of files.
 
 * **Styled components:**
-  CSS in JS solution using ES6
+  CSS in JS solution using ES6.
 
   * The good: CSS with JS in one file. Easy props based styles. Popular. Good for animation.
   * The bad: Hard to style components with many nested elements.
   * The ugly: Odd backtick syntax. Bloated files
 
-* **Functional CSS with BassCSS:**
-  CSS toolkit with extensible predefined classes with the philosophy of "the real way to scale CSS, is to stop writing CSS".
+* **Functional CSS with [BassCSS](http://basscss.com/):**
+  CSS toolkit with extensible predefined classes: "The overwhelming majority of CSS you would need for your elements has already been written".
 
-  * The good: Almost zero repetition. Enforces style-guide. Quick to prototype. PostCSS and CSSNext.
-  * The bad: Hard to apply specific styles.
-  * The ugly: Long classnames. Confusing at first.
+  * The good: Almost zero repetition. Enforces style-guide. Quick to prototype. PostCSS and CSSNext. Small(er) bundled file.
+  * The bad: Hard to apply specific styles. Find and replace problem. Fixed units.
+  * The ugly: Long less semantic classnames. Confusing at first.
 
 * **Worth exploring:**
 
   * [Tachyons](https://devarchy.com/react/library/tachyons): Functional css for humans.
   * [Radium](https://devarchy.com/react/radium) is a set of tools to manage inline styles on React elements. It gives you powerful styling capabilities without CSS.
-  * [Aphrodite](https://devarchy.com/react/Aphrodite): Inline Styles that work
+  * [Aphrodite](https://devarchy.com/react/Aphrodite): Inline Styles that work.
   * [Styletron](http://styletron.js.org)Universal, high-performance JavaScript styles.
   * [React-JSS](http://cssinjs.org/react-jss/?v=v8.4.0)
+
+#### 5.1 - Setting Up PostCSS with BassCss.
+
+The [PostCSS project](http://postcss.org/) is an amazing project that allows CSS transformations using JS. They also claim that PostCSS "transforms CSS specs into more compatible CSS so you don’t need to wait for browser support."
+You can think that **PostCss is to CSS, what Babel is to JS**. It enable us to write
+CSSNext. **CSSNext is to CSS, what ES6 is to JS**: Use of future CSS features that are not yet supported by the browser.
+
+Features: Automatic vendor prefixer with autoprefixer, custom properties and var(), nesting, many color functions and more...
+
+**★ Tip:**
+
+* There are many (more than 200) powerful [PostCSS plugins](https://www.postcss.parts/)
+* There are some good learning sources out there and a [github tutorial](https://github.com/DavidWells/PostCSS-tutorial) by [David Wells](https://github.com/DavidWells)
+
+* → **The `postcss.config.js` file.**
+
+```js
+/* 2. ---- ./postcss.config.js ---- */
+module.exports = {
+  plugins: [require("autoprefixer")]
+};
+```
