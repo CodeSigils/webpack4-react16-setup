@@ -20,7 +20,7 @@ necessary yet light reading along the way.
     * [1.2 - Install NVM](#12---install-nvm)
     * [1.3 - NVM and Yarn path setup in your .zshrc:](#13---nvm-and-yarn-path-setup-in-your-zshrc)
     * [1.4 - Use of yarn: Initialize a project with `yarn init`.](#14---use-of-yarn-initialize-a-project-with-yarn-init)
-    * [1.5 - Babel presets installation setup (Official and experimental)](#15---babel-presets-installation-setup-official-and-experimental)
+    * [1.5 - Babel presets (Official and experimental) installation and setup](#15---babel-presets-official-and-experimental-installation-and-setup)
     * [1.6 - ES6 features quick review:](#16---es6-features-quick-review)
     * [1.7 - Adding scripts section in `package.json`](#17---adding-scripts-section-in-packagejson)
     * [1.8 - Handling Early versions of Node and older browsers](#18---handling-early-versions-of-node-and-older-browsers)
@@ -81,16 +81,19 @@ Run `yarn help` and read about global options for setup.
 
 **★ Tip:** Yarn is ideal with `NVM` since is not forcing you to migrate your globally installed modules every time you change `Node` version.
 
-#### 1.5 - Babel presets installation setup (Official and experimental)
+#### 1.5 - Babel presets (Official and experimental) installation and setup
 
 * Read about the [Babel](https://babeljs.io/) transpiler:
   [JavaScript Transpilers: What They Are & Why We Need Them](https://scotch.io/tutorials/javascript-transpilers-what-they-are-why-we-need-them)
-* **babel-cli:** Babel comes with a built-in CLI which can be used to compile files from the command line.
-  * Installation: `yarn add babel-cli --dev`
-* **babel-preset-es2015**: **deprecated**. Use `babel-preset-env` with `babel-preset-stage-0` instead.
-* **babel-preset-env:** Latest stable and experimental JS features. It allows us to use 'const', 'import from', arrow functions and [many more](https://babeljs.io/docs/plugins/preset-env/) ...
-  * Installation: `yarn add babel-preset-env --dev`
-  - **★ Tip:** run it from terminal with `node ./node_modules/.bin/babel index.js -o ./bundle.js --presets=env`
+* The **babel-cli:** Babel comes with a built-in CLI which can be used to compile files from the command line. Install it with: `yarn add babel-cli --dev`
+
+* Read about [Babel presets](https://babeljs.io/docs/plugins/#presets).
+
+  * **★ Tip:** **babel-preset-es2015 is deprecated**. Use `babel-preset-env` with `babel-preset-stage-0` instead.
+  * The **babel-preset-env:** is all about latest stable and experimental JS features. It allows us to use 'const', 'import from', arrow functions and [many more](https://babeljs.io/docs/plugins/preset-env/) ...
+    * Installation: `yarn add babel-preset-env --dev`
+    - **★ Tip:** run it from terminal with `node ./node_modules/.bin/babel index.js -o ./bundle.js --presets=env`
+
 * We are going to define Babel presets in webpack so we don't need the `.babelrc` file.
 
 #### 1.6 - ES6 features quick review:
