@@ -126,7 +126,7 @@ People are using the "scripts" section of package.json file in all sorts of ways
 
 * We are going to define Babel presets in webpack so we don't need the `.babelrc` file.
 
-#### 2.1 - ES6 features quick review:
+#### 2.1 - ES6 features quick review
 
 * ES6 modules: `import path from 'path'`
 * Arrow functions: `a => a * 2`
@@ -239,8 +239,8 @@ Install Prettier and ESlint plugins from VSCode marketplace:
   # Webpack plugins for serving html and clean our '/dist' folder:
   yarn add -D html-webpack-plugin clean-webpack-plugin
 
-  # Install React libraries:
-  yarn add -D react react-dom prop-types
+  # Install React libraries as main dependencies:
+  yarn add react react-dom prop-types
 
   # Install dotenv for global environment variables definitions
   # Note: 'whatwg-fetch' polyfill is for older browsers 'fetch' support:
@@ -567,3 +567,7 @@ module.exports = {
 ```
 
 #### 6.2 - Setting Up BassCSS
+
+* Install basic libraries. We will install them as main dependencies:
+
+`yarn add basscss basscss-background-colors basscss-colors classnames`
