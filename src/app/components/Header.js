@@ -1,7 +1,9 @@
 import React from "react";
 
-const Header = () => {
-  return <h2 className="green">My Recipes</h2>;
-};
+const Header = () => (
+  <header className="px4">
+    <h1 className="h1">My Recipes</h1>
+  </header>
+);
 
 export default Header;

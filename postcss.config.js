@@ -1,3 +1,6 @@
+const postcssCssNext = require("postcss-cssnext");
+const postcssImport = require("postcss-import");
+
 module.exports = {
-  plugins: [require("postcss-cssnext"), require("postcss-import")]
+  plugins: [postcssCssNext, postcssImport]
 };

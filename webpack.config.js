@@ -58,7 +58,7 @@ module.exports = {
    */
   module: {
     // Exclude large libs for performance
-    noParse: content => /jquery|lodash/.test(content),
+    // noParse: content => /jquery|lodash/.test(content),
     rules: [
       // Babel loader
       {
@@ -79,7 +79,7 @@ module.exports = {
       // Html loader
       // https://webpack.js.org/loaders/html-loader/
       {
-        test: /\.(html|htm)$/,
+        test: /\.html$/,
         use: [
           {
             loader: "html-loader",

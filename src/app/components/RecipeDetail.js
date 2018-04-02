@@ -1,17 +1,36 @@
 import React from "react";
+/**
+ * We can pass className to props with expressions like this:
+ * `h3 p2 bg-white italic center ${props.className}` but there is the risk
+ * of a null value.The classNames library will check if a CSS class is null
+ * and will not render it in html, so the above expression canbecomes:
+ * classNames('h3 p2 bg-white italic center, props.className')
+ */
+import classNames from "classnames";
 
 const RecipeDetail = props => {
   /**
-   * Handle 0 state of component. If there is no default value React will return
+   * Handle 0 state of component.
+   * If there is no default value React will return null:
    * "cannot read property of null".
    */
   if (!props.recipe) {
-    return <p style={props.style}>Select a recipe to learn</p>;
+    return (
+      <span
+        style={props.style}
+        className={classNames("h4 p2 bg-white italic center,  props.className")}
+      >
+        Select a recipe from the list
+      </span>
+    );
   }
   return (
-    <div style={props.style}>
-      <h2>{props.recipe.name}</h2>
-      <img src={props.recipe.image} />
+    <div
+      style={props.style}
+      className={classNames("p2 bg-white", props.className)}
+    >
+      <h2 className="h2">{props.recipe.name}</h2>
+      <img className="fit" src={props.recipe.image} />
       <div>
         <span>{props.recipe.category}</span>
         <span>{props.recipe.calories} cal</span>
