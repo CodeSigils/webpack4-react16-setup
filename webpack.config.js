@@ -89,21 +89,10 @@ module.exports = {
       },
       // Css loader - Exclude node_modules
       // https://webpack.js.org/loaders/css-loader/
+      // postcss-loader has a separate config file in project root.
       {
         test: /\.css$/,
-        use: [
-          "style-loader",
-          {
-            loader: "css-loader",
-            options: {
-              modules: true, // default is false
-              sourceMap: true,
-              importLoaders: 1
-              // localIdentName: "[name]--[local]--[hash:base64:8]"
-            }
-          },
-          "postcss-loader" // has separate config, see postcss.config.js nearby
-        ],
+        use: ["style-loader", "css-loader", "postcss-loader"],
         exclude: /node_modules/
       },
       // Sass loader - Include node_modules
@@ -150,14 +139,14 @@ module.exports = {
    * 5. PLUGINS
    */
   plugins: [
+    // Clean webpack plugin
+    new CleanWebpackPlugin(["dist"]),
     // Html plugin
     // https://github.com/jantimon/html-webpack-plugin
     new HtmlWebPackPlugin({
-      template: "index.html",
-      filename: "./index.html"
+      filename: "index.html",
+      template: "index.html"
     }),
-    // Clean webpack plugin
-    new CleanWebpackPlugin(["dist"]),
     // HMR - Native webpack plugins (no need for installation)
     new webpack.NamedModulesPlugin(),
     new webpack.HotModuleReplacementPlugin(),

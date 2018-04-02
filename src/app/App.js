@@ -2,20 +2,19 @@ import React, { Component } from "react";
 import Header from "./components/Header";
 import RecipeList from "./components/RecipeList";
 import RecipeDetail from "./components/RecipeDetail";
-import "./css/main.css";
 
 /**
- * 
+ *
  fetch('http://reactrecipes.herokuapp.com/v1/recipes')
 	 // When response arrives we transform it to a JSON object inside a promise.
 	 .then(res => res.json())
 	 // Open console and network tab in dev-tools and observe
 	 .then(json => console.log(json))
  *
- * Note: Use '.env' file with the DotENV library to define global variables. 
- * It is a good idea for security to exclude this file from version control 
+ * Note: Use '.env' file with the DotENV library to define global variables.
+ * It is a good idea for security to exclude this file from version control
  * (see .gitignore file)
- * 
+ *
  *  fetch(`${API_URL}/v1/recipes`)
  *   .then(res => res.json())
  *   .then(json => console.log(json));
