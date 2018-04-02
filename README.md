@@ -20,22 +20,22 @@ necessary yet light reading along the way.
     * [1.2 - Install NVM](#12---install-nvm)
     * [1.3 - NVM and Yarn path setup in your .zshrc:](#13---nvm-and-yarn-path-setup-in-your-zshrc)
     * [1.4 - Use of yarn: Initialize a project with `yarn init`.](#14---use-of-yarn-initialize-a-project-with-yarn-init)
-    * [1.5 - Babel presets (Official and experimental) installation and setup](#15---babel-presets-official-and-experimental-installation-and-setup)
-    * [1.6 - ES6 features quick review:](#16---es6-features-quick-review)
-    * [1.7 - Adding scripts section in `package.json`](#17---adding-scripts-section-in-packagejson)
+    * [1.5 - Adding scripts section in `package.json`](#15---adding-scripts-section-in-packagejson)
     * [1.8 - Handling Early versions of Node and older browsers](#18---handling-early-versions-of-node-and-older-browsers)
-* [2. Code-Linting, Code-Formating and Git hooks](#2-code-linting-code-formating-and-git-hooks)
-  * [2.1 - `Eslint` and `Prettier` plugins for VSCode](#21---eslint-and-prettier-plugins-for-vscode)
-  * [2.2 - Bring all together](#22---bring-all-together)
-* [3. Webpack4 setup and configuration](#3-webpack4-setup-and-configuration)
-  * [3.1 - Intro to Webpack "module bundler" and its dependency graph](#31---intro-to-webpack-module-bundler-and-its-dependency-graph)
-  * [3.2 - Installations](#32---installations)
-  * [3.3 - Configurations](#33---configurations)
-  * [3.4 - Run the project in browser](#34---run-the-project-in-browser)
-* [4. React](#4-react)
-* [5. Styling in React](#5-styling-in-react)
-  * [5.1 - Setting Up PostCSS](#51---setting-up-postcss)
-  * [5.1 - Setting Up BassCSS](#51---setting-up-basscss)
+* [2 - Babel and Babel presets (Official and experimental) installation and setup](#2---babel-and-babel-presets-official-and-experimental-installation-and-setup)
+  * [2.1 - ES6 features quick review:](#21---es6-features-quick-review)
+* [3. Code-Linting, Code-Formating and Git hooks](#3-code-linting-code-formating-and-git-hooks)
+  * [3.1 - `Eslint` and `Prettier` plugins for VSCode](#31---eslint-and-prettier-plugins-for-vscode)
+  * [3.2 - Bring all together](#32---bring-all-together)
+* [4. Webpack4 setup and configuration](#4-webpack4-setup-and-configuration)
+  * [4.1 - Intro to Webpack "module bundler" and its dependency graph](#41---intro-to-webpack-module-bundler-and-its-dependency-graph)
+  * [4.2 - Installations](#42---installations)
+  * [4.3 - Configurations](#43---configurations)
+  * [4.4 - Run the project in browser](#44---run-the-project-in-browser)
+* [5. React](#5-react)
+* [6. Styling in React](#6-styling-in-react)
+  * [6.1 - Setting Up PostCSS](#61---setting-up-postcss)
+  * [6.2 - Setting Up BassCSS](#62---setting-up-basscss)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -83,32 +83,7 @@ Run `yarn help` and read about global options for setup.
 
 **★ Tip:** Yarn is ideal with `NVM` since is not forcing you to migrate your globally installed modules every time you change `Node` version.
 
-#### 1.5 - Babel presets (Official and experimental) installation and setup
-
-* Read about the [Babel](https://babeljs.io/) transpiler:
-  [JavaScript Transpilers: What They Are & Why We Need Them](https://scotch.io/tutorials/javascript-transpilers-what-they-are-why-we-need-them)
-* The **babel-cli:** Babel comes with a built-in CLI which can be used to compile files from the command line. Install it with: `yarn add babel-cli --dev`
-
-* Read about [Babel presets](https://babeljs.io/docs/plugins/#presets).
-
-  * **★ Tip:** **babel-preset-es2015 is deprecated**. Use `babel-preset-env` with `babel-preset-stage-0` instead. The `stage-0` allows experimental features.
-  * The **babel-preset-env:** is all about latest stable JS features. It allows us to use 'const', 'import from', arrow functions and [many more](https://babeljs.io/docs/plugins/preset-env/) ...
-    * Installation: `yarn add babel-preset-env --dev`
-    - **★ Tip:** run it from terminal with `node ./node_modules/.bin/babel index.js -o ./bundle.js --presets=env`
-
-* We are going to define Babel presets in webpack so we don't need the `.babelrc` file.
-
-#### 1.6 - ES6 features quick review:
-
-* ES6 modules: `import path from 'path'`
-* Arrow functions: `a => a * 2`
-* Classes: `class MyClass extends Framework.Class { }`
-* Object literals:`{ foo }`
-* Template Strings: `Foo ${bar}`
-* Destructing: `({ a }) => { console.log(a) }`
-* Let/Const: `const foo = 'Hello' let bar='World'`
-
-#### 1.7 - Adding scripts section in `package.json`
+#### 1.5 - Adding scripts section in `package.json`
 
 People are using the "scripts" section of package.json file in all sorts of ways. There is also one famous article about how to replace build automation tools using only piped commands in scripts.
 
@@ -116,8 +91,7 @@ People are using the "scripts" section of package.json file in all sorts of ways
 
 ```js
 {
-  "name": "webpack4-react16-setup",
-  "version": "1.0.0",
+  // ...
   "description": "React ecosystem demo",
   // Note: Comments will not work on JSON files
   // Define scripts here and run them with "npm run ..." or "yarn"
@@ -137,7 +111,32 @@ People are using the "scripts" section of package.json file in all sorts of ways
 
 ---
 
-## 2. Code-Linting, Code-Formating and Git hooks
+## 2 - Babel and Babel presets (Official and experimental) installation and setup
+
+* Read about the [Babel](https://babeljs.io/) transpiler:
+  [JavaScript Transpilers: What They Are & Why We Need Them](https://scotch.io/tutorials/javascript-transpilers-what-they-are-why-we-need-them)
+* The **babel-cli:** Babel comes with a built-in CLI which can be used to compile files from the command line. Install it with: `yarn add babel-cli --dev`
+
+* Read about [Babel presets](https://babeljs.io/docs/plugins/#presets).
+
+  * **★ Tip:** **babel-preset-es2015 is deprecated**. Use `babel-preset-env` with `babel-preset-stage-0` instead. The `stage-0` allows experimental features.
+  * The **babel-preset-env:** is all about latest stable JS features. It allows us to use 'const', 'import from', arrow functions and [many more](https://babeljs.io/docs/plugins/preset-env/) ...
+    * Installation: `yarn add babel-preset-env --dev`
+    - **★ Tip:** run it from terminal with `node ./node_modules/.bin/babel index.js -o ./bundle.js --presets=env`
+
+* We are going to define Babel presets in webpack so we don't need the `.babelrc` file.
+
+#### 2.1 - ES6 features quick review:
+
+* ES6 modules: `import path from 'path'`
+* Arrow functions: `a => a * 2`
+* Classes: `class MyClass extends Framework.Class { }`
+* Object literals:`{ foo }`
+* Template Strings: `Foo ${bar}`
+* Destructing: `({ a }) => { console.log(a) }`
+* Let/Const: `const foo = 'Hello' let bar='World'`
+
+## 3. Code-Linting, Code-Formating and Git hooks
 
 Take a look at ESLint, "the pluggable linting utility for JavaScript and JSX"
 in [eslint.org](https://eslint.org/).
@@ -146,14 +145,14 @@ Take a look at Prettier, "the opinionated code formatter" in [prettier.io](https
 
 Take a look at [Husky](https://github.com/typicode/husky/tree/master)
 
-#### 2.1 - `Eslint` and `Prettier` plugins for VSCode
+#### 3.1 - `Eslint` and `Prettier` plugins for VSCode
 
 Install Prettier and ESlint plugins from VSCode marketplace:
 
 * [Prettier code formatter](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode)
 * [Eslint extension](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint)
 
-#### 2.2 - Bring all together
+#### 3.2 - Bring all together
 
 * We can run `eslint --init` interactive cli in our project path and answer the questions about how we want to style our code. First install Eslint with prettier plugin rules:
 
@@ -194,9 +193,9 @@ Install Prettier and ESlint plugins from VSCode marketplace:
 
 ---
 
-## 3. Webpack4 setup and configuration
+## 4. Webpack4 setup and configuration
 
-#### 3.1 - Intro to Webpack "module bundler" and its dependency graph
+#### 4.1 - Intro to Webpack "module bundler" and its dependency graph
 
 * How webpack works
   * **Entry point:**
@@ -219,17 +218,17 @@ Install Prettier and ESlint plugins from VSCode marketplace:
 * Setting up a webpack plugin
 * Getting everything ready to start writing React code.
 
-#### 3.2 - Installations
+#### 4.2 - Installations
 
 ```sh
   # Babel core
   yarn add -D babel-core babel-cli
 
+  # Babel main loader for Webpack
+  yarn add -D babel-loader
+
   # Babel presets. Note 'babel-preset-es2015' is deprecated
   yarn add -D babel-preset-react babel-preset-env babel-preset-stage-0
-
-  # Babel main loader for Webpack
-  yarn add babel-loader
 
   # Webpack and dev server:
   yarn add -D webpack webpack-cli webpack-dev-server
@@ -248,7 +247,7 @@ Install Prettier and ESlint plugins from VSCode marketplace:
   yarn add -D dotenv dotenv-webpack whatwg-fetch
 ```
 
-#### 3.3 - Configurations
+#### 4.3 - Configurations
 
 * → The **`webpack.config.js`** file.
 
@@ -461,11 +460,11 @@ module.exports = {
 API_URL=http://reactrecipes.herokuapp.com
 ```
 
-#### 3.4 - Run the project in browser
+#### 4.4 - Run the project in browser
 
 Rename `.env.sample` to `.env`, run `yarn serve` and watch the server in `localhost:8899`
 
-## 4. React
+## 5. React
 
 * Creating and mounting root component. About renderers.
 * Functional and Class components
@@ -478,7 +477,7 @@ Rename `.env.sample` to `.env`, run `yarn serve` and watch the server in `localh
 * Making async request in the component life cycle
 * Use the state to make components dynamic
 
-## 5. Styling in React
+## 6. Styling in React
 
 Different approaches, one philosophy: "the real way to scale CSS, is to stop writing CSS". You are using JS anyway, so why not take advantage of the language to style your elements ?
 
@@ -519,7 +518,7 @@ Different approaches, one philosophy: "the real way to scale CSS, is to stop wri
   * [Styletron](http://styletron.js.org)Universal, high-performance JavaScript styles.
   * [React-JSS](http://cssinjs.org/react-jss/?v=v8.4.0)
 
-#### 5.1 - Setting Up PostCSS
+#### 6.1 - Setting Up PostCSS
 
 The [PostCSS project](http://postcss.org/) is an amazing project that allows CSS transformations using JS. They also claim that PostCSS "transforms CSS specs into more compatible CSS so you don’t need to wait for browser support."
 You can think that **PostCss is to CSS, what Babel is to JS**. It enable us to write CSSNext. **CSSNext is to CSS, what ES6 is to JS**: Use of future CSS features that are not yet supported by the browser.
@@ -567,4 +566,4 @@ module.exports = {
 };
 ```
 
-#### 5.1 - Setting Up BassCSS
+#### 6.2 - Setting Up BassCSS
