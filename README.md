@@ -203,10 +203,7 @@ Install Prettier and ESlint plugins from VSCode marketplace:
   yarn add -D webpack webpack-cli webpack-dev-server
 
   # Additional Webpack loaders
-  yarn add -D html-loader file-loader css-loader style-loader sass-loader node-sass
-
-  # Autoprefixer and postcss
-  yarn add -D autoprefixer postcss-loader && touch postcss.config.js
+  yarn add -D html-loader file-loader css-loader style-loader sass-loader node-sass postcss-loader
 
   # Webpack plugins
   yarn add -D html-webpack-plugin clean-webpack-plugin dotenv-webpack
@@ -496,7 +493,7 @@ Different approaches, one philosophy: "the real way to scale CSS, is to stop wri
   * [Styletron](http://styletron.js.org)Universal, high-performance JavaScript styles.
   * [React-JSS](http://cssinjs.org/react-jss/?v=v8.4.0)
 
-#### 5.1 - Setting Up PostCSS with BassCss.
+#### 5.1 - Setting Up PostCSS
 
 The [PostCSS project](http://postcss.org/) is an amazing project that allows CSS transformations using JS. They also claim that PostCSS "transforms CSS specs into more compatible CSS so you don’t need to wait for browser support."
 You can think that **PostCss is to CSS, what Babel is to JS**. It enable us to write CSSNext. **CSSNext is to CSS, what ES6 is to JS**: Use of future CSS features that are not yet supported by the browser.
@@ -505,10 +502,14 @@ Features: Automatic vendor prefixer with autoprefixer, custom properties and var
 
 **★ Tip:** There are many (more than 200) powerful [PostCSS plugins](https://www.postcss.parts/), some good learning sources out there and a [github tutorial](https://github.com/DavidWells/PostCSS-tutorial) by [David Wells](https://github.com/DavidWells)
 
-* → **The `postcss.config.js` file.**
+* Install Autoprefixer, Postcss and postcss-loader for webpack.
+  `yarn add -D autoprefixer postcss postcss-loader`
+* Add some postcss plugins that will allow us som custom PostCSS transformations in basscss. Note that `classnames` library is not a postcss plugin but is a very useful CSS utility for React:
+  `yarn add -D postcss-cssnext postcss-import classnames`
+* Configure the **`postcss.config.js`** file:
 
 ```js
-/* 2. ---- ./postcss.config.js ---- */
+/* 2. ---- Create a ./postcss.config.js file ---- */
 const postcssCssNext = require("postcss-cssnext");
 const postcssImport = require("postcss-import");
 
@@ -516,3 +517,5 @@ module.exports = {
   plugins: [postcssCssNext, postcssImport]
 };
 ```
+
+#### 5.1 - Setting Up BassCSS
