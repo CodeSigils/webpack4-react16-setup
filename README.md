@@ -499,21 +499,20 @@ Different approaches, one philosophy: "the real way to scale CSS, is to stop wri
 #### 5.1 - Setting Up PostCSS with BassCss.
 
 The [PostCSS project](http://postcss.org/) is an amazing project that allows CSS transformations using JS. They also claim that PostCSS "transforms CSS specs into more compatible CSS so you don’t need to wait for browser support."
-You can think that **PostCss is to CSS, what Babel is to JS**. It enable us to write
-CSSNext. **CSSNext is to CSS, what ES6 is to JS**: Use of future CSS features that are not yet supported by the browser.
+You can think that **PostCss is to CSS, what Babel is to JS**. It enable us to write CSSNext. **CSSNext is to CSS, what ES6 is to JS**: Use of future CSS features that are not yet supported by the browser.
 
 Features: Automatic vendor prefixer with autoprefixer, custom properties and var(), nesting, many color functions and more...
 
-**★ Tip:**
-
-* There are many (more than 200) powerful [PostCSS plugins](https://www.postcss.parts/)
-* There are some good learning sources out there and a [github tutorial](https://github.com/DavidWells/PostCSS-tutorial) by [David Wells](https://github.com/DavidWells)
+**★ Tip:** There are many (more than 200) powerful [PostCSS plugins](https://www.postcss.parts/), some good learning sources out there and a [github tutorial](https://github.com/DavidWells/PostCSS-tutorial) by [David Wells](https://github.com/DavidWells)
 
 * → **The `postcss.config.js` file.**
 
 ```js
 /* 2. ---- ./postcss.config.js ---- */
+const postcssCssNext = require("postcss-cssnext");
+const postcssImport = require("postcss-import");
+
 module.exports = {
-  plugins: [require("autoprefixer")]
+  plugins: [postcssCssNext, postcssImport]
 };
 ```
