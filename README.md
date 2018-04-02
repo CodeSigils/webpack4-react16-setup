@@ -23,7 +23,7 @@ necessary yet light reading along the way.
     * [1.5 - Adding scripts section in `package.json`](#15---adding-scripts-section-in-packagejson)
     * [1.8 - Handling Early versions of Node and older browsers](#18---handling-early-versions-of-node-and-older-browsers)
 * [2 - Babel and Babel presets (Official and experimental) installation and setup](#2---babel-and-babel-presets-official-and-experimental-installation-and-setup)
-  * [2.1 - ES6 features quick review:](#21---es6-features-quick-review)
+  * [2.1 - ES6 features quick review](#21---es6-features-quick-review)
 * [3. Code-Linting, Code-Formating and Git hooks](#3-code-linting-code-formating-and-git-hooks)
   * [3.1 - `Eslint` and `Prettier` plugins for VSCode](#31---eslint-and-prettier-plugins-for-vscode)
   * [3.2 - Bring all together](#32---bring-all-together)
