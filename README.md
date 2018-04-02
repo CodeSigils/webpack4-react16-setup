@@ -136,6 +136,8 @@ People are using the "scripts" section of package.json file in all sorts of ways
 * Destructing: `({ a }) => { console.log(a) }`
 * Let/Const: `const foo = 'Hello' let bar='World'`
 
+---
+
 ## 3. Code-Linting, Code-Formating and Git hooks
 
 Take a look at ESLint, "the pluggable linting utility for JavaScript and JSX"
@@ -464,6 +466,8 @@ API_URL=http://reactrecipes.herokuapp.com
 
 Rename `.env.sample` to `.env`, run `yarn serve` and watch the server in `localhost:8899`
 
+---
+
 ## 5. React
 
 * Creating and mounting root component. About renderers.
@@ -476,6 +480,8 @@ Rename `.env.sample` to `.env`, run `yarn serve` and watch the server in `localh
 * Intro to fetch: A promised based web request mechanism
 * Making async request in the component life cycle
 * Use the state to make components dynamic
+
+---
 
 ## 6. Styling in React
 
