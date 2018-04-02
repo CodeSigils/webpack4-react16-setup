@@ -507,7 +507,7 @@ Features: Automatic vendor prefixer with autoprefixer, custom properties and var
 
   `yarn add -D autoprefixer postcss postcss-loader`
 
-* Add some postcss plugins that will allow us custom PostCSS transformations in basscss. Note that `classnames` library is not a postcss plugin but is a very useful CSS utility for React (see [RecipeDetail.js](./src/app/components/RecipeDetail.js) file):
+* Add some postcss plugins that will allow us custom PostCSS transformations in basscss. Note that **classnames** library is not a postcss plugin but a very useful CSS utility for React (see [RecipeDetail.js](./src/app/components/RecipeDetail.js) file):
 
   `yarn add -D postcss-cssnext postcss-import classnames`
 

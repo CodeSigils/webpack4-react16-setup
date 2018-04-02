@@ -3,9 +3,9 @@ import PropTypes from "prop-types";
 /**
  * We can pass className to props with expressions like this:
  * `h3 p2 bg-white italic center ${props.className}` but there is the risk
- * of a null value.The classNames library will check if a CSS class is null
- * and will not render it in html, so the above expression can become:
- * classNames('h3 p2 bg-white italic center, props.className')
+ * of a null value in our html.The classNames library will check if a CSS
+ * class is null and will not render it in html, so the above expression
+ * can become: classNames('h3 p2 bg-white italic center, props.className')
  */
 import classNames from "classnames";
 
