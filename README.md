@@ -34,7 +34,8 @@ necessary yet light reading along the way.
   * [3.4 - Run the project in browser](#34---run-the-project-in-browser)
   * [4. React](#4-react)
   * [5. Styling in React](#5-styling-in-react)
-    * [5.1 - Setting Up PostCSS with BassCss.](#51---setting-up-postcss-with-basscss)
+    * [5.1 - Setting Up PostCSS](#51---setting-up-postcss)
+    * [5.1 - Setting Up BassCSS](#51---setting-up-basscss)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
