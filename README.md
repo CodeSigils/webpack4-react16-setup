@@ -511,6 +511,25 @@ Features: Automatic vendor prefixer with autoprefixer, custom properties and var
 
   `yarn add -D postcss-cssnext postcss-import classnames`
 
+* Configure css rules in **`webpack.config.js`** file:
+
+```js
+  //...
+      /**
+       *  Css loader - Exclude node_modules
+       * https://webpack.js.org/loaders/css-loader/
+       * postcss-loader has a separate config file in project root.
+       * Webpack is reading the order of the plugins from right to left
+       * so in this setup "postcss-loader" will be loaded first.
+      */
+      {
+        test: /\.css$/,
+        use: ["style-loader", "css-loader", "postcss-loader"],
+        exclude: /node_modules/
+      },
+  //...
+```
+
 * Configure the **`postcss.config.js`** file:
 
 ```js

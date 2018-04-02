@@ -87,9 +87,13 @@ module.exports = {
           }
         ]
       },
-      // Css loader - Exclude node_modules
-      // https://webpack.js.org/loaders/css-loader/
-      // postcss-loader has a separate config file in project root.
+      /**
+       *  Css loader - Exclude node_modules
+       * https://webpack.js.org/loaders/css-loader/
+       * postcss-loader has a separate config file in project root.
+       * Webpack is reading the order of the plugins from right to left
+       * so in this setup "postcss-loader" will be loaded first.
+       */
       {
         test: /\.css$/,
         use: ["style-loader", "css-loader", "postcss-loader"],
