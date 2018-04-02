@@ -196,27 +196,27 @@ Install Prettier and ESlint plugins from VSCode marketplace:
   # Babel presets. Note 'babel-preset-es2015' is deprecated
   yarn add -D babel-preset-react babel-preset-env babel-preset-stage-0
 
-  # Babel main loader
+  # Babel main loader for Webpack
   yarn add babel-loader
 
   # Webpack and dev server:
   yarn add -D webpack webpack-cli webpack-dev-server
 
-  # Additional Webpack loaders
-  yarn add -D html-loader file-loader css-loader style-loader sass-loader node-sass postcss-loader
+  # Additional Webpack loaders for html, css, postcss, images and fonts:
+  yarn add -D html-loader file-loader css-loader style-loader sass-loader node-sass postcss postcss-loader
 
-  # Webpack plugins
-  yarn add -D html-webpack-plugin clean-webpack-plugin dotenv-webpack
+  # Webpack plugins for serving html and clean our '/dist' folder:
+  yarn add -D html-webpack-plugin clean-webpack-plugin
 
-  # Install React libraries
+  # Install React libraries:
   yarn add -D react react-dom prop-types
 
   # Install dotenv for global environment variables definitions
-  # Note: 'whatwg-fetch' polyfill is for older browsers 'fetch' support
+  # Note: 'whatwg-fetch' polyfill is for older browsers 'fetch' support:
   yarn add -D dotenv dotenv-webpack whatwg-fetch
 
-  # Eslint with prettier plugin rules
-  yarn add -D eslint eslint-config-prettier eslint-plugin-prettier
+  # Eslint with prettier plugin rules:
+  yarn add -D eslint prettier eslint-config-prettier eslint-plugin-prettier
 
   # Use prettier only on staged files to git and only on changed files
   yarn add -D husky lint-staged prettier-quick
