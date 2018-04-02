@@ -503,9 +503,13 @@ Features: Automatic vendor prefixer with autoprefixer, custom properties and var
 **★ Tip:** There are many (more than 200) powerful [PostCSS plugins](https://www.postcss.parts/), some good learning sources out there and a [github tutorial](https://github.com/DavidWells/PostCSS-tutorial) by [David Wells](https://github.com/DavidWells)
 
 * Install Autoprefixer, Postcss and postcss-loader for webpack.
+
   `yarn add -D autoprefixer postcss postcss-loader`
+
 * Add some postcss plugins that will allow us som custom PostCSS transformations in basscss. Note that `classnames` library is not a postcss plugin but is a very useful CSS utility for React:
+
   `yarn add -D postcss-cssnext postcss-import classnames`
+
 * Configure the **`postcss.config.js`** file:
 
 ```js
