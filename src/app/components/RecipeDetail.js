@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 /**
  * We can pass className to props with expressions like this:
  * `h3 p2 bg-white italic center ${props.className}` but there is the risk
@@ -30,7 +31,7 @@ const RecipeDetail = props => {
       className={classNames("p2 bg-white", props.className)}
     >
       <h2 className="h2">{props.recipe.name}</h2>
-      <img className="fit" src={props.recipe.image} />
+      <img className="fit" alt={props.recipe.name} src={props.recipe.image} />
       <div>
         <span>{props.recipe.category}</span>
         <span>{props.recipe.calories} cal</span>
@@ -45,6 +46,12 @@ const RecipeDetail = props => {
       <ol>{props.recipe.steps.map(step => <li key={step}>{step}</li>)}</ol>
     </div>
   );
+};
+
+RecipeDetail.propTypes = {
+  recipe: PropTypes.object,
+  className: PropTypes.string,
+  style: PropTypes.object
 };
 
 export default RecipeDetail;

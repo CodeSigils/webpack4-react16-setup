@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 
 const RecipeList = props => {
   return (
@@ -18,6 +19,11 @@ const RecipeList = props => {
       </ul>
     </div>
   );
+};
+
+RecipeList.propTypes = {
+  recipe: PropTypes.object,
+  style: PropTypes.object
 };
 
 export default RecipeList;
