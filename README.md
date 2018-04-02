@@ -155,9 +155,40 @@ Install Prettier and ESlint plugins from VSCode marketplace:
 
 #### 2.2 - Bring all together
 
+* We can run `eslint --init` interactive cli in our project path and answer the questions about how we want to style our code. First install Eslint with prettier plugin rules:
+
+  `yarn add -D eslint prettier eslint-config-prettier eslint-plugin-prettier`
+
+- Use prettier for staged files to git and only watch on changed files
+
+  `yarn add -D husky lint-staged prettier-quick`
+
+- Test it with `./node_modules/.bin/prettier ./src/*.js --write`, configure it with `.eslintrc` and automated in `package.json` file:
+
+```js
+{
+    /* 1. ---- ./.eslintrc file ---- */
+    "extends": ["plugin:prettier/recommended"],
+    "parser": "babel-eslint",
+    "env": {
+        "es6": true,
+        "browser": true
+    },
+    "rules": {
+        "no-extra-semi": 2,
+    },
+}
+
+    /* 2. ---- ./package.json file ---- */
+    "scripts": {
+      // ...
+      "precommit": "pretty-quick --staged"
+    }
+```
+
 **★ Tips:**
 
-* There is a great YouTube video for [configuring lint, prettier and husky](https://www.youtube.com/watch?v=bfyI9yl3qfE). If you follow these instructions, every time you push to git your code will be evaluated and auto-formated.
+* There is a great YouTube video for [configuring lint, prettier and husky](https://www.youtube.com/watch?v=bfyI9yl3qfE). If you follow these instructions, every time you push to git, your code will be evaluated and auto-formated.
 
 * [Flow](https://flow.org/) is also very interesting. Read [Configure ESLint, Prettier, and Flow in VS Code for React Development](https://hackernoon.com/configure-eslint-prettier-and-flow-in-vs-code-for-react-development-c9d95db07213).
 
@@ -215,12 +246,6 @@ Install Prettier and ESlint plugins from VSCode marketplace:
   # Install dotenv for global environment variables definitions
   # Note: 'whatwg-fetch' polyfill is for older browsers 'fetch' support:
   yarn add -D dotenv dotenv-webpack whatwg-fetch
-
-  # Eslint with prettier plugin rules:
-  yarn add -D eslint prettier eslint-config-prettier eslint-plugin-prettier
-
-  # Use prettier only on staged files to git and only on changed files
-  yarn add -D husky lint-staged prettier-quick
 ```
 
 #### 3.3 - Configurations
