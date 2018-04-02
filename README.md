@@ -32,10 +32,10 @@ necessary yet light reading along the way.
   * [3.2 - Installations](#32---installations)
   * [3.3 - Configurations](#33---configurations)
   * [3.4 - Run the project in browser](#34---run-the-project-in-browser)
-  * [4. React](#4-react)
-  * [5. Styling in React](#5-styling-in-react)
-    * [5.1 - Setting Up PostCSS](#51---setting-up-postcss)
-    * [5.1 - Setting Up BassCSS](#51---setting-up-basscss)
+* [4. React](#4-react)
+* [5. Styling in React](#5-styling-in-react)
+  * [5.1 - Setting Up PostCSS](#51---setting-up-postcss)
+  * [5.1 - Setting Up BassCSS](#51---setting-up-basscss)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -465,7 +465,7 @@ API_URL=http://reactrecipes.herokuapp.com
 
 Rename `.env.sample` to `.env`, run `yarn serve` and watch the server in `localhost:8899`
 
-### 4. React
+## 4. React
 
 * Creating and mounting root component. About renderers.
 * Functional and Class components
@@ -478,7 +478,7 @@ Rename `.env.sample` to `.env`, run `yarn serve` and watch the server in `localh
 * Making async request in the component life cycle
 * Use the state to make components dynamic
 
-### 5. Styling in React
+## 5. Styling in React
 
 Different approaches, one philosophy: "the real way to scale CSS, is to stop writing CSS". You are using JS anyway, so why not take advantage of the language to style your elements ?
 
