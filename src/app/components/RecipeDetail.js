@@ -12,7 +12,7 @@ import classNames from 'classnames';
 const RecipeDetail = props => {
   /**
    * Handle 0 state of component.
-   * If there is no default value React will return null:
+   * If there is no default value React will return a null complain:
    * "cannot read property of null".
    */
   if (!props.recipe) {
@@ -25,6 +25,7 @@ const RecipeDetail = props => {
       </span>
     );
   }
+
   return (
     <div
       style={props.style}

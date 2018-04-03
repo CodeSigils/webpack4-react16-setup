@@ -605,11 +605,9 @@ Features: Automatic vendor prefixer with autoprefixer, custom properties and var
 
 ```js
 /* 2. ---- Create a ./postcss.config.js file ---- */
-const postcssCssNext = require('postcss-cssnext');
-const postcssImport = require('postcss-import');
 
 module.exports = {
-  plugins: [postcssCssNext, postcssImport],
+  plugins: [require('postcss-cssnext'), require('postcss-import')],
 };
 ```
 
