@@ -518,6 +518,9 @@ Rename `.env.sample` to `.env`, run `yarn serve` and watch the server in `localh
 * Intro to fetch: A promised based web request mechanism
 * Making async request in the component life cycle
 * Use the state to make components dynamic
+* Basic use of React Router
+* Handling redirects and 404
+* Add links to routes
 
 ---
 
