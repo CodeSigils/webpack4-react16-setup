@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import Header from './Header';
 import RecipeList from './RecipeList';
 import RecipeDetail from './RecipeDetail';
 /**
@@ -58,7 +57,6 @@ class Home extends Component {
 
     return (
       <div>
-        <Header />
         <main className="px4 flex">
           <RecipeList
             recipes={recipes}

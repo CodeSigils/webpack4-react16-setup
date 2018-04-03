@@ -2,7 +2,7 @@ import React from 'react';
 
 const Favorites = () => (
   <div>
-    <h3>Favorites</h3>
+    <h2 className="h2">Favorites</h2>
   </div>
 );
 
