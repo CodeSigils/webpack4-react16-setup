@@ -156,6 +156,7 @@ module.exports = {
     new HtmlWebPackPlugin({
       filename: 'index.html',
       template: 'index.html',
+      inject: 'body',
     }),
     // HMR - Native webpack plugins (no need for installation)
     new webpack.NamedModulesPlugin(),
@@ -188,7 +189,7 @@ module.exports = {
   output: {
     filename: '[name].bundle.js',
     path: path.resolve(__dirname, 'dist'),
-    publicPath: './',
+    publicPath: '/',
   },
   resolve: {
     extensions: ['.js', '.json', '.css'],
