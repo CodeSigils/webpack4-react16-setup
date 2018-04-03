@@ -22,7 +22,7 @@ const RecipeList = props => {
 };
 
 RecipeList.propTypes = {
-  recipes: PropTypes.object,
+  recipes: PropTypes.array,
   style: PropTypes.object,
 };
 
