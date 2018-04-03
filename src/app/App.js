@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
 import Home from './components/Home';
-import Header from './components/Header';
-import NotFound from './components/NotFound';
 import Favorites from './components/Favorites';
+import Recipe from './components/Recipe';
+import NotFound from './components/NotFound';
+import Header from './components/Header';
 
 // BrowserRouter only returns one child. Use exact for home path
 class App extends Component {
@@ -59,6 +60,7 @@ class App extends Component {
                 />
               )}
             />
+            <Route path="/recipe/:id" component={Recipe} />
             <Route component={NotFound} />
           </Switch>
         </main>
