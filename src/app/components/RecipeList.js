@@ -1,5 +1,5 @@
-import React from "react";
-import PropTypes from "prop-types";
+import React from 'react';
+import PropTypes from 'prop-types';
 
 const RecipeList = props => {
   return (
@@ -22,8 +22,8 @@ const RecipeList = props => {
 };
 
 RecipeList.propTypes = {
-  recipe: PropTypes.object,
-  style: PropTypes.object
+  recipes: PropTypes.object,
+  style: PropTypes.object,
 };
 
 export default RecipeList;

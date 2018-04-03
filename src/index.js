@@ -1,6 +1,7 @@
-import React from "react";
-import ReactDOM from "react-dom";
-import "./app/css/main";
+import React from 'react';
+import ReactDOM from 'react-dom';
+import App from './app/App';
+import './app/css/main.css';
 
 /**
  * Each renderer gets a mounter function that takes 2 args:
@@ -9,7 +10,6 @@ import "./app/css/main";
  * and inject it to the DOM
  */
 
-const MOUNT_ELEMENT = document.getElementById("app");
+const MOUNT_ELEMENT = document.getElementById('app');
 
-import App from "./app/App";
 ReactDOM.render(<App />, MOUNT_ELEMENT);

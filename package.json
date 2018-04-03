@@ -11,7 +11,8 @@
     "dev": "webpack --mode development",
     "build": "webpack --mode production",
     "watch": "webpack --watch --mode development",
-    "lint": "./node_modules/.bin/eslint ./src",
+    "lint": "./node_modules/.bin/eslint ./src/**/*.js",
+    "pretty": "./node_modules/.bin/prettier ./src/**/*.js --write",
     "precommit": "pretty-quick --staged"
   },
   "babel": {
@@ -34,7 +35,10 @@
     "dotenv": "^5.0.1",
     "dotenv-webpack": "^1.5.5",
     "eslint": "^4.19.1",
+    "eslint-config-airbnb": "^16.1.0",
     "eslint-config-prettier": "^2.9.0",
+    "eslint-plugin-import": "^2.10.0",
+    "eslint-plugin-jsx-a11y": "^6.0.3",
     "eslint-plugin-prettier": "^2.6.0",
     "eslint-plugin-react": "^7.7.0",
     "file-loader": "^1.1.11",

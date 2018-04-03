@@ -101,6 +101,7 @@ People are using the "scripts" section of package.json file in all sorts of ways
     "dev": "webpack --mode development",
     "build": "webpack --mode production",
     "watch": "webpack --watch --mode development",
+    "lint": "./node_modules/.bin/eslint -v --color ./src/**/*.js",
     "precommit": "pretty-quick --staged"
   },
   // ... Comments will not work on JSON files
@@ -160,6 +161,16 @@ Install Prettier and ESlint plugins from VSCode marketplace:
 
   `yarn add -D eslint prettier eslint-config-prettier eslint-plugin-prettier`
 
+  If we want to follow ['airbnb' style-guide](https://www.npmjs.com/package/eslint-config-airbnb) and combine a custom configuration with prettier, we can run in the terminal:
+
+  ```sh
+    $ ./node_modules/.bin/eslint --init
+    ? How would you like to configure ESLint? Use a popular style guide
+    ? Which style guide do you want to follow? Airbnb
+    ? Do you use React? Yes
+    ? What format do you want your config file to be in? JSON
+  ```
+
 - Use prettier for staged files to git and only watch on changed files
 
   `yarn add -D husky lint-staged prettier-quick`
@@ -169,20 +180,30 @@ Install Prettier and ESlint plugins from VSCode marketplace:
 ```js
 {
     /* 1. ---- ./.eslintrc file ---- */
-    "extends": ["plugin:prettier/recommended"],
     "parser": "babel-eslint",
+    "extends": ["plugin:prettier/recommended"],
     "env": {
         "es6": true,
         "browser": true
     },
-    "rules": {
-        "no-extra-semi": 2,
+    "globals": {
+        "API_URL": true
     },
+    "rules": {
+        "arrow-parens": 0,
+        "no-extra-semi": 2,
+        "react/jsx-filename-extension": 0,
+        "react/require-default-props": 0,
+        "react/forbid-prop-types": 0,
+        "jsx-a11y/click-events-have-key-events": 0,
+        "jsx-a11y/no-noninteractive-element-interactions": 0
+    }
 }
 
     /* 2. ---- ./package.json file ---- */
     "scripts": {
       // ...
+      "lint": "./node_modules/.bin/eslint ./src/app/**",
       "precommit": "pretty-quick --staged"
     }
 ```
@@ -255,14 +276,14 @@ Install Prettier and ESlint plugins from VSCode marketplace:
 
 ```js
 /* 1. ---- ./webpack.config.js ---- */
-const webpack = require("webpack");
-const path = require("path");
-const Dotenv = require("dotenv-webpack");
-const CleanWebpackPlugin = require("clean-webpack-plugin");
-const HtmlWebPackPlugin = require("html-webpack-plugin");
+const webpack = require('webpack');
+const path = require('path');
+const Dotenv = require('dotenv-webpack');
+const CleanWebpackPlugin = require('clean-webpack-plugin');
+const HtmlWebPackPlugin = require('html-webpack-plugin');
 
 // config() exposes 'env' to 'process.env' (see plugins section)
-require("dotenv").config();
+require('dotenv').config();
 
 // Export main JS Object. Here we define the 'entry' and the 'output' values
 module.exports = {
@@ -274,12 +295,12 @@ module.exports = {
    * Optional use of 'context' key to define main source
    * path so we can avoid writing './src/index.js'
    */
-  context: path.join(__dirname, "src"),
+  context: path.join(__dirname, 'src'),
   entry: {
     // Older browsers polyfill support for 'fetch'
-    app: ["whatwg-fetch", "./index.js"]
+    app: ['whatwg-fetch', './index.js'],
   },
-  devtool: "inline-source-map",
+  devtool: 'inline-source-map',
 
   /**
    * 2. DEV-SERVER
@@ -287,16 +308,16 @@ module.exports = {
    */
   devServer: {
     // contentBase: path.join(__dirname, 'dist'),
-    contentBase: "/",
+    contentBase: '/',
     compress: true,
-    publicPath: "/",
+    publicPath: '/',
     port: 8899,
     open: true,
     inline: true,
     hot: true,
     stats: {
-      colors: true
-    }
+      colors: true,
+    },
   },
 
   /**
@@ -323,16 +344,16 @@ module.exports = {
         test: /\.(js|jsx)$/,
         exclude: /(node_modules|bower_components)/,
         use: {
-          loader: "babel-loader",
+          loader: 'babel-loader',
           /**
            * Presets must be in this order. The 'stage-0' preset
            * allows us to use arrow functions inside the body of
            * a class component and must be mounted last.
            */
           options: {
-            presets: ["react", "env", "stage-0"]
-          }
-        }
+            presets: ['react', 'env', 'stage-0'],
+          },
+        },
       },
       // Html loader
       // https://webpack.js.org/loaders/html-loader/
@@ -340,24 +361,24 @@ module.exports = {
         test: /\.(html|htm)$/,
         use: [
           {
-            loader: "html-loader",
-            options: { minimize: true }
-          }
-        ]
+            loader: 'html-loader',
+            options: { minimize: true },
+          },
+        ],
       },
       // Css loader - Exclude node_modules
       // https://webpack.js.org/loaders/css-loader/
       {
         test: /\.css$/,
-        use: ["style-loader", "css-loader", "postcss-loader"],
-        exclude: /node_modules/
+        use: ['style-loader', 'css-loader', 'postcss-loader'],
+        exclude: /node_modules/,
       },
       // Sass loader - Include node_modules
       // https://webpack.js.org/loaders/sass-loader/
       {
         test: /\.(scss|sass)$/,
-        use: ["style-loader", "css-loader", "sass-loader"],
-        include: /node_modules/
+        use: ['style-loader', 'css-loader', 'sass-loader'],
+        include: /node_modules/,
       },
       // File loader - Images
       // https://webpack.js.org/loaders/file-loader/
@@ -365,31 +386,31 @@ module.exports = {
         test: /\.(jpg|jpeg|png|gif|svg)$/,
         use: [
           {
-            loader: "file-loader",
+            loader: 'file-loader',
             options: {
               limit: 80000,
-              name: "[name].[ext]",
-              outputPath: "./img/",
-              publicPath: "./img/"
-            }
-          }
+              name: '[name].[ext]',
+              outputPath: './img/',
+              publicPath: './img/',
+            },
+          },
         ],
-        exclude: /node_modules/
+        exclude: /node_modules/,
       },
       // File loader - Fonts
       {
         test: /\.(woff|woff2|eot|ttf|otf)$/,
         use: [
           {
-            loader: "file-loader",
+            loader: 'file-loader',
             options: {
-              name: "fonts/[name]-[hash].[ext]"
-            }
-          }
+              name: 'fonts/[name]-[hash].[ext]',
+            },
+          },
         ],
-        exclude: /node_modules/
-      }
-    ]
+        exclude: /node_modules/,
+      },
+    ],
   },
 
   /**
@@ -399,11 +420,11 @@ module.exports = {
     // Html plugin
     // https://github.com/jantimon/html-webpack-plugin
     new HtmlWebPackPlugin({
-      template: "index.html",
-      filename: "./index.html"
+      template: 'index.html',
+      filename: './index.html',
     }),
     // Clean webpack plugin
-    new CleanWebpackPlugin(["dist"]),
+    new CleanWebpackPlugin(['dist']),
     // HMR - Native webpack plugins (no need for installation)
     new webpack.NamedModulesPlugin(),
     new webpack.HotModuleReplacementPlugin(),
@@ -415,25 +436,25 @@ module.exports = {
      * Read carefully: https://github.com/mrsteele/dotenv-webpack
      */
     new Dotenv({
-      path: "./.env",
+      path: './.env',
       safe: false,
-      systemvars: true
+      systemvars: true,
     }),
     // Register global vars to webpack for all the files.
     // Must return a string.
     new webpack.DefinePlugin({
-      API_URL: JSON.stringify(process.env.API_URL)
-    })
+      API_URL: JSON.stringify(process.env.API_URL),
+    }),
   ],
 
   /**
    * 6. OUTPUT
    */
   output: {
-    filename: "[name].bundle.js",
-    path: path.resolve(__dirname, "dist"),
-    publicPath: "./"
-  }
+    filename: '[name].bundle.js',
+    path: path.resolve(__dirname, 'dist'),
+    publicPath: './',
+  },
 };
 ```
 
@@ -446,6 +467,7 @@ module.exports = {
         "dev": "webpack --mode development",
         "build": "webpack --mode production",
         "watch": "webpack --watch --mode development",
+        "lint": "./node_modules/.bin/eslint -v --color ./src/**/*.js",
         "precommit": "pretty-quick --staged"
     },
     "babel": {
@@ -564,11 +586,11 @@ Features: Automatic vendor prefixer with autoprefixer, custom properties and var
 
 ```js
 /* 2. ---- Create a ./postcss.config.js file ---- */
-const postcssCssNext = require("postcss-cssnext");
-const postcssImport = require("postcss-import");
+const postcssCssNext = require('postcss-cssnext');
+const postcssImport = require('postcss-import');
 
 module.exports = {
-  plugins: [postcssCssNext, postcssImport]
+  plugins: [postcssCssNext, postcssImport],
 };
 ```
 

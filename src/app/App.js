@@ -1,8 +1,7 @@
-import React, { Component } from "react";
-import Header from "./components/Header";
-import RecipeList from "./components/RecipeList";
-import RecipeDetail from "./components/RecipeDetail";
-
+import React, { Component } from 'react';
+import Header from './components/Header';
+import RecipeList from './components/RecipeList';
+import RecipeDetail from './components/RecipeDetail';
 /**
  *
  fetch('http://reactrecipes.herokuapp.com/v1/recipes')
@@ -25,7 +24,7 @@ class App extends Component {
     super(props);
     this.state = {
       recipes: [],
-      currentRecipe: null
+      currentRecipe: null,
     };
     // this.onRecipeClick = this.onRecipeClick.bind(this);
   }
