@@ -179,25 +179,27 @@ Install Prettier and ESlint plugins from VSCode marketplace:
 
 ```js
 {
-    /* 1. ---- ./.eslintrc file ---- */
-    "parser": "babel-eslint",
-    "extends": ["plugin:prettier/recommended"],
-    "env": {
-        "es6": true,
-        "browser": true
-    },
-    "globals": {
-        "API_URL": true
-    },
-    "rules": {
-        "arrow-parens": 0,
-        "no-extra-semi": 2,
-        "react/jsx-filename-extension": 0,
-        "react/require-default-props": 0,
-        "react/forbid-prop-types": 0,
-        "jsx-a11y/click-events-have-key-events": 0,
-        "jsx-a11y/no-noninteractive-element-interactions": 0
-    }
+  /* 1. ---- ./.eslintrc.json file ---- */
+  "parser": "babel-eslint",
+  "extends": ["prettier", "airbnb"],
+  "env": {
+    "es6": true,
+    "browser": true
+  },
+  "globals": {
+    "API_URL": true
+  },
+  "rules": {
+    "arrow-parens": 0,
+    "arrow-body-style": 0,
+    "no-extra-semi": 2,
+    "no-tabs": 0,
+    "react/jsx-filename-extension": 0,
+    "react/require-default-props": 0,
+    "react/forbid-prop-types": 0,
+    "jsx-a11y/click-events-have-key-events": 0,
+    "jsx-a11y/no-noninteractive-element-interactions": 0
+  }
 }
 
     /* 2. ---- ./package.json file ---- */
