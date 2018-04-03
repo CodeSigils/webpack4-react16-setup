@@ -1,31 +1,48 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const RecipeList = props => {
+const RecipeListItem = ({ recipe, onClick, onFavorited, favorited }) => {
   return (
-    <div style={props.style}>
+    <li
+      key={recipe.name}
+      className="py2 border-bottom border-bottom-dashed pointer"
+      onClick={() => onClick(recipe.id)}
+    >
+      <span
+        className="mr1 red"
+        onClick={e => {
+          e.stopPropagation();
+          onFavorited(recipe.id);
+        }}
+        role="img"
+        aria-label="favorite"
+      >
+        {favorited ? '💖' : '⏍'}
+      </span>
+      <span>{recipe.name}</span>
+      <span>{recipe.category}</span>
+    </li>
+  );
+};
+
+RecipeListItem.propTypes = {
+  recipe: PropTypes.object,
+  onClick: PropTypes.func,
+  onFavorited: PropTypes.func,
+  favorited: PropTypes.bool,
+};
+
+const RecipeList = ({ style, recipes, favorites, ...props }) => {
+  return (
+    <div style={style}>
       <h2 className="h2">Menu</h2>
       <ul className="list-reset">
-        {props.recipes.map(recipe => (
-          <li
-            key={recipe.name}
-            className="py2 border-bottom border-bottom-dashed pointer"
-            onClick={() => props.onClick(recipe.id)}
-          >
-            <span
-              className="mr1"
-              onClick={e => {
-                e.stopPropagation();
-                props.onFavorited(recipe.id);
-              }}
-              role="img"
-              aria-label="favorite"
-            >
-              {props.favorites.includes(recipe.id) ? '<3' : '0'}
-            </span>
-            <span>{recipe.name}</span>
-            <span>{recipe.category}</span>
-          </li>
+        {recipes.map(recipe => (
+          <RecipeListItem
+            recipe={recipe}
+            favorited={favorites.includes(recipe.id)}
+            {...props}
+          />
         ))}
       </ul>
     </div>

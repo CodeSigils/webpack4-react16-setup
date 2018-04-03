@@ -6,7 +6,7 @@ import classNames from 'classnames';
  * `h3 p2 bg-white italic center ${props.className}` but there is the risk
  * of a null value in our html. The classNames library will check if a CSS
  * class is null and will not render it in html, so the above expression
- * can become: classNames('h3 p2 bg-white italic center, props.className')
+ * can become: classNames('h3 p2 bg-white italic center', props.className)
  */
 
 const RecipeDetail = props => {
