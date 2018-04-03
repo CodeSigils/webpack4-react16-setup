@@ -171,11 +171,25 @@ Install Prettier and ESlint plugins from VSCode marketplace:
     ? What format do you want your config file to be in? JSON
   ```
 
-- Use prettier for staged files to git and only watch on changed files. To do this we need `husky`. The `link-staged` library will output only changed files in the console before the commit !
+- Use prettier for staged files to git and only watch on changed files. To do this we need `husky`. The `link-staged` library will output only changed files in the console before the commit !. For this we need to add some configuration lines in our `package.json` file to define the order of execution, but the `prettier-quick` lib relieves us from this. However if you don't want to use this little automation, add this into `package.json` after the scripts section:
 
-  `yarn add -D husky lint-staged prettier-quick`
+  ```js
+  {
+    //...
+    "lint-staged": {
+      "*.js": [
+        "yarn-lint",
+        "prettier --write",
+        "git add"
+      ]
+    }
+  },
+  // ...
+  ```
 
-- Test it with `./node_modules/.bin/prettier ./src/*.js --write`, configure it with `.eslintrc` and automated in `package.json` file:
+`yarn add -D husky lint-staged prettier-quick`
+
+* Test it with `./node_modules/.bin/prettier ./src/*.js --write`, configure it with `.eslintrc` and automated in `package.json` file:
 
 ```js
 {
