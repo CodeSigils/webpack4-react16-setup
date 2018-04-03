@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
 import Home from './components/Home';
 import Header from './components/Header';
 import NotFound from './components/NotFound';
@@ -13,6 +13,7 @@ const App = () => {
         <Header />
         {/* Switch component can handle fallback routes, if previous routes don't much */}
         <Switch>
+          <Redirect from="home" to="/" />
           <Route exact path="/" component={Home} />
           <Route path="/favorites" component={Favorites} />
           <Route component={NotFound} />

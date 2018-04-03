@@ -29,14 +29,14 @@ module.exports = {
    * https://webpack.js.org/configuration/dev-server/
    */
   devServer: {
-    // contentBase: path.join(__dirname, 'dist'),
     /**
      * Use historyApiFallback to redirect not found requests
      * to index.html file so we can use react-router instead
      * of the build in express server.
      */
     historyApiFallback: true,
-    contentBase: '/',
+    contentBase: path.join(__dirname, 'dist'),
+    // contentBase: '/',
     compress: true,
     publicPath: '/',
     port: 8899,
