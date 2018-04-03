@@ -11,7 +11,7 @@ const App = () => {
     <BrowserRouter basename="/">
       <main>
         <Header />
-        {/* Switch component can handle non existent routes */}
+        {/* Switch component can handle fallback routes, if previous routes don't much */}
         <Switch>
           <Route exact path="/" component={Home} />
           <Route path="/favorites" component={Favorites} />
