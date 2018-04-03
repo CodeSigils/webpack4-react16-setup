@@ -23,6 +23,7 @@ class Home extends Component {
     super(props);
     this.state = {
       recipes: [],
+      favorites: [],
       currentRecipe: null,
     };
     // this.onRecipeClick = this.onRecipeClick.bind(this);
@@ -52,16 +53,32 @@ class Home extends Component {
       });
   };
 
+  toggleFavorite = id => {
+    // We need the current state to calculate the next one. We use a function.
+    this.setState(({ favorites, ...state }) => {
+      // Check if the id is not on the favorite array
+      const idx = favorites.indexOf(id);
+      if (idx !== -1) {
+        // remove the id from the favorites
+        return { ...state, favorites: favorites.filter(f => f.id !== id) };
+      }
+      // else return the id
+      return { ...state, favorites: [...favorites, id] };
+    });
+  };
+
   render() {
-    const { recipes, currentRecipe } = this.state;
+    const { recipes, favorites, currentRecipe } = this.state;
 
     return (
       <div>
         <main className="px4 flex">
           <RecipeList
             recipes={recipes}
+            favorites={favorites}
             style={{ flex: 3 }}
             onClick={this.onRecipeClick}
+            onFavorited={this.toggleFavorite}
           />
           <RecipeDetail
             className="ml4"
