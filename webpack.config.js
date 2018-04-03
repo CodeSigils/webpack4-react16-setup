@@ -1,11 +1,11 @@
-const webpack = require("webpack");
-const path = require("path");
-const Dotenv = require("dotenv-webpack");
-const CleanWebpackPlugin = require("clean-webpack-plugin");
-const HtmlWebPackPlugin = require("html-webpack-plugin");
+const webpack = require('webpack');
+const path = require('path');
+const Dotenv = require('dotenv-webpack');
+const CleanWebpackPlugin = require('clean-webpack-plugin');
+const HtmlWebPackPlugin = require('html-webpack-plugin');
 
 // config() exposes 'env' to 'process.env' (see plugins section)
-require("dotenv").config();
+require('dotenv').config();
 
 // Export main JS Object. Here we define the 'entry' and the 'output' values
 module.exports = {
@@ -17,12 +17,12 @@ module.exports = {
    * Optional use of 'context' key to define main source
    * path so we can avoid writing './src/index.js'
    */
-  context: path.join(__dirname, "src"),
+  context: path.join(__dirname, 'src'),
   entry: {
     // Older browsers polyfill support for 'fetch'
-    app: ["whatwg-fetch", "./index.js"]
+    app: ['whatwg-fetch', './index.js'],
   },
-  devtool: "inline-source-map",
+  devtool: 'inline-source-map',
 
   /**
    * 2. DEV-SERVER
@@ -30,16 +30,22 @@ module.exports = {
    */
   devServer: {
     // contentBase: path.join(__dirname, 'dist'),
-    contentBase: "/",
+    /**
+     * Use historyApiFallback to redirect not found requests
+     * to index.html file so we can use react-router instead
+     * of the build in express server.
+     */
+    historyApiFallback: true,
+    contentBase: '/',
     compress: true,
-    publicPath: "/",
+    publicPath: '/',
     port: 8899,
     open: true,
     inline: true,
     hot: true,
     stats: {
-      colors: true
-    }
+      colors: true,
+    },
   },
 
   /**
@@ -65,16 +71,16 @@ module.exports = {
         test: /\.(js|jsx)$/,
         exclude: /(node_modules|bower_components)/,
         use: {
-          loader: "babel-loader",
+          loader: 'babel-loader',
           /**
            * Presets must be in this order. The 'stage-0' preset.
            * allows us to use arrow functions inside the body of
            * a class component.
            */
           options: {
-            presets: ["react", "env", "stage-0"]
-          }
-        }
+            presets: ['react', 'env', 'stage-0'],
+          },
+        },
       },
       // Html loader
       // https://webpack.js.org/loaders/html-loader/
@@ -82,10 +88,10 @@ module.exports = {
         test: /\.html$/,
         use: [
           {
-            loader: "html-loader",
-            options: { minimize: true }
-          }
-        ]
+            loader: 'html-loader',
+            options: { minimize: true },
+          },
+        ],
       },
       /**
        *  Css loader - Exclude node_modules
@@ -96,15 +102,15 @@ module.exports = {
        */
       {
         test: /\.css$/,
-        use: ["style-loader", "css-loader", "postcss-loader"],
-        exclude: /node_modules/
+        use: ['style-loader', 'css-loader', 'postcss-loader'],
+        exclude: /node_modules/,
       },
       // Sass loader - Include node_modules
       // https://webpack.js.org/loaders/sass-loader/
       {
         test: /\.(scss|sass)$/,
-        use: ["style-loader", "css-loader", "sass-loader"],
-        include: /node_modules/
+        use: ['style-loader', 'css-loader', 'sass-loader'],
+        include: /node_modules/,
       },
       // File loader - Images
       // https://webpack.js.org/loaders/file-loader/
@@ -112,31 +118,31 @@ module.exports = {
         test: /\.(jpg|jpeg|png|gif|svg)$/,
         use: [
           {
-            loader: "file-loader",
+            loader: 'file-loader',
             options: {
               limit: 80000,
-              name: "[name].[ext]",
-              outputPath: "./img/",
-              publicPath: "./img/"
-            }
-          }
+              name: '[name].[ext]',
+              outputPath: './img/',
+              publicPath: './img/',
+            },
+          },
         ],
-        exclude: /node_modules/
+        exclude: /node_modules/,
       },
       // File loader - Fonts
       {
         test: /\.(woff|woff2|eot|ttf|otf)$/,
         use: [
           {
-            loader: "file-loader",
+            loader: 'file-loader',
             options: {
-              name: "fonts/[name]-[hash].[ext]"
-            }
-          }
+              name: 'fonts/[name]-[hash].[ext]',
+            },
+          },
         ],
-        exclude: /node_modules/
-      }
-    ]
+        exclude: /node_modules/,
+      },
+    ],
   },
 
   /**
@@ -144,18 +150,18 @@ module.exports = {
    */
   plugins: [
     // Clean webpack plugin
-    new CleanWebpackPlugin(["dist"]),
+    new CleanWebpackPlugin(['dist']),
     // Html plugin
     // https://github.com/jantimon/html-webpack-plugin
     new HtmlWebPackPlugin({
-      filename: "index.html",
-      template: "index.html"
+      filename: 'index.html',
+      template: 'index.html',
     }),
     // HMR - Native webpack plugins (no need for installation)
     new webpack.NamedModulesPlugin(),
     new webpack.HotModuleReplacementPlugin(),
     new webpack.LoaderOptionsPlugin({
-      debug: true
+      debug: true,
     }),
     new webpack.optimize.OccurrenceOrderPlugin(),
     /**
@@ -165,26 +171,26 @@ module.exports = {
      * Read carefully: https://github.com/mrsteele/dotenv-webpack
      */
     new Dotenv({
-      path: "./.env",
+      path: './.env',
       safe: false,
-      systemvars: true
+      systemvars: true,
     }),
     // Register global vars to webpack for all the files
     // Must return a string.
     new webpack.DefinePlugin({
-      API_URL: JSON.stringify(process.env.API_URL)
-    })
+      API_URL: JSON.stringify(process.env.API_URL),
+    }),
   ],
 
   /**
    * 6. OUTPUT
    */
   output: {
-    filename: "[name].bundle.js",
-    path: path.resolve(__dirname, "dist"),
-    publicPath: "./"
+    filename: '[name].bundle.js',
+    path: path.resolve(__dirname, 'dist'),
+    publicPath: './',
   },
   resolve: {
-    extensions: [".js", ".json", ".css"]
-  }
+    extensions: ['.js', '.json', '.css'],
+  },
 };

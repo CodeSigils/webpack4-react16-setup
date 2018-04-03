@@ -279,7 +279,7 @@ Install Prettier and ESlint plugins from VSCode marketplace:
   yarn add -D html-webpack-plugin clean-webpack-plugin
 
   # Install React libraries as main dependencies:
-  yarn add react react-dom prop-types
+  yarn add react react-dom react-router-dom prop-types
 
   # Install dotenv for global environment variables definitions
   # Note: 'whatwg-fetch' polyfill is for older browsers 'fetch' support:
@@ -324,6 +324,12 @@ module.exports = {
    */
   devServer: {
     // contentBase: path.join(__dirname, 'dist'),
+    /**
+     * Use historyApiFallback to redirect not found requests
+     * to index.html file so we can use react-router instead
+     * of the build in express server.
+     */
+    historyApiFallback: true,
     contentBase: '/',
     compress: true,
     publicPath: '/',
@@ -518,7 +524,7 @@ Rename `.env.sample` to `.env`, run `yarn serve` and watch the server in `localh
 * Intro to fetch: A promised based web request mechanism
 * Making async request in the component life cycle
 * Use the state to make components dynamic
-* Basic use of React Router
+* Basic use of [React Router v4.x](https://reacttraining.com/react-router/web/api/Router)
 * Handling redirects and 404
 * Add links to routes
 
