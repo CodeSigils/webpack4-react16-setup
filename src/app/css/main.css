@@ -38,7 +38,8 @@ h3,
 h4,
 h5,
 h6,
-li {
+li,
+p {
   margin: 0.4em 0px;
   font-family: 'Roboto Condensed', sans-serif;
 }
