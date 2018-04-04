@@ -20,7 +20,12 @@ module.exports = {
   context: path.join(__dirname, 'src'),
   entry: {
     // Older browsers polyfill support for 'fetch'
-    app: ['whatwg-fetch', './index.js'],
+    app: [
+      'whatwg-fetch',
+      // hot reloading into an existing server without webpack-dev-server
+      'webpack-hot-middleware/client',
+      './index.js',
+    ],
   },
   devtool: 'inline-source-map',
 
