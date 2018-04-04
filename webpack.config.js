@@ -170,6 +170,7 @@ module.exports = {
       debug: true,
     }),
     new webpack.optimize.OccurrenceOrderPlugin(),
+    new webpack.NoEmitOnErrorsPlugin(),
     /**
      * Use '.env' file for global var definitions, and store sensitive data.
      * There is a '.env.sample' file in this repo that must be renamed to
