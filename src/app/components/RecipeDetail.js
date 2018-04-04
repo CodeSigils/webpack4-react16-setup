@@ -10,6 +10,11 @@ import { Link } from 'react-router-dom';
  * can become: classNames('h3 p2 bg-white italic center', props.className)
  */
 
+const Timer = () => {
+  const tic = new Date().toLocaleTimeString();
+  return <p>{tic}</p>;
+};
+
 const RecipeDetail = props => {
   /**
    * Handle 0 state of component.
@@ -23,6 +28,8 @@ const RecipeDetail = props => {
         className={classNames('h4 p2 bg-white italic center', props.className)}
       >
         Select a recipe from the list
+        <hr className="border-none mx4 pt2" />
+        <Timer tic={props.tic} />
       </span>
     );
   }
@@ -47,16 +54,18 @@ const RecipeDetail = props => {
       <h3>Steps</h3>
       <ol>{props.recipe.steps.map(step => <li key={step}>{step}</li>)}</ol>
       <Link
+        className="text-decoration-none"
         href={`/recipe/${props.recipe.id}`}
         to={`/recipe/${props.recipe.id}`}
       >
-        Read more...
+        <span className="p1 black btn rounded">Read more...</span>
       </Link>
     </div>
   );
 };
 
 RecipeDetail.propTypes = {
+  tic: PropTypes.string,
   recipe: PropTypes.object,
   className: PropTypes.string,
   style: PropTypes.object,

@@ -16,7 +16,7 @@
   --h1: 70px;
   --h2: 50px;
   --black: #222;
-  --desert: #e3e0cf;
+  --silver: #e3e0cf;
   --lime: #f0f4c3;
 }
 
@@ -32,6 +32,10 @@ body {
   background-color: var(--lime);
 }
 
+.btn {
+  background-color: var(--silver);
+}
+
 h1,
 h2,
 h3,
@@ -39,6 +43,7 @@ h4,
 h5,
 h6,
 li,
+.btn,
 nav {
   margin: 0.4em 0px;
   font-family: 'Roboto Condensed', sans-serif;
