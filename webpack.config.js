@@ -22,8 +22,11 @@ module.exports = {
     // Older browsers polyfill support for 'fetch'
     app: [
       'whatwg-fetch',
-      // hot reloading into an existing server without webpack-dev-server
-      'webpack-hot-middleware/client',
+      /**
+       * For hot reloading into an existing server without webpack-dev-server,
+       * uncomment 'webpack-hot-middleware/client':
+       */
+      // 'webpack-hot-middleware/client',
       './index.js',
     ],
   },
@@ -94,7 +97,7 @@ module.exports = {
         use: [
           {
             loader: 'html-loader',
-            options: { minimize: true },
+            options: { minimize: true, collapseWhitespace: true },
           },
         ],
       },
@@ -107,15 +110,24 @@ module.exports = {
        */
       {
         test: /\.css$/,
-        use: ['style-loader', 'css-loader', 'postcss-loader'],
         exclude: /node_modules/,
+        use: ['style-loader', 'css-loader', 'postcss-loader'],
       },
       // Sass loader - Include node_modules
       // https://webpack.js.org/loaders/sass-loader/
       {
-        test: /\.(scss|sass)$/,
-        use: ['style-loader', 'css-loader', 'sass-loader'],
-        include: /node_modules/,
+        test: /\.scss$/,
+        use: [
+          'style-loader',
+          'css-loader',
+          {
+            loader: 'sass-loader',
+            options: {
+              includePaths: ['./src/css/**/*.scss'],
+              include: /node_modules/,
+            },
+          },
+        ],
       },
       // File loader - Images
       // https://webpack.js.org/loaders/file-loader/
@@ -170,7 +182,6 @@ module.exports = {
       debug: true,
     }),
     new webpack.optimize.OccurrenceOrderPlugin(),
-    new webpack.NoEmitOnErrorsPlugin(),
     /**
      * Use '.env' file for global var definitions, and store sensitive data.
      * There is a '.env.sample' file in this repo that must be renamed to
