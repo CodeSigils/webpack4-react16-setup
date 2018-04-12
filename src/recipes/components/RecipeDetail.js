@@ -27,7 +27,8 @@ const RecipeDetail = props => {
         style={props.style}
         className={classNames('h4 p2 bg-white italic center', props.className)}
       >
-        Select a recipe from the list
+        Select a recipe from the list and if you like it, <br /> add it to
+        favorites by clicking the ☑ symbol !
         <hr className="border-none mx4 pt2" />
         <Timer tic={props.tic} />
       </span>
