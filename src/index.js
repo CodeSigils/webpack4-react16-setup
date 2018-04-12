@@ -1,3 +1,11 @@
 import './favicon.ico';
-// import './recipes/App';
+
+/**
+ * The Recipes app
+ import './recipes/App';
+ */
+
+/**
+ * The Starting template
+ */
 import './start/Start';

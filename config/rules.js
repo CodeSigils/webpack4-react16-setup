@@ -49,7 +49,7 @@ module.exports = {
       {
         loader: 'css-loader',
         options: {
-          // Should be to false for postcss to work
+          /** Should be set to false for postcss to work */
           modules: false,
           sourceMap: true,
           minimize: true,

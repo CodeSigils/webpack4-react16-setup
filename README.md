@@ -377,7 +377,8 @@ const CONFIG = {
   },
 
   /**
-   * 4. LOADERS: See './config/rule.js' file.
+   * 4. LOADERS:
+   * Rules are defined in './config/rules.js' file for readability.
    * Inside the rules array we can add as many loaders as we want.
    * Every loader takes a 'test' attribute that accepts a regex as a value.
    */
@@ -568,7 +569,7 @@ Features: Automatic vendor prefixer with autoprefixer, custom properties and var
 
   `yarn add -D postcss-cssnext postcss-import classnames`
 
-* Configure css rules in **`webpack.config.js`** file:
+* Configure css rules in **`./config/rules.js`** file:
 
 ```js
   //...
@@ -581,8 +582,8 @@ Features: Automatic vendor prefixer with autoprefixer, custom properties and var
       */
       {
         test: /\.css$/,
-        use: ["style-loader", "css-loader", "postcss-loader"],
         exclude: /node_modules/
+        use: ["style-loader", "css-loader", "postcss-loader"],
       },
   //...
 ```
@@ -602,3 +603,5 @@ module.exports = {
 * Install basic libraries. We will install them as main dependencies:
 
 `yarn add basscss basscss-background-colors basscss-colors classnames`
+
+If your postcss rules are setup correctly you are good to go.

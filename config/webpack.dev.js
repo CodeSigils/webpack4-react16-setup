@@ -81,7 +81,8 @@ const CONFIG = {
   },
 
   /**
-   * 4. LOADERS: See './config/rule.js' file.
+   * 4. LOADERS:
+   * Rules are defined in './config/rules.js' file.
    * Inside the rules array we can add as many loaders as we want.
    * Every loader takes a 'test' attribute that accepts a regex as a value.
    */
