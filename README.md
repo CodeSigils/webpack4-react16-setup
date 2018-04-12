@@ -291,7 +291,7 @@ Install Prettier and ESlint plugins from VSCode marketplace:
 * → The **`webpack.config.js`** file.
 
 ```js
-/* 1. ---- ./webpack.config.js ---- */
+/* 1. ---- ./config/webpack.dev.js ---- */
 // Core - Plugins
 const webpack = require('webpack');
 const path = require('path');
@@ -460,14 +460,17 @@ module.exports = CONFIG;
 * → **The `package.json`** file. Here we can define our project dependencies, the scripts we want to run, the babel presets, browser support for auto-prefixer and many more...
 
 ```js
-/* 2. ---- ./package.json (scripts section) ---- */
-  "scripts": {
-        "serve": "webpack-dev-server --watch --config ./webpack.config.js --mode development",
-        "dev": "webpack --mode development",
-        "build": "webpack --mode production",
-        "watch": "webpack --watch --mode development",
-        "lint": "./node_modules/.bin/eslint -v --color ./src/**/*.js",
-        "precommit": "pretty-quick --staged"
+  /**
+   * 2. ---- ./package.json (scripts section) ----
+   * Here we can define separate files for production or development
+  */
+    "scripts": {
+      "serve": "webpack-dev-server --config ./config/webpack.dev.js --mode development",
+      "build": "webpack --config ./config/webpack.dev.js --mode production",
+      "watch": "webpack --config ./config/webpack.dev.js --watch --mode development",
+      "lint": "./node_modules/.bin/eslint ./src/**/*.js",
+      "pretty": "./node_modules/.bin/prettier ./src/**/*.js --write",
+      "precommit": "pretty-quick --staged"
     },
     "babel": {
         "presets": ["react", "env"]
