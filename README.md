@@ -292,29 +292,59 @@ Install Prettier and ESlint plugins from VSCode marketplace:
 
 ```js
 /* 1. ---- ./webpack.config.js ---- */
+// Core - Plugins
 const webpack = require('webpack');
 const path = require('path');
 const Dotenv = require('dotenv-webpack');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const HtmlWebPackPlugin = require('html-webpack-plugin');
 
+// Rules - moved to a separate file for readability
+const appRules = require('./rules.js');
+
+// Main directories - change if you move this file
+const rootDir = '..';
+const inDir = 'src';
+const outDir = 'dist';
+
+// Paths - Ports
+const PATHS = {
+  src: path.join(__dirname, `${rootDir}/${inDir}`),
+  dist: path.resolve(__dirname, `${rootDir}/${outDir}`),
+  serve: path.join(__dirname, `${rootDir}/${outDir}`),
+  servePort: 8799,
+};
+
+// Vendors in separate bundle
+const vendorLibs = ['react', 'react-dom', 'react-router-dom', 'prop-types'];
+
 // config() exposes 'env' to 'process.env' (see plugins section)
 require('dotenv').config();
 
-// Export main JS Object. Here we define the 'entry' and the 'output' values
-module.exports = {
+/**
+ * Export main JS Object. We name it CONFIG optionally for modularity.
+ * Here we define the 'entry' and the 'output' values
+ */
+const CONFIG = {
   /**
-   * 1. ENTRY POINTS
-   * Here we define the entry and the output key values.
-   * Note that webpack 4 is serving files from an 'src'
-   * folder by default and outputs in a 'dist' folder.
-   * Optional use of 'context' key to define main source
-   * path so we can avoid writing './src/index.js'
+   * 1. ENTRY POINT
+   * Here we define the entry and the output key values. Note that webpack 4
+   * is serving files from an 'src' by default and outputs in 'dist' folder.
+   * Optional use of 'context' key to define main source path so we can avoid
+   * writing './src/index.js'
    */
-  context: path.join(__dirname, 'src'),
+  context: PATHS.src,
   entry: {
-    // Older browsers polyfill support for 'fetch'
-    app: ['whatwg-fetch', './index.js'],
+    bundle: [
+      // Older browsers polyfill support for 'fetch'
+      'whatwg-fetch',
+      /**
+       * For hot reloading into an existing server without webpack-dev-server
+       * add 'webpack-hot-middleware/client':
+       */
+      './index.js',
+    ],
+    vendor: vendorLibs,
   },
   devtool: 'inline-source-map',
 
@@ -323,17 +353,21 @@ module.exports = {
    * https://webpack.js.org/configuration/dev-server/
    */
   devServer: {
-    // contentBase: path.join(__dirname, 'dist'),
     /**
-     * Use historyApiFallback to redirect not found requests
-     * to index.html file so we can use react-router instead
-     * of the build in express server.
+     * Use historyApiFallback to redirect not found requests to index.html file
+     * so we can use react-router instead of the build in express server.
+     * It is a good practice to define 'publicPath' here and also in 'output'
+     * section (6.)
      */
-    historyApiFallback: true,
-    contentBase: '/',
+    historyApiFallback: {
+      index: [`${outDir}/index`],
+    },
+    contentBase: PATHS.serve,
+    watchContentBase: true,
+    publicPath: `/${outDir}/`,
+    port: PATHS.servePort,
     compress: true,
-    publicPath: '/',
-    port: 8899,
+    progress: true,
     open: true,
     inline: true,
     hot: true,
@@ -343,95 +377,20 @@ module.exports = {
   },
 
   /**
-   * 3. CSS AND JS OPTIM
-   * We don't need for this dev demo, but necessary in production.
-   * https://github.com/webpack-contrib/mini-css-extract-plugin
-   *  optimization: {
-   *    minimize: true
-   *  },
-   */
-
-  /**
-   * 4. LOADERS
+   * 4. LOADERS: See './config/rule.js' file.
    * Inside the rules array we can add as many loaders as we want.
-   * Every loader takes a 'test' attribute (that accepts a regex as a value)
-   * and some options.
+   * Every loader takes a 'test' attribute that accepts a regex as a value.
    */
   module: {
-    // Exclude large libs for performance
-    noParse: content => /jquery|lodash/.test(content),
+    /** Exclude large libs for performance */
+    // noParse: content => /jquery|lodash/.test(content),
     rules: [
-      // Babel loader
-      {
-        test: /\.(js|jsx)$/,
-        exclude: /(node_modules|bower_components)/,
-        use: {
-          loader: 'babel-loader',
-          /**
-           * Presets must be in this order. The 'stage-0' preset
-           * allows us to use arrow functions inside the body of
-           * a class component and must be mounted last.
-           */
-          options: {
-            presets: ['react', 'env', 'stage-0'],
-          },
-        },
-      },
-      // Html loader
-      // https://webpack.js.org/loaders/html-loader/
-      {
-        test: /\.(html|htm)$/,
-        use: [
-          {
-            loader: 'html-loader',
-            options: { minimize: true },
-          },
-        ],
-      },
-      // Css loader - Exclude node_modules
-      // https://webpack.js.org/loaders/css-loader/
-      {
-        test: /\.css$/,
-        use: ['style-loader', 'css-loader', 'postcss-loader'],
-        exclude: /node_modules/,
-      },
-      // Sass loader - Include node_modules
-      // https://webpack.js.org/loaders/sass-loader/
-      {
-        test: /\.(scss|sass)$/,
-        use: ['style-loader', 'css-loader', 'sass-loader'],
-        include: /node_modules/,
-      },
-      // File loader - Images
-      // https://webpack.js.org/loaders/file-loader/
-      {
-        test: /\.(jpg|jpeg|png|gif|svg)$/,
-        use: [
-          {
-            loader: 'file-loader',
-            options: {
-              limit: 80000,
-              name: '[name].[ext]',
-              outputPath: './img/',
-              publicPath: './img/',
-            },
-          },
-        ],
-        exclude: /node_modules/,
-      },
-      // File loader - Fonts
-      {
-        test: /\.(woff|woff2|eot|ttf|otf)$/,
-        use: [
-          {
-            loader: 'file-loader',
-            options: {
-              name: 'fonts/[name]-[hash].[ext]',
-            },
-          },
-        ],
-        exclude: /node_modules/,
-      },
+      appRules.JS_RULE,
+      appRules.HTML_RULE,
+      appRules.CSS_RULE,
+      appRules.SASS_RULE,
+      appRules.FILE_RULE,
+      appRules.FONT_RULE,
     ],
   },
 
@@ -439,22 +398,31 @@ module.exports = {
    * 5. PLUGINS
    */
   plugins: [
-    // Html plugin
-    // https://github.com/jantimon/html-webpack-plugin
+    // Clean webpack plugin
+    new CleanWebpackPlugin([outDir]),
+    /**
+     * Html plugin
+     * https://github.com/jantimon/html-webpack-plugin
+     */
     new HtmlWebPackPlugin({
       template: 'index.html',
-      filename: './index.html',
+      favicon: 'favicon.ico',
+      inject: 'body',
     }),
-    // Clean webpack plugin
-    new CleanWebpackPlugin(['dist']),
-    // HMR - Native webpack plugins (no need for installation)
+    /** HMR - Native webpack plugins (no need for installation) */
     new webpack.NamedModulesPlugin(),
     new webpack.HotModuleReplacementPlugin(),
+    new webpack.LoaderOptionsPlugin({
+      debug: true,
+    }),
+    /**
+     * Webpack gives our modules and chunks ids to identify them.
+     * https://github.com/webpack/docs/wiki/optimization:
+     */
     new webpack.optimize.OccurrenceOrderPlugin(),
     /**
      * Use '.env' file for global var definitions, and store sensitive data.
-     * There is a '.env.sample' file in this repo that must be renamed to
-     * '.env'.
+     * The '.env.sample' file in this repo that must be renamed to '.env'.
      * Read carefully: https://github.com/mrsteele/dotenv-webpack
      */
     new Dotenv({
@@ -462,8 +430,9 @@ module.exports = {
       safe: false,
       systemvars: true,
     }),
-    // Register global vars to webpack for all the files.
-    // Must return a string.
+    /**
+     * Register global vars to webpack for all the files. Must return a string.
+     */
     new webpack.DefinePlugin({
       API_URL: JSON.stringify(process.env.API_URL),
     }),
@@ -471,13 +440,21 @@ module.exports = {
 
   /**
    * 6. OUTPUT
+   * https://webpack.js.org/configuration/output/
    */
   output: {
-    filename: '[name].bundle.js',
-    path: path.resolve(__dirname, 'dist'),
-    publicPath: './',
+    filename: '[name].js',
+    path: `${PATHS.dist}/`,
+    sourceMapFilename: '[file].map',
+    chunkFilename: '[name].js',
+    publicPath: `/${outDir}/`,
+  },
+  resolve: {
+    extensions: ['.js', '.json', '.css'],
   },
 };
+
+module.exports = CONFIG;
 ```
 
 * → **The `package.json`** file. Here we can define our project dependencies, the scripts we want to run, the babel presets, browser support for auto-prefixer and many more...
@@ -508,7 +485,7 @@ API_URL=http://reactrecipes.herokuapp.com
 
 #### 4.4 - Run the project in browser
 
-Rename `.env.sample` to `.env`, run `yarn serve` and watch the server in `localhost:8899`
+Rename `.env.sample` to `.env`, run `yarn serve` and watch the server in `localhost:8799`
 
 ---
 
@@ -554,7 +531,7 @@ Different approaches, one philosophy: "the real way to scale CSS, is to stop wri
 
   * The good: CSS with JS in one file. Easy props based styles. Popular. Good for animation.
   * The bad: Hard to style components with many nested elements.
-  * The ugly: Odd backtick syntax. Bloated files
+  * The ugly: Odd backtick syntax. Bloated files.
 
 * **Functional CSS with [BassCSS](http://basscss.com/):**
   CSS toolkit with extensible predefined classes: "The overwhelming majority of CSS you would need for your elements has already been written".
@@ -617,7 +594,7 @@ module.exports = {
 };
 ```
 
-#### 6.2 - Setting Up BassCSS
+#### 6.2 - Setting Up [BassCSS](http://basscss.com/)
 
 * Install basic libraries. We will install them as main dependencies:
 

@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
+import ReactDOM from 'react-dom';
 import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
 import Home from './components/Home';
 import Favorites from './components/Favorites';
 import Recipe from './components/Recipe';
 import NotFound from './components/NotFound';
 import Header from './components/Header';
+import './css/main.css';
 
 // BrowserRouter only returns one child. Use exact for home path
 class App extends Component {
@@ -69,4 +71,13 @@ class App extends Component {
   }
 }
 
+/**
+ * Each renderer gets a mounter function that takes 2 args: A React Component
+ * and a DOM element. The mounter function will recursively render the component
+ * and inject it to the DOM
+ */
 export default App;
+
+const MOUNT_ELEMENT = document.getElementById('app');
+
+ReactDOM.render(<App />, MOUNT_ELEMENT);

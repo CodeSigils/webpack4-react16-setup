@@ -1,0 +1,32 @@
+@import './fonts';
+@import './colors';
+$image-size: 65%;
+body {
+  font-family: $system-font;
+  margin: 0 auto;
+  background-color: $bg-color;
+}
+
+.profile {
+  color: $light-blue;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  height: 100vh;
+  flex-flow: column;
+  img {
+    margin: 20px;
+    background-color: $teal;
+    width: $image-size;
+    height: $image-size;
+  }
+  h3 {
+    font-size: 175%;
+    text-align: center;
+    text-shadow: $shadow;
+  }
+  ul {
+    text-align: left;
+  }
+}
