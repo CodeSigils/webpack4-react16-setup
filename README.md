@@ -36,6 +36,11 @@ necessary yet light reading along the way.
 * [6. Styling in React](#6-styling-in-react)
   * [6.1 - Setting Up PostCSS](#61---setting-up-postcss)
   * [6.2 - Setting Up BassCSS](#62---setting-up-basscss)
+* [7 Testing with jest and Enzyme](#7-testing-with-jest-and-enzyme)
+  * [7.1 Install and setup Jest](#71-install-and-setup-jest)
+  * [7.2 Use snapshot test to test react components](#72-use-snapshot-test-to-test-react-components)
+  * [7.3 Mock Static assets in our tests:](#73-mock-static-assets-in-our-tests)
+  * [7.4 Use Enzyme to test more complex scenarios:](#74-use-enzyme-to-test-more-complex-scenarios)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
