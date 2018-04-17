@@ -621,18 +621,20 @@ Babel integration.
 
 #### 7.1 Install and setup Jest
 
-* Install Jest and its [eslint plugin](https://www.npmjs.com/package/eslint-plugin-jest):
+* Install Jest and its [eslint plugin](https://www.npmjs.com/package/eslint-plugin-jest). The `react-test-renderer` is for snapshot tests later on:
 
-  `yarn add jest eslint-plugin-jest -D`
+  `yarn add jest eslint-plugin-jest react-test-renderer -D`
 
-* By default Jest will create a `__test__` folder. If we want a custom one we create a `jest.config.js` file inside our custom folder. In this case the `specs` folder:
+* By default Jest will create a `__test__` folder and it default jest includes test files as per this regex pattern: `(/__tests__/.*|\\.(test|spec))\\.(js|jsx)$`. If we want a custom one we create a `jest.config.js` file inside our custom folder. In this case the `specs` folder:
 
   ```js
   module.exports = {
     // Use a regex pattern to define a test folder
     testRegex: './src/.*?(Spec)\\.js',
-    // Ignored folder
+    // Ignored folders
     modulePathIgnorePatterns: ['node_modules', 'dist'],
+    // Ignore __snapshots__ folders for tests
+    testPathIgnorePatterns: ['__snapshots__'],
   };
   ```
 
@@ -668,7 +670,27 @@ Babel integration.
     //...
   ```
 
-#### 7.2 Use snapshot test to test react components
+#### 7.2 Use snapshot tests for react components
+
+The `toMatchSnapshot` function is responsible for saving the JSON tree, compares it to the output JSON and checking if it matches.
+
+```js
+test('Test Name', () => {
+  expect(json).toMatchSnapshot();
+});
+```
+
+This is why we need to transform a component to a JSON representation to create
+a snapshot test. The oficial tool for creating Jest representations of React components is `react-test-renderer` and we must install it.
+
+* **★ Tip:** Notice that because of our setup we need always to add the `Spec` postfix in the end of the file. So if we need to test the `Header.js` component, we must create a `HeaderSpec.js` test file.
+
+```js
+test('Test Name', () => {
+  const component = renderer.create(<Component />);
+  const tree = component.toJSON();
+});
+```
 
 #### 7.3 Mock Static assets in our tests:
 
