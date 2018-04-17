@@ -11,6 +11,10 @@
     "API_URL": true
   },
   "rules": {
+    "jsx-a11y/anchor-is-valid": [
+      "error",
+      { "components": ["Link"], "specialLink": ["to"] }
+    ],
     "arrow-parens": 0,
     "object-curly-newline": 0,
     "function-paren-newline": 0,

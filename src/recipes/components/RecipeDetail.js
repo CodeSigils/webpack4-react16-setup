@@ -10,11 +10,6 @@ import { Link } from 'react-router-dom';
  * can become: classNames('h3 p2 bg-white italic center', props.className)
  */
 
-const Timer = () => {
-  const tic = new Date().toLocaleTimeString();
-  return <p>{tic}</p>;
-};
-
 const RecipeDetail = props => {
   /**
    * Handle 0 state of component.
@@ -30,7 +25,6 @@ const RecipeDetail = props => {
         Select a recipe from the list and if you like it, <br /> add it to
         favorites by clicking the ☑ symbol !
         <hr className="border-none mx4 pt2" />
-        <Timer tic={props.tic} />
       </span>
     );
   }
@@ -47,18 +41,18 @@ const RecipeDetail = props => {
         <span>{props.recipe.calories} cal</span>
       </div>
       <h3>Ingredients</h3>
-      <ul>
-        {props.recipe.ingredients.map(ingredient => (
-          <li key={ingredient}>{ingredient}</li>
-        ))}
-      </ul>
+      {props.recipe.ingredients && (
+        <ul>
+          {props.recipe.ingredients.map(ingredient => (
+            <li key={ingredient}>{ingredient}</li>
+          ))}
+        </ul>
+      )}
       <h3>Steps</h3>
-      <ol>{props.recipe.steps.map(step => <li key={step}>{step}</li>)}</ol>
-      <Link
-        className="text-decoration-none"
-        href={`/recipe/${props.recipe.id}`}
-        to={`/recipe/${props.recipe.id}`}
-      >
+      {props.recipe.step && (
+        <ol>{props.recipe.steps.map(step => <li key={step}>{step}</li>)}</ol>
+      )}
+      <Link className="text-decoration-none" to={`/recipe/${props.recipe.id}`}>
         <span className="p1 black btn rounded">Read more...</span>
       </Link>
     </div>

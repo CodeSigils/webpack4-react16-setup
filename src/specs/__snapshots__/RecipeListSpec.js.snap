@@ -1,0 +1,61 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<RecipeList/> Should no break when there are no recipes 1`] = `
+<ul
+  className="list-reset"
+  style={undefined}
+/>
+`;
+
+exports[`<RecipeList/> Should render corectly 1`] = `
+<ul
+  className="list-reset"
+  style={undefined}
+>
+  <li
+    className="py2 border-bottom border-bottom-dashed pointer"
+    onClick={[Function]}
+  >
+    <span
+      aria-label="favorite"
+      className="mr1 red"
+      onClick={[Function]}
+      role="img"
+    >
+      ☑
+    </span>
+    <span>
+      Recipe 1
+    </span>
+    <span>
+      Category 1
+    </span>
+  </li>
+  <li
+    className="py2 border-bottom border-bottom-dashed pointer"
+    onClick={[Function]}
+  >
+    <span
+      aria-label="favorite"
+      className="mr1 red"
+      onClick={[Function]}
+      role="img"
+    >
+      ☑
+    </span>
+    <span>
+      Recipe 2
+    </span>
+    <span>
+      Category 2
+    </span>
+  </li>
+</ul>
+`;
+
+exports[`<RecipeList/> Should render favorited state corectly 1`] = `
+<ul
+  className="list-reset"
+  style={undefined}
+/>
+`;

@@ -1,0 +1,211 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<RecipeDetail/> Should correctly assign a className 1`] = `
+<div
+  className="p2 bg-white classname-test"
+  style={undefined}
+>
+  <h2
+    className="h2"
+  >
+    Test recipe
+  </h2>
+  <img
+    alt="Test recipe"
+    className="fit"
+    src={undefined}
+  />
+  <div>
+    <span>
+      Test recipe category
+    </span>
+    <span>
+       cal
+    </span>
+  </div>
+  <h3>
+    Ingredients
+  </h3>
+  <ul>
+    <li>
+      Ing 1
+    </li>
+    <li>
+      Ing 2
+    </li>
+  </ul>
+  <h3>
+    Steps
+  </h3>
+  <a
+    className="text-decoration-none"
+    href="/recipe/1"
+    onClick={[Function]}
+  >
+    <span
+      className="p1 black btn rounded"
+    >
+      Read more...
+    </span>
+  </a>
+</div>
+`;
+
+exports[`<RecipeDetail/> Should correctly render a recipe 1`] = `
+<div
+  className="p2 bg-white"
+  style={undefined}
+>
+  <h2
+    className="h2"
+  >
+    Test recipe
+  </h2>
+  <img
+    alt="Test recipe"
+    className="fit"
+    src={undefined}
+  />
+  <div>
+    <span>
+      Test recipe category
+    </span>
+    <span>
+       cal
+    </span>
+  </div>
+  <h3>
+    Ingredients
+  </h3>
+  <ul>
+    <li>
+      Ing 1
+    </li>
+    <li>
+      Ing 2
+    </li>
+  </ul>
+  <h3>
+    Steps
+  </h3>
+  <a
+    className="text-decoration-none"
+    href="/recipe/1"
+    onClick={[Function]}
+  >
+    <span
+      className="p1 black btn rounded"
+    >
+      Read more...
+    </span>
+  </a>
+</div>
+`;
+
+exports[`<RecipeDetail/> Should render a recipe without ingredients 1`] = `
+<div
+  className="p2 bg-white"
+  style={undefined}
+>
+  <h2
+    className="h2"
+  >
+    Test recipe
+  </h2>
+  <img
+    alt="Test recipe"
+    className="fit"
+    src={undefined}
+  />
+  <div>
+    <span>
+      Test recipe category
+    </span>
+    <span>
+       cal
+    </span>
+  </div>
+  <h3>
+    Ingredients
+  </h3>
+  <h3>
+    Steps
+  </h3>
+  <a
+    className="text-decoration-none"
+    href="/recipe/1"
+    onClick={[Function]}
+  >
+    <span
+      className="p1 black btn rounded"
+    >
+      Read more...
+    </span>
+  </a>
+</div>
+`;
+
+exports[`<RecipeDetail/> Should render a recipe without steps 1`] = `
+<div
+  className="p2 bg-white"
+  style={undefined}
+>
+  <h2
+    className="h2"
+  >
+    Test recipe
+  </h2>
+  <img
+    alt="Test recipe"
+    className="fit"
+    src={undefined}
+  />
+  <div>
+    <span>
+      Test recipe category
+    </span>
+    <span>
+       cal
+    </span>
+  </div>
+  <h3>
+    Ingredients
+  </h3>
+  <ul>
+    <li>
+      Ing 1
+    </li>
+    <li>
+      Ing 2
+    </li>
+  </ul>
+  <h3>
+    Steps
+  </h3>
+  <a
+    className="text-decoration-none"
+    href="/recipe/1"
+    onClick={[Function]}
+  >
+    <span
+      className="p1 black btn rounded"
+    >
+      Read more...
+    </span>
+  </a>
+</div>
+`;
+
+exports[`<RecipeDetail/> Should render zero state 1`] = `
+<span
+  className="h4 p2 bg-white italic center"
+  style={undefined}
+>
+  Select a recipe from the list and if you like it, 
+  <br />
+   add it to favorites by clicking the ☑ symbol !
+  <hr
+    className="border-none mx4 pt2"
+  />
+</span>
+`;
