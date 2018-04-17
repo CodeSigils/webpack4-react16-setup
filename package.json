@@ -12,6 +12,7 @@
     "watch":
       "webpack --config ./config/webpack.dev.js --watch --mode development",
     "lint": "./node_modules/.bin/eslint ./src/**/*.js",
+    "test": "./node_modules/.bin/jest",
     "pretty": "./node_modules/.bin/prettier ./src/**/*.js --write",
     "precommit": "pretty-quick --staged"
   },
@@ -35,12 +36,14 @@
     "eslint-config-airbnb": "^16.1.0",
     "eslint-config-prettier": "^2.9.0",
     "eslint-plugin-import": "^2.10.0",
+    "eslint-plugin-jest": "^21.15.0",
     "eslint-plugin-jsx-a11y": "^6.0.3",
     "eslint-plugin-prettier": "^2.6.0",
     "eslint-plugin-react": "^7.7.0",
     "file-loader": "^1.1.11",
     "html-loader": "^0.5.5",
     "husky": "^0.14.3",
+    "jest": "^22.4.3",
     "lint-staged": "^7.0.0",
     "node-sass": "^4.8.3",
     "postcss-loader": "^2.1.3",

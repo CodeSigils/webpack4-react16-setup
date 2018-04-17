@@ -1,9 +1,11 @@
 {
   "parser": "babel-eslint",
   "extends": ["prettier", "airbnb"],
+  "plugins": ["jest"],
   "env": {
     "es6": true,
-    "browser": true
+    "browser": true,
+    "jest/globals": true
   },
   "globals": {
     "API_URL": true

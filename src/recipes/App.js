@@ -43,7 +43,8 @@ class App extends Component {
       <BrowserRouter basename="/">
         <main>
           <Header />
-          {/* Switch component can handle fallback routes, if previous routes don't much */}
+          {/* Switch component can handle fallback routes,
+              if previous routes don't much */}
           <Switch>
             <Redirect from="home" to="/" />
             <Route

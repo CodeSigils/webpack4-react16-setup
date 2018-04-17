@@ -522,7 +522,7 @@ Different approaches, one philosophy: "the real way to scale CSS, is to stop wri
   Use of the style prop of React elements.
 
   * The good: CSS in JS
-  * Tha bad: No reusable CSS. High coupling between markup and styles. Huge components.
+  * The bad: No reusable CSS. High coupling between markup and styles. Huge components.
 
 * **CSS modules:**
   Treat a CSS file as one module using Webpack
@@ -605,3 +605,66 @@ module.exports = {
 `yarn add basscss basscss-background-colors basscss-colors classnames`
 
 If your postcss rules are setup correctly you are good to go.
+
+---
+
+## 7 Testing with jest and Enzyme
+
+[Jest](https://facebook.github.io/jest/index.html) is a fast and sand-boxed JS testing engine that is easy to configure. It is not limited only to React as it can provide tests for all major [web frameworks](https://facebook.github.io/jest/docs/en/testing-frameworks.html)
+Jest provides build-in coverage reports, snapshot testing support with automatic
+Babel integration.
+
+#### 7.1 Install and setup Jest
+
+* Install Jest and its [eslint plugin](https://www.npmjs.com/package/eslint-plugin-jest):
+
+  `yarn add jest eslint-plugin-jest -D`
+
+* By default Jest will create a `__test__` folder. If we want a custom one we create a `jest.config.js` file inside our custom folder. In this case the `specs` folder:
+
+  ```js
+  module.exports = {
+    // Use a regex pattern to define a test folder
+    testRegex: './src/.*?(Spec)\\.js',
+    // Ignored folder
+    modulePathIgnorePatterns: ['node_modules', 'dist'],
+  };
+  ```
+
+* Create a sample test in `./src/specs/TestSpec.js`:
+
+  ```js
+  /* ---- ./src/specs/TestSpec.js ---- */
+  describe('Test', () => {
+    test('Test', () => {
+      // assert
+    });
+  });
+  ```
+
+* Edit the `./.eslintrc.json` file:
+
+  ```js
+    //...
+    "plugins": ["jest"],
+    "env": {
+        "es6": true,
+        "browser": true,
+        "jest/globals": true
+    },
+    //...
+  ```
+
+* Add a "test" script in `package.json` file and run it:
+
+  ```js
+    //...
+    "test": "./node_modules/.bin/jest",
+    //...
+  ```
+
+#### 7.2 Use snapshot test to test react components
+
+#### 7.3 Mock Static assets in our tests:
+
+#### 7.4 Use Enzyme to test more complex scenarios:
