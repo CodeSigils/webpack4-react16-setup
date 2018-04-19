@@ -629,7 +629,7 @@ Babel integration.
 
   `yarn add jest eslint-plugin-jest react-test-renderer -D`
 
-* By default Jest will create a `__test__` folder and it default jest includes test files as per this regex pattern: `(/__tests__/.*|\\.(test|spec))\\.(js|jsx)$`. If we want a custom one we create a `jest.config.js` file inside our custom folder. In this case the `specs` folder:
+* By default Jest will create a `__test__` folder will include test files according this regex pattern: `(/__tests__/.*|\\.(test|spec))\\.(js|jsx)$`. If we want a custom one we create a `jest.config.js` file inside the folder of ou choice. In this case the `specs` folder:
 
   ```js
   module.exports = {
