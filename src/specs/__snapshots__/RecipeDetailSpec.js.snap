@@ -37,6 +37,14 @@ exports[`<RecipeDetail/> Should correctly assign a className 1`] = `
   <h3>
     Steps
   </h3>
+  <ol>
+    <li>
+      Step 1
+    </li>
+    <li>
+      Step 2
+    </li>
+  </ol>
   <a
     className="text-decoration-none"
     href="/recipe/1"
@@ -88,6 +96,14 @@ exports[`<RecipeDetail/> Should correctly render a recipe 1`] = `
   <h3>
     Steps
   </h3>
+  <ol>
+    <li>
+      Step 1
+    </li>
+    <li>
+      Step 2
+    </li>
+  </ol>
   <a
     className="text-decoration-none"
     href="/recipe/1"
@@ -131,6 +147,14 @@ exports[`<RecipeDetail/> Should render a recipe without ingredients 1`] = `
   <h3>
     Steps
   </h3>
+  <ol>
+    <li>
+      Step 1
+    </li>
+    <li>
+      Step 2
+    </li>
+  </ol>
   <a
     className="text-decoration-none"
     href="/recipe/1"

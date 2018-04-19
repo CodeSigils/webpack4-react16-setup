@@ -635,6 +635,15 @@ Babel integration.
     modulePathIgnorePatterns: ['node_modules', 'dist'],
     // Ignore __snapshots__ folders for tests
     testPathIgnorePatterns: ['__snapshots__'],
+    /**
+     * Every time we try to import a module inside a test
+     * that matches a regex, load a mock file instead of
+     * loading the real package. This is because Jest does
+     * not understands static assets.
+     */
+    moduleNameMapper: {
+      '\\.(jpg|jpeg|png)$': '<rootDir>/src/utils/fileMock.js',
+    },
   };
   ```
 
@@ -692,6 +701,11 @@ test('Test Name', () => {
 });
 ```
 
+Now we can create our snapshot tests. Some examples can be found
+in `./specs` file.
+
 #### 7.3 Mock Static assets in our tests:
+
+Configuring Jest to mock images on our tests.
 
 #### 7.4 Use Enzyme to test more complex scenarios:

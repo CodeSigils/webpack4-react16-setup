@@ -4,24 +4,41 @@ exports[`<Header/> Should render correctly 1`] = `
 <header
   className="flex align-middle justify-between px4 m3"
 >
-  <a
-    className="text-decoration-none"
-    href="/"
-    onClick={[Function]}
-  >
-    <h1
-      className="h1 red"
+  <div>
+    <a
+      className="text-decoration-none"
+      href="/"
+      onClick={[Function]}
     >
-      <span
-        aria-label="my recipes"
-        className="red pr1"
-        role="img"
+      <h1
+        className="h1 red inline-block mr2"
       >
-        💗
-      </span>
-      My Recipes
-    </h1>
-  </a>
+        <span
+          aria-label="my recipes"
+          className="red pr1"
+          role="img"
+        >
+          💗
+        </span>
+        My Recipes
+      </h1>
+    </a>
+    <span
+      className="mr1"
+    >
+      made with
+    </span>
+    <img
+      alt="react logo"
+      className="mr1"
+      src="test-file-stub"
+      style={
+        Object {
+          "width": "20px",
+        }
+      }
+    />
+  </div>
   <nav>
     <a
       aria-current={false}

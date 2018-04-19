@@ -6,7 +6,9 @@ import RecipeDetail from '../recipes/components/RecipeDetail';
 
 describe('<RecipeDetail/>', () => {
   let testRecipe;
-
+  // Re define variable before the execution of the test so
+  // that we can delete values and the test does not break
+  // like in scenarios 4 and 5.
   beforeEach(() => {
     testRecipe = {
       id: 1,
@@ -50,7 +52,7 @@ describe('<RecipeDetail/>', () => {
 
     expect(tree).toMatchSnapshot();
   });
-  // 4.
+  // 4. Test for no ingredients
   test('Should render a recipe without ingredients', () => {
     delete testRecipe.ingredients;
     const component = renderer.create(
@@ -62,7 +64,7 @@ describe('<RecipeDetail/>', () => {
 
     expect(tree).toMatchSnapshot();
   });
-  // 5.
+  // 5.  Test for no steps
   test('Should render a recipe without steps', () => {
     delete testRecipe.steps;
     const component = renderer.create(

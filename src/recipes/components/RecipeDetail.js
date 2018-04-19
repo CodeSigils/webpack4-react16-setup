@@ -49,7 +49,7 @@ const RecipeDetail = props => {
         </ul>
       )}
       <h3>Steps</h3>
-      {props.recipe.step && (
+      {props.recipe.steps && (
         <ol>{props.recipe.steps.map(step => <li key={step}>{step}</li>)}</ol>
       )}
       <Link className="text-decoration-none" to={`/recipe/${props.recipe.id}`}>
@@ -60,7 +60,6 @@ const RecipeDetail = props => {
 };
 
 RecipeDetail.propTypes = {
-  tic: PropTypes.string,
   recipe: PropTypes.object,
   className: PropTypes.string,
   style: PropTypes.object,
