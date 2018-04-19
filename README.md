@@ -41,7 +41,7 @@ necessary yet light reading along the way.
   * [7.2 Use snapshot tests for react components](#72-use-snapshot-tests-for-react-components)
   * [7.3 Mock Static assets in our tests:](#73-mock-static-assets-in-our-tests)
   * [7.4 Use Enzyme to test more complex scenarios:](#74-use-enzyme-to-test-more-complex-scenarios)
-  * [**Enzyme component wrapper API**:](#enzyme-component-wrapper-api)
+  * [Enzyme component wrapper API](#enzyme-component-wrapper-api)
   * [Jest-enzyme setup](#jest-enzyme-setup)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
@@ -729,7 +729,7 @@ It mimics jQuery API for DOM manipulation and traversal. Use it with an Adapter 
 
 * **Enzyme Full rendering:** Ideal for use cases where you have components that may interact with DOM APIs, or may require the full lifecycle callbacks to be executed. Also for testing click events. Accessible via the **mount** function.
 
-#### **Enzyme component wrapper API**:
+#### Enzyme component wrapper API
 
 * **find(selector):** Find nodes that matches the provided selector
 * **hasClass(className):** Returns whether or not the component has the provided class.
