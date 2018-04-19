@@ -104,11 +104,13 @@ People are using the "scripts" section of package.json file in all sorts of ways
   // Define scripts here and run them with "npm run ..." or "yarn"
   "scripts": {
     "serve":
-      "webpack-dev-server --watch --config ./webpack.config.js --mode development",
+      "webpack-dev-server --watch --config ./config/webpack.dev.js --mode development",
     "dev": "webpack --mode development",
     "build": "webpack --mode production",
-    "watch": "webpack --watch --mode development",
+    "watch":
+      "webpack --config ./config/webpack.dev.js --watch --mode development",
     "lint": "./node_modules/.bin/eslint -v --color ./src/**/*.js",
+    "pretty": "./node_modules/.bin/prettier ./src/**/*.js --write",
     "precommit": "pretty-quick --staged"
   },
   // ... Comments will not work on JSON files
