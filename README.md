@@ -1,4 +1,4 @@
-# React from scratch - React with Webpack and functional CSS, a step by step guide
+## React from scratch - React with Webpack, Jest, Enzyme and functional CSS - a step by step guide
 
 A demo of basic (and some advanced) React concepts in a React app.
 Also a webpack4 setup guide useful for development, with tips and some
