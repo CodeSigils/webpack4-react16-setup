@@ -558,7 +558,7 @@ Different approaches, one philosophy: "the real way to scale CSS, is to stop wri
   * [Tachyons](https://devarchy.com/react/library/tachyons): Functional css for humans.
   * [Radium](https://devarchy.com/react/radium) is a set of tools to manage inline styles on React elements. It gives you powerful styling capabilities without CSS.
   * [Aphrodite](https://devarchy.com/react/Aphrodite): Inline Styles that work.
-  * [Styletron](http://styletron.js.org)Universal, high-performance JavaScript styles.
+  * [Styletron](http://styletron.js.org): Universal, high-performance JavaScript styles.
   * [React-JSS](http://cssinjs.org/react-jss/?v=v8.4.0)
 
 #### 6.1 - Setting Up PostCSS
@@ -617,7 +617,7 @@ If your postcss rules are setup correctly you are good to go.
 
 ---
 
-## 7 Testing with jest and Enzyme
+## 7. Testing with jest and Enzyme
 
 [Jest](https://facebook.github.io/jest/index.html) is a fast and sand-boxed JS testing engine that is easy to configure. It is not limited only to React as it can provide tests for all major [web frameworks](https://facebook.github.io/jest/docs/en/testing-frameworks.html)
 Jest provides build-in coverage reports, snapshot testing support with automatic
