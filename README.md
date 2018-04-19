@@ -38,9 +38,11 @@ necessary yet light reading along the way.
   * [6.2 - Setting Up BassCSS](#62---setting-up-basscss)
 * [7 Testing with jest and Enzyme](#7-testing-with-jest-and-enzyme)
   * [7.1 Install and setup Jest](#71-install-and-setup-jest)
-  * [7.2 Use snapshot test to test react components](#72-use-snapshot-test-to-test-react-components)
+  * [7.2 Use snapshot tests for react components](#72-use-snapshot-tests-for-react-components)
   * [7.3 Mock Static assets in our tests:](#73-mock-static-assets-in-our-tests)
   * [7.4 Use Enzyme to test more complex scenarios:](#74-use-enzyme-to-test-more-complex-scenarios)
+  * [**Enzyme component wrapper API**:](#enzyme-component-wrapper-api)
+  * [Jest-enzyme setup](#jest-enzyme-setup)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -635,15 +637,6 @@ Babel integration.
     modulePathIgnorePatterns: ['node_modules', 'dist'],
     // Ignore __snapshots__ folders for tests
     testPathIgnorePatterns: ['__snapshots__'],
-    /**
-     * Every time we try to import a module inside a test
-     * that matches a regex, load a mock file instead of
-     * loading the real package. This is because Jest does
-     * not understands static assets.
-     */
-    moduleNameMapper: {
-      '\\.(jpg|jpeg|png)$': '<rootDir>/src/utils/fileMock.js',
-    },
   };
   ```
 
@@ -706,6 +699,78 @@ in `./specs` file.
 
 #### 7.3 Mock Static assets in our tests:
 
-Configuring Jest to mock images on our tests.
+Configuring Jest to mock images on our tests by adding the following lines in
+`jest.config.js`:
 
-#### 7.4 Use Enzyme to test more complex scenarios:
+```js
+  //...
+  /**
+   * Jest by default will try to load a static asset as a real js package.
+   * Every time we try to import a module inside a test that matches a regex,
+   * load a mock file instead of loading the real package.
+   */
+  moduleNameMapper: {
+    '\\.(jpg|jpeg|png)$': '<rootDir>/src/utils/fileMock.js',
+  },
+```
+
+Then we create `./src/utils/fileMock.js` file:
+
+```js
+module.exports = 'test-file-stub';
+```
+
+#### 7.4 Use [Enzyme](http://airbnb.io/enzyme/) to test more complex scenarios:
+
+[Enzyme](http://airbnb.io/enzyme/) is a JS utility for React from airbnb, that makes it easier to assert, manipulate and traverse your React component output.
+It mimics jQuery API for DOM manipulation and traversal. Use it with an Adapter for the particular React version you are using.
+
+* **Enzyme Shallow rendering:** Useful for constraining yourself to testing a component as a unit. Renders components only one level down. Accessible via the **shallow** function
+
+* **Enzyme Full rendering:** Ideal for use cases where you have components that may interact with DOM APIs, or may require the full lifecycle callbacks to be executed. Also for testing click events. Accessible via the **mount** function.
+
+#### **Enzyme component wrapper API**:
+
+* **find(selector):** Find nodes that matches the provided selector
+* **hasClass(className):** Returns whether or not the component has the provided class.
+* **exists():** Returns whether or not the current element exists.
+* **first():** Returns first node of the current wrapper.
+* **last():** Returns last node of the current wrapper.
+* **simulate():** Simulates an event on the current node by passing the type of the event that we want to simulate in an argument.
+* **setProps():** Manually set props on the root component.
+* **setState():** Manually set state on the root component.
+* [more ...](http://airbnb.io/enzyme/docs/api/)
+
+#### Jest-enzyme setup
+
+* Install Enzyme: `yarn add enzyme enzyme-adapter-react-16`
+
+* Create a polyfill for the `requestAnimationFrame` function browser support in `./src/specs/polyfill.js` file:
+
+  ```js
+  const requestAnimationFrame = cb => {
+    setTimeout(cb, 0);
+  };
+  // Assign the above function to the global function
+  global.requestAnimationFrame = requestAnimationFrame;
+
+  export default requestAnimationFrame;
+  ```
+
+* Create the ini script for Jest in `./src/specs/index.js`
+
+  ```js
+  /* eslint-disable */
+  import polyfill from './polyfill';
+  import Enzyme from 'enzyme';
+  import Adapter from 'enzyme-adapter-react-16';
+
+  Enzyme.configure({ adapter: new Adapter() });
+  ```
+
+* Finally inform jest.config about ini script:
+
+  ```js
+  //...
+  setupFiles: ['<rootDir>/src/specs/index.js'],
+  ```
