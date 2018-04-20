@@ -502,7 +502,7 @@ Rename `.env.sample` to `.env`, run `yarn serve` and watch the server in `localh
 
 ---
 
-## 5. React
+## 5. React overview
 
 * Creating and mounting root component. About renderers.
 * Functional and Class components
